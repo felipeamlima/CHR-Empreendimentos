@@ -1,0 +1,305 @@
+.contact-page {
+    background-color: #0c0c0c;
+    color: #fff;
+    padding-bottom: 8rem;
+}
+
+/* --- Contact Hero --- */
+.contact-hero {
+    position: relative;
+    padding: 12rem 0 6rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.contact-hero-content {
+    position: relative;
+    z-index: 5;
+}
+
+.contact-hero-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.contact-hero-title {
+    font-size: clamp(2.2rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+.contact-hero-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.contact-hero-spotlight {
+    position: absolute;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.1) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* --- Split Layout --- */
+.contact-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 10rem;
+    align-items: start;
+    margin-top: 4rem;
+}
+
+/* --- Contact Details --- */
+.contact-details-block h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+    letter-spacing: -1px;
+}
+
+.contact-method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.method-item {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.method-icon-box {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.method-text label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 0.8rem;
+}
+
+.method-text p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.5;
+    word-break: break-word;
+    /* Prevent long addresses from cutting off */
+}
+
+.method-text a {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s ease;
+    word-break: break-all;
+    /* For emails */
+}
+
+.method-text a:hover {
+    color: var(--color-primary);
+}
+
+/* --- Glass Form --- */
+.contact-glass-form-container {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 5rem;
+    border-radius: 4px;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+}
+
+.glass-form-title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 3rem;
+    letter-spacing: -0.5px;
+}
+
+.glass-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.glass-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.glass-input-group label {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.glass-input-group input,
+.glass-input-group select,
+.glass-input-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem 1.5rem;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.glass-input-group input:focus,
+.glass-input-group select:focus,
+.glass-input-group textarea:focus {
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-input-group select option {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+}
+
+.btn-glass-submit {
+    background: var(--color-primary);
+    color: #fff;
+    padding: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-glass-submit:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-5px);
+}
+
+@media (max-width: 1200px) {
+    .contact-main-grid {
+        gap: 5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .contact-main-grid {
+        grid-template-columns: 1fr;
+        gap: 6rem;
+    }
+
+    .contact-glass-form-container {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 8rem 0 4rem;
+    }
+
+    .contact-hero-title {
+        font-size: 2.4rem;
+        letter-spacing: -1px;
+    }
+
+    .contact-details-block h2 {
+        font-size: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .contact-method-list {
+        gap: 2.5rem;
+    }
+
+    .method-icon-box {
+        width: 50px;
+        height: 50px;
+    }
+
+    .method-text a {
+        font-size: 1.1rem;
+    }
+
+    .method-text p {
+        font-size: 0.95rem;
+    }
+
+    .contact-glass-form-container {
+        padding: 2.5rem 1.5rem;
+    }
+
+    .glass-form-title {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .glass-form {
+        gap: 1.5rem;
+    }
+
+    .glass-input-group label {
+        font-size: 0.6rem;
+    }
+
+    .glass-input-group input,
+    .glass-input-group select,
+    .glass-input-group textarea {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-glass-submit {
+        padding: 1.2rem;
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-hero-title {
+        font-size: 2.2rem;
+    }
+
+    .method-item {
+        gap: 1.2rem;
+    }
+}

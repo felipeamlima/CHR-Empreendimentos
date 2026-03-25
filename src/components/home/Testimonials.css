@@ -1,0 +1,130 @@
+.testimonials {
+    background-color: #0c0c0c;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.testimonials-header {
+    margin-bottom: 8rem;
+}
+
+.gold-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.luxury-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1.1;
+    color: #FFFFFF;
+}
+
+.luxury-title span {
+    color: var(--color-primary);
+}
+
+.testimonials-grid {
+    display: flex;
+    overflow-x: auto;
+    gap: 3rem;
+    padding-bottom: 2rem;
+}
+
+.testimonial-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 4rem 3rem;
+    border-radius: 4px;
+    position: relative;
+    transition: all var(--transition-normal);
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--color-primary);
+    transform: translateY(-10px);
+}
+
+.quote-icon {
+    color: var(--color-primary);
+    margin-bottom: 2.5rem;
+    opacity: 0.6;
+}
+
+.testimonial-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 3rem;
+    font-style: italic;
+    flex-grow: 1;
+}
+
+.testimonial-author h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.testimonial-author span {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 992px) {
+    .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonials-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1.5rem;
+        padding: 0 1.5rem 2rem 1.5rem;
+        margin: 0 -1.5rem;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .testimonials-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .testimonial-card {
+        flex: 0 0 85%;
+        max-width: 85%;
+        padding: 3rem 2rem;
+    }
+
+    .testimonial-text {
+        font-size: 1rem;
+    }
+}

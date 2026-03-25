@@ -1,0 +1,465 @@
+.about-page {
+    background-color: #0F0F0F;
+    color: #FFFFFF;
+}
+
+/* --- Hero Section --- */
+.about-hero {
+    position: relative;
+    height: 80vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.about-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.about-hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) saturate(0.8);
+}
+
+.about-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, #0F0F0F 100%);
+    z-index: 2;
+}
+
+.about-hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 900px;
+}
+
+.about-hero-label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.about-heritage-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    letter-spacing: -1.5px;
+}
+
+.about-hero-title {
+    font-size: clamp(2.2rem, 8vw, 6rem);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    word-break: break-word;
+}
+
+/* --- Stats Section --- */
+.about-stats {
+    padding: 8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3.2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+/* Shared components from other pages for context */
+.gold-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+/* --- Narrative Section --- */
+.about-narrative {
+    padding: 10rem 5%;
+}
+
+@media (max-width: 768px) {
+    .about-narrative {
+        padding: 5rem 1.5rem;
+    }
+}
+
+.narrative-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+.narrative-text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.narrative-text-block .luxury-title {
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    letter-spacing: -2px;
+}
+
+.title-separator {
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-primary);
+    margin-bottom: 3rem;
+    border-radius: 2px;
+}
+
+.narrative-text-block p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2rem;
+    text-align: justify;
+}
+
+.narrative-image-wrapper {
+    position: relative;
+}
+
+.narrative-image {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.image-floating-badge {
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    background: var(--color-primary);
+    color: white;
+    padding: 3rem;
+    border-radius: 4px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.image-floating-badge strong {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 900;
+}
+
+.image-floating-badge span {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* --- Values Section --- */
+.about-values {
+    padding: 10rem 0;
+    background: #000;
+}
+
+.values-title-block {
+    text-align: center;
+    margin-bottom: 8rem;
+}
+
+/* Removed leaked navbar styles */
+
+.values-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+}
+
+.value-glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 4rem 3rem;
+    border-radius: 4px;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-glass-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--color-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.about-values .gold-label {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.about-values .luxury-title {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.value-icon-circle {
+    width: 70px;
+    height: 70px;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.value-glass-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    letter-spacing: -0.5px;
+}
+
+.value-glass-card p {
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+    .narrative-grid {
+        gap: 4rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
+
+.about-hero-title {
+    font-size: clamp(2rem, 6vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .about-hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.4rem);
+        letter-spacing: -1px;
+    }
+
+    .about-stats {
+        padding: 5rem 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2.5rem 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.6rem;
+    }
+
+    .narrative-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .narrative-text-block .luxury-title {
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .title-separator {
+        margin-bottom: 2rem;
+        width: 40px;
+    }
+
+    .narrative-text-block p {
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+    }
+
+    .narrative-image-wrapper {
+        border-radius: 4px;
+        overflow: visible;
+        /* Allow badge to float properly */
+        margin-top: 2rem;
+        width: 100%;
+        position: relative;
+    }
+
+    .narrative-image {
+        height: 400px;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .image-floating-badge {
+        position: absolute;
+        bottom: 20px;
+        /* Over the image as requested */
+        left: 20px;
+        right: auto;
+        padding: 1.5rem;
+        width: 130px;
+        height: 130px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--color-primary);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        z-index: 10;
+        text-align: center;
+    }
+
+    .image-floating-badge strong {
+        font-size: 1.8rem;
+        line-height: 1;
+        margin-bottom: 5px;
+    }
+
+    .image-floating-badge span {
+        font-size: 0.6rem;
+        line-height: 1.2;
+    }
+
+    .about-values {
+        padding: 6rem 0;
+    }
+
+    .values-title-block {
+        margin-bottom: 4rem;
+    }
+
+    .values-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 1.5rem;
+        padding: 0 1.5rem 3rem;
+        margin: 0 -1.5rem;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-primary) transparent;
+    }
+
+    .values-container::-webkit-scrollbar {
+        display: block;
+        height: 3px;
+    }
+
+    .values-container::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        margin: 0 1.5rem;
+    }
+
+    .values-container::-webkit-scrollbar-thumb {
+        background: var(--color-primary);
+        border-radius: 10px;
+    }
+
+    .value-glass-card {
+        width: 300px;
+        /* Fixed width to ensure cards pass side-by-side */
+        min-width: 300px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+        padding: 2.5rem 1.8rem;
+        white-space: normal;
+        /* Force text to wrap downwards */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .value-glass-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.6);
+        display: block !important;
+        white-space: normal !important;
+        /* Force text to wrap downwards NO MATTER WHAT */
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .about-values .luxury-title {
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-main-title {
+        font-size: 2.1rem;
+        /* Even smaller to be 100% sure */
+        letter-spacing: -1px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+}

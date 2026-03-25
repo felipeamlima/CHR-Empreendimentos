@@ -1,0 +1,221 @@
+.heritage-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 12rem 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.heritage-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.heritage-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.heritage-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.95) 100%);
+    z-index: 2;
+}
+
+.heritage-content {
+    position: relative;
+    z-index: 3;
+}
+
+.heritage-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8rem;
+    align-items: center;
+}
+
+.heritage-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.heritage-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    letter-spacing: -1.5px;
+}
+
+@media (max-width: 480px) {
+    .heritage-title {
+        font-size: 2.2rem;
+    }
+}
+
+.heritage-title span {
+    color: var(--color-primary);
+}
+
+.heritage-desc {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    max-width: 500px;
+    margin-bottom: 4rem;
+}
+
+.heritage-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 1.2rem 2.8rem;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all var(--transition-normal);
+}
+
+.heritage-btn:hover {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+    transform: translateY(-5px);
+}
+
+/* Differentials Grid */
+.differentials-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.diff-item {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 4px;
+    transition: all var(--transition-normal);
+}
+
+.diff-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--color-primary);
+    transform: translateY(-8px);
+}
+
+.diff-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background: rgba(var(--color-primary-rgb), 0.1);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.diff-text h3 {
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+}
+
+.diff-text p {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.6;
+}
+
+@media (max-width: 1100px) {
+    .heritage-main-grid {
+        grid-template-columns: 1fr;
+        gap: 5rem;
+    }
+
+    .differentials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .heritage-section {
+        padding: 6rem 0;
+    }
+
+    .differentials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0 1rem;
+        /* Added padding to ensure no edge collision */
+        width: 100%;
+        justify-items: center;
+    }
+
+    .diff-item {
+        padding: 1.5rem 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .diff-icon-wrapper {
+        margin: 0 auto 1rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .diff-text h3 {
+        font-size: 0.7rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .diff-text p {
+        font-size: 0.7rem;
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 480px) {
+    .heritage-title {
+        font-size: 2.2rem;
+    }
+
+    .heritage-label {
+        letter-spacing: 3px;
+        font-size: 0.6rem;
+    }
+
+    .heritage-desc {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}

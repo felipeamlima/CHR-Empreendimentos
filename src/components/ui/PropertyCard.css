@@ -1,0 +1,198 @@
+.chr-portfolio-card {
+    position: relative;
+    background: transparent;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.card-outer-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* --- Visual Container --- */
+.card-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    border-radius: 4px;
+    background: #141414;
+    margin-bottom: 2rem;
+}
+
+.card-main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.chr-portfolio-card:hover .card-image-overlay {
+    opacity: 0.8;
+}
+
+/* --- Status Beacon --- */
+.status-tag {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    z-index: 10;
+}
+
+.tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+}
+
+.status-tag span {
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.status-launch .tag-dot {
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
+}
+
+.status-construction .tag-dot {
+    background: #FFA500;
+    box-shadow: 0 0 10px #FFA500;
+}
+
+.status-ready .tag-dot {
+    background: #fff;
+    box-shadow: 0 0 10px #fff;
+}
+
+.status-completed .tag-dot {
+    background: #A0A0A0;
+    /* Subtle grey to distinguish from 'Pronto para Morar' */
+    box-shadow: 0 0 10px #A0A0A0;
+}
+
+/* --- Reveal Content --- */
+.card-reveal-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+    z-index: 5;
+}
+
+.reveal-specs {
+    display: flex;
+    gap: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1.5rem;
+}
+
+.rev-spec {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.rev-spec span {
+    color: #fff;
+}
+
+.reveal-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    color: var(--color-primary);
+    font-weight: 900;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+}
+
+/* --- Static Info --- */
+.card-static-info {
+    padding: 0 0.5rem;
+}
+
+.card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card-title-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: #fff;
+    color: #fff;
+    /* Allow wrapping to 2 lines for long names, then ellipsis */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 4.2rem; /* Reserve space for 2 lines to keep alignment */
+    line-height: 1.3;
+}
+
+.card-title-line {
+    flex-grow: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+}
+
+.chr-portfolio-card:hover .card-title-line {
+    background: var(--color-primary);
+    transform: scaleX(1.1);
+    transform-origin: left;
+}
+
+.card-loc {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .card-title-text {
+        font-size: 1.3rem;
+    }
+}

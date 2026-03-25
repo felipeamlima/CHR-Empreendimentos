@@ -1,0 +1,184 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    transition: all var(--transition-normal);
+    background-color: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar.scrolled {
+    background-color: rgba(12, 12, 12, 0.95);
+    /* More opaque, less reliance on expensive blur */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    height: 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(0);
+    /* Force GPU hardware acceleration for smooth scrolling */
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    transition: all var(--transition-normal);
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    transition: transform 0.25s ease, filter 0.25s ease;
+    /* Slight drop shadow so logo pops from the white navbar */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+.navbar-logo:hover {
+    transform: scale(1.04) translateY(-1px);
+    filter: drop-shadow(0 4px 10px rgba(80, 149, 57, 0.3));
+}
+
+.logo-img {
+    height: 36px;
+    /* Subtle — more elegant */
+    width: auto;
+    object-fit: contain;
+}
+
+@media (min-width: 769px) {
+    .navbar .navbar-links {
+        display: flex !important;
+        /* Overrides the .desktop-only block !important */
+        gap: 3.5rem;
+    }
+}
+
+.navbar-links a {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all var(--transition-normal);
+}
+
+.navbar.scrolled .navbar-links a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+    color: #fff;
+}
+
+.navbar.scrolled .navbar-links a:hover,
+.navbar.scrolled .navbar-links a.active {
+    color: var(--color-primary);
+}
+
+.navbar-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-fast);
+}
+
+.navbar-links a:hover::after,
+.navbar-links a.active::after {
+    width: 100%;
+}
+
+.navbar-actions .btn-portal {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 0.8rem 2.2rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all var(--transition-normal);
+}
+
+.navbar.scrolled .navbar-actions .btn-portal {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+}
+
+.navbar-actions .btn-portal:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.mobile-only {
+    display: none;
+}
+
+.mobile-menu-btn {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background-color: var(--bg-primary);
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.navbar.scrolled .mobile-menu {
+    top: 70px;
+}
+
+.mobile-menu.open {
+    height: 350px;
+}
+
+.mobile-links {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+}
+
+.mobile-links a {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+}
