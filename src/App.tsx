@@ -13,6 +13,7 @@ import CustomCursor from './components/ui/CustomCursor';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 
 function ScrollToTop() {
@@ -28,6 +29,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <SpeedInsights />
+      <Analytics />
       <CustomCursor />
       <div className="app-container">
         <Navbar />
