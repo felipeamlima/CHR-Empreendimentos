@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import FloatingWhatsApp from './components/ui/FloatingWhatsApp';
@@ -43,6 +44,7 @@ function App() {
         <Footer />
         <FloatingWhatsApp />
       </div>
+      <SpeedInsights />
     </Router>
   );
 }
