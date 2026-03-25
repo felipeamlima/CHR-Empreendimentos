@@ -1070,6 +1070,142 @@ const db = {
         gallery: ["/gallery/mem-de-sa/1.jpg", "/gallery/mem-de-sa/2.jpg", "/gallery/mem-de-sa/3.jpg", "/gallery/mem-de-sa/4.JPG", "/gallery/mem-de-sa/5.jpg", "/gallery/mem-de-sa/6.jpg", "/gallery/mem-de-sa/7.jpg"],
         plans: []
     },
+    "nelson-souza": {
+        title: "Edifício\nNelson Souza", location: "Rua Amapa, 72 - Serra",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/nelson-souza/1.jpg"],
+        specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "O Edifício Nelson Souza traz elegância e conforto para a região da Serra. Com acabamentos de altíssimo padrão, este empreendimento destaca-se pela excelente localização, ideal para quem busca viver com comodidade e qualidade de vida no coração da cidade.",
+        differentials: ["Empreendimento Concluído", "Localização Privilegiada", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/nelson-souza/1.jpg", "/gallery/nelson-souza/2.jpg", "/gallery/nelson-souza/3.jpg", "/gallery/nelson-souza/4.jpg", "/gallery/nelson-souza/5.jpg", "/gallery/nelson-souza/6.jpg"],
+        plans: []
+    },
+    "dona-cleonice": {
+        title: "Edifício\nDona Cleonice", location: "Rua São Domingos do Prata, 430 - São Pedro",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/dona-cleonice/1.jpg"],
+        specs: { area: "A Definir", beds: "2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "O Edifício Dona Cleonice é a harmonia perfeita entre praticidade e requinte no bairro São Pedro. Construído com materiais selecionados, seus moradores desfrutam de um ambiente pensado para o bem-estar absoluto.",
+        differentials: ["Empreendimento Concluído", "Localização Privilegiada no São Pedro", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/dona-cleonice/1.jpg", "/gallery/dona-cleonice/2.jpg", "/gallery/dona-cleonice/3.jpg"],
+        plans: []
+    },
+    "stela-de-souza2": {
+        title: "Edifício CHR\nStela de Souza", location: "Rua Stela de Souza, 514 - Sagrada Família",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/stela-de-souza2/1.jpg"],
+        specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "Uma infraestrutura encantadora na Sagrada Família. O Edifício CHR Stela de Souza foi projetado para elevar a sua rotina, oferecendo apartamentos espaçosos e confortáveis com as melhores tecnologias habitacionais desenvolvidas pela CHR.",
+        differentials: ["Empreendimento Concluído", "Próximo a vias de acesso", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/stela-de-souza2/1.jpg", "/gallery/stela-de-souza2/2.jpg", "/gallery/stela-de-souza2/3.jpg", "/gallery/stela-de-souza2/4.jpg", "/gallery/stela-de-souza2/5.jpg"],
+        plans: []
+    },
+    "getulio-vargas": {
+        title: "Edifício CHR\nGetúlio Vargas", location: "Avenida Getúlio Vargas, 58 - Funcionários",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/getulio-vargas/1.jpg"],
+        specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "Posicionado de maneira estratégica no coração do Funcionários, o Edifício CHR Getúlio Vargas proporciona a seus moradores a união autêntica de acessibilidade e luxo. Um ícone urbano totalmente finalizado com o padrão irretocável da CHR.",
+        differentials: ["Empreendimento Concluído", "Localização Excepcional no Funcionários", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/getulio-vargas/1.jpg", "/gallery/getulio-vargas/2.jpg", "/gallery/getulio-vargas/3.jpg", "/gallery/getulio-vargas/4.jpg", "/gallery/getulio-vargas/5.jpg", "/gallery/getulio-vargas/6.jpg", "/gallery/getulio-vargas/7.jpg", "/gallery/getulio-vargas/8.jpg", "/gallery/getulio-vargas/9.jpg"],
+        plans: []
+    },
+    "waldir-chaves": {
+        title: "Edifício\nWaldir Chaves", location: "Rua Caldeira Brant, 371 - Sagrada Família",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/waldir-chaves/1.jpg"],
+        specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "Oportunidade única para desfrutar da Sagrada Família. O edifício Waldir Chaves se destaca por seu layout inteligente, áreas extremamente bem valorizadas e a clássica tranquilidade mineira num acabamento excepcional.",
+        differentials: ["Empreendimento Concluído", "Localização Privilegiada", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/waldir-chaves/1.jpg", "/gallery/waldir-chaves/2.jpg", "/gallery/waldir-chaves/3.jpg"],
+        plans: []
+    },
+    "joao-ayres": {
+        title: "Edifício\nJoão Ayres", location: "Rua Oswaldo Ferraz, 532 - Sagrada Família",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/joao-ayres/1.jpg"],
+        specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "O Edifício João Ayres impressiona pelo bom gosto alinhado ao planejamento da vida em família. Situado na Sagrada Família, conta com comodidade e segurança na medida certa.",
+        differentials: ["Empreendimento Concluído", "Localização Privilegiada", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/joao-ayres/1.jpg", "/gallery/joao-ayres/2.jpg", "/gallery/joao-ayres/3.jpg", "/gallery/joao-ayres/4.jpg"],
+        plans: []
+    },
+    "maria-das-dores-brandao": {
+        title: "Edifício Maria\ndas Dores Brandão", location: "Rua Formosa, 12 - Santa Tereza",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/maria-das-dores-brandao/1.jpg"],
+        specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "Construído no tradicional bairro de Santa Tereza, o edifício Maria das Dores Brandão une modernidade com a cultura histórica da região. Ambientes muito bem desenhados e arejados garantem um investimento seguro.",
+        differentials: ["Empreendimento Concluído", "Localização em Santa Tereza", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/maria-das-dores-brandao/1.jpg", "/gallery/maria-das-dores-brandao/2.jpg"],
+        plans: []
+    },
+    "efigenia-de-freitas": {
+        title: "Edifício\nEfigênia de Freitas", location: "Rua Dr. Vieira Marques, 970 - Sagrada Família",
+        status: "Concluído", progress: 100,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 }
+        ],
+        images: ["/gallery/efigenia-de-freitas/1.jpg"],
+        specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
+        desc: "O edifício Efigênia de Freitas encerra com maestria a união do tradicional bairro Sagrada Família com os materiais e arquitetura visionária da CHR Engenharia. Pronto para abraçar sua família na medida ideal.",
+        differentials: ["Empreendimento Concluído", "Localização Privilegiada", "Qualidade Construtiva CHR", "Acabamento Superior", "Pronto para Morar"],
+        gallery: ["/gallery/efigenia-de-freitas/1.jpg", "/gallery/efigenia-de-freitas/2.jpg"],
+        plans: []
+    },
     // Fallback data for other IDs to map to for MVP purposes
 };
 
@@ -1109,81 +1245,9 @@ export default function PropertyDetail() {
     }, [id]);
 
     // Use specific data if ID matches, else fallback to a generic mock
-    const property = id === 'maranhao'
-        ? db["maranhao"]
-        : id === 'sion-prime'
-            ? db["sion-prime"]
-            : id === 'sao-domingos'
-                ? db["sao-domingos"]
-                : id === 'j-silva'
-                    ? db["j-silva"]
-                    : id === 'm-faria'
-                        ? db["m-faria"]
-                        : id === 'silva-jardim'
-                            ? db["silva-jardim"]
-                            : id === 'studio-aimores'
-                                ? db["studio-aimores"]
-                                : id === 'major-lopes'
-                                    ? db["major-lopes"]
-                                    : id === 'mar-de-espanha'
-                                        ? db["mar-de-espanha"]
-                                        : id === 'stela-de-souza'
-                                            ? db["stela-de-souza"]
-                                            : id === 'odilon-braga'
-                                                ? db["odilon-braga"]
-                                                : id === 'barao-de-cocais'
-                                                    ? db["barao-de-cocais"]
-                                                    : id === 'silvestre-ferraz'
-                                                        ? db["silvestre-ferraz"]
-                                                        : id === 'gisa-araujo'
-                                                            ? db["gisa-araujo"]
-                                                            : id === 'costa-monteiro'
-                                                                ? db["costa-monteiro"]
-                                                                : id === 'sao-manoel'
-                                                                    ? db["sao-manoel"]
-                                                                    : id === 'enio-soares'
-                                                                        ? db["enio-soares"]
-                                                                        : id === 'isabela-lima'
-                                                                            ? db["isabela-lima"]
-                                                                                : id === 'sao-pedro'
-                                                                                    ? db["sao-pedro"]
-                                                                                    : id === 'chicago'
-                                                                                        ? db["chicago"]
-                                                                                        : id === 'dom-vital'
-                                                                                            ? db["dom-vital"]
-                                                                                            : id === 'amaro-linari'
-                                                                                                ? db["amaro-linari"]
-                                                                                                : id === 'francisco-bressane'
-                                                                                                    ? db["francisco-bressane"]
-                                                                                                        : id === 'machado-lima'
-                                                                                                        ? db["machado-lima"]
-                                                                                                        : id === 'jardins-do-prado'
-                                                                                                            ? db["jardins-do-prado"]
-                                                                                                            : id === 'arnaldo-xavier'
-                                                                                                                ? db["arnaldo-xavier"]
-                                                                                                                : id === 'sao-roque'
-                                                                                                                    ? db["sao-roque"]
-                                                                                                                    : id === 'marechal-hermes'
-                                                                                                                        ? db["marechal-hermes"]
-                                                                                                                        : id === 'geraldo-rezende'
-                                                                                                                            ? db["geraldo-rezende"]
-                                                                                                                            : id === 'itajuba'
-                                                                                                                                ? db["itajuba"]
-                                                                                                                                : id === 'iracema-drummond'
-                                                                                                                                    ? db["iracema-drummond"]
-                                                                                                                                    : id === 'dona-anisia'
-                                                                                                                                        ? db["dona-anisia"]
-                                                                                                                                        : id === 'caldeira-brant'
-                                                                                                                                            ? db["caldeira-brant"]
-                                                                                                                                            : id === 'adelson-pazzini'
-                                                                                                                                                ? db["adelson-pazzini"]
-                                                                                                                                                : id === 'macedo'
-                                                                                                                                                    ? db["macedo"]
-                                                                                                                                                    : id === 'itabira'
-                                                                                                                                                        ? db["itabira"]
-                                                                                                                                                        : id === 'mem-de-sa'
-                                                                                                                                                            ? db["mem-de-sa"]
-                                                                                                                                                            : { ...db["maranhao"], title: `Empreendimento ${id}`, progress: 50, status: "Em Obras" };
+    const property = id && id in db
+        ? db[id as keyof typeof db]
+        : { ...db["maranhao"], title: `Empreendimento ${id}`, progress: 50, status: "Em Obras" };
 
     // Keyboard navigation for gallery
     useEffect(() => {

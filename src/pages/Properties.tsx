@@ -193,6 +193,46 @@ const completedProperties: PropertyProps[] = [
         image: "/gallery/mem-de-sa/1.jpg",
         status: "Concluído", specs: { area: "A Definir", beds: "A Definir", parking: "A Definir" }
     },
+    {
+        id: "nelson-souza", title: "Edifício Nelson Souza", location: "Rua Amapa, 72 - Serra",
+        image: "/gallery/nelson-souza/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "dona-cleonice", title: "Edifício Dona Cleonice", location: "Rua São Domingos do Prata, 430 - São Pedro",
+        image: "/gallery/dona-cleonice/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "2 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "stela-de-souza2", title: "Edifício CHR Stela de Souza", location: "Rua Stela de Souza, 514 - Sagrada Família",
+        image: "/gallery/stela-de-souza2/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "getulio-vargas", title: "Edifício CHR Getúlio Vargas", location: "Avenida Getulio Vargas, 58 - Funcionários",
+        image: "/gallery/getulio-vargas/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "waldir-chaves", title: "Edifício Waldir Chaves", location: "Rua Caldeira Brant, 371 - Sagrada Família",
+        image: "/gallery/waldir-chaves/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "joao-ayres", title: "Edifício João Ayres", location: "Rua Oswaldo Ferraz, 532 - Sagrada Família",
+        image: "/gallery/joao-ayres/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+    },
+    {
+        id: "maria-das-dores-brandao", title: "Edifício Maria das Dores Brandão", location: "Rua Formosa, 12 - Santa Tereza",
+        image: "/gallery/maria-das-dores-brandao/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "A Definir", parking: "A Definir" }
+    },
+    {
+        id: "efigenia-de-freitas", title: "Edifício Efigênia de Freitas", location: "Rua Dr. Vieira Marques, 970 - Sagrada Família",
+        image: "/gallery/efigenia-de-freitas/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "A Definir", parking: "A Definir" }
+    }
 ];
 
 export default function Properties() {
