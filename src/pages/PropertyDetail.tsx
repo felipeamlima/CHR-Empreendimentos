@@ -8,13 +8,14 @@ import './PropertyDetail.css';
 const db = {
     "maranhao": {
         title: "Edifício Maranhão", location: "Rua Maranhão 1427 - Funcionários, Belo Horizonte",
-        status: "Em Obras", progress: 10,
+        status: "Em Obras", progress: 18,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 10 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: [
             "/gallery/maranhao/maranhao1.jpg",
@@ -75,13 +76,14 @@ const db = {
     },
     "sion-prime": {
         title: "Sion Prime", location: "Rua Laranjal 129 e 139, Bairro Sion, Belo Horizonte",
-        status: "Lançamento", progress: 5,
+        status: "Lançamento", progress: 8,
         progressStages: [
             { name: "Preparo do Terreno", v: 50 },
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: [
             "/gallery/sion-prime/1.jpg",
@@ -129,13 +131,14 @@ const db = {
     },
     "sao-domingos": {
         title: "Edifício\nE. Pinheiro", location: "Rua São Domingos do Prata, 119 - São Pedro",
-        status: "Em Obras", progress: 60,
+        status: "Em Obras", progress: 52,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 10 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: [
             "/gallery/sao-domingos/1.jpg",
@@ -188,7 +191,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/j-silva/1.jpg"],
         specs: { area: "59m² a 124m²", beds: "2 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "11 Unidades", leisure: "Sem Área de Lazer" },
@@ -223,7 +227,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/m-faria/1.jpg"],
         specs: { area: "36m² a 90m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "16 Unidades", leisure: "Sem Área de Lazer" },
@@ -259,7 +264,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/silva-jardim/1.jpg"],
         specs: { area: "60m² a 191m²", beds: "2 a 4 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "8 Unidades", leisure: "Sem Área de Lazer" },
@@ -292,7 +298,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/aimores/1.jpg"],
         specs: { area: "A Definir", beds: "Studio", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -312,21 +319,22 @@ const db = {
     },
     "major-lopes": {
         title: "Edifício\nF. Duarte Vidigal", location: "Rua Major Lopes, 142 - São Pedro",
-        status: "Em Obras", progress: 20,
+        status: "Em Obras", progress: 46,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
-            { name: "Fundações", v: 40 },
-            { name: "Superestrutura", v: 0 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 75 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/major-lopes/1.jpg"],
-        specs: { area: "A Definir", beds: "1 Quarto", parking: "1 Vaga", floors: "A Definir", units: "A Definir", leisure: "Sem Área de Lazer" },
+        specs: { area: "34m² a 61m²", beds: "1 Quarto", parking: "1 Vaga", floors: "A Definir", units: "A Definir", leisure: "Sem Área de Lazer" },
         desc: "Uma nova referência de sofisticação no coração do bairro São Pedro. O Edifício Feliciano Duarte Vidigal traz a exclusividade de um projeto moderno em uma localização estratégica, próximo a toda a conveniência e charme da Rua Major Lopes.",
         differentials: [
             "Localização Estratégica",
             "1 Quarto",
-            "Área Privativa e Cobertura",
+            "Cobertura",
             "Condomínio Econômico",
             "Água e Gás Individualizados",
             "Acabamento de Alto Padrão",
@@ -338,43 +346,45 @@ const db = {
     },
     "mar-de-espanha": {
         title: "Edifício\nMar de Espanha", location: "Rua Mar de Espanha, 422 - Santo Antônio",
-        status: "Em Obras", progress: 25,
+        status: "Em Obras", progress: 38,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
-            { name: "Fundações", v: 60 },
-            { name: "Superestrutura", v: 10 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 30 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/mar-de-espanha/1.jpg"],
-        specs: { area: "60m²", beds: "2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Sem Área de Lazer" },
+        specs: { area: "60m² a 127,50m²", beds: "2 Quartos", parking: "2 Vagas", floors: "4 Andares", units: "A Definir", leisure: "Espaço Gourmet" },
         desc: "O Edifício Mar de Espanha destaca-se pela sua arquitetura imponente com detalhes em madeira no bairro Santo Antônio. Com apartamentos de 2 quartos e 60m², oferece o equilíbrio perfeito entre elegância, conforto e uma vida urbana prática em uma localização residencial nobre.",
         differentials: [
-            "Localização Estratégica",
-            "Apartamentos 2 Quartos",
-            "60m² Inteligentes",
+            "Localização Nobre no Santo Antônio",
+            "Apartamentos de 2 Quartos",
+            "Espaço Gourmet",
             "Acabamento de Alto Padrão",
             "Condomínio Econômico",
             "Água e Gás Individualizados",
-            "Fachada Moderna",
-            "Santo Antônio Premium"
+            "Próximo a Restaurantes e Comércio",
+            "Fachada Moderna com Detalhes em Madeira"
         ],
         gallery: ["/gallery/mar-de-espanha/1.jpg", "/gallery/mar-de-espanha/2.jpg"],
         plans: []
     },
     "stela-de-souza": {
         title: "Studio\nStela de Souza", location: "Rua Stela de Souza, 107 - Sagrada Família",
-        status: "Em Obras", progress: 0,
+        status: "Em Obras", progress: 83,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 50 },
+            { name: "Acabamento", v: 50 }
         ],
         images: ["/gallery/stela-de-souza/1.jpg"],
-        specs: { area: "36 a 76m²", beds: "1 Quarto", parking: "1 Vaga", floors: "6 Andares", units: "15 Unidades", leisure: "A Definir" },
-        desc: "Exclusividade e modernidade no bairro Sagrada Família. O Studio Stela de Souza oferece o equilíbrio perfeito entre design contemporâneo e funcionalidade, com plantas inteligentes de 36 a 76m². Um projeto pensado para quem busca praticidade em uma localização residencial consolidada.",
+        specs: { area: "37m² a 55m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "15 Unidades", leisure: "Sem Área de Lazer" },
+        desc: "Exclusividade e modernidade no bairro Sagrada Família. O Studio Stela de Souza oferece o equilíbrio perfeito entre design contemporâneo e funcionalidade, com plantas inteligentes de 37 a 55m². Um projeto pensado para quem busca praticidade em uma localização residencial consolidada.",
         differentials: [
             "Localização Residencial Nobre",
             "Plantas Inteligentes",
@@ -396,7 +406,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/odilon-braga/1.jpg"],
         specs: { area: "60 a 124m²", beds: "2 a 3 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "8 Unidades", leisure: "A Definir" },
@@ -422,10 +433,11 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/barao-de-cocais/1.jpg"],
-        specs: { area: "37 a 100m²", beds: "1 Quarto", parking: "1 Vaga", floors: "6 Andares", units: "15 Unidades", leisure: "Área Privativa e Duplex" },
+        specs: { area: "37 a 100m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "15 Unidades", leisure: "Área Privativa e Duplex" },
         desc: "Arquitetura arrojada no coração da Sagrada Família. O Studio Barão de Cocais redefine o conceito de estúdio com metragens amplas e exclusivas, incluindo unidades com área privativa e duplex. Um projeto limitado a 15 unidades que une sofisticação e funcionalidade em um dos bairros mais tradicionais da cidade.",
         differentials: [
             "Localização Estratégica",
@@ -448,10 +460,11 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/silvestre-ferraz/1.jpg"],
-        specs: { area: "37 a 88m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "12 Unidades", leisure: "Área Privativa e Duplex" },
+        specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "12 Unidades", leisure: "Área Privativa e Duplex" },
         desc: "Viva a exclusividade no Studio Silvestre Ferraz. Localizado estrategicamente no bairro Sagrada Família, este projeto inovador traz apenas 12 unidades com acabamento de alto padrão. Unidades duplex e áreas privativas oferecem o espaço ideal para quem não abre mão do conforto em um ambiente compacto e moderno.",
         differentials: [
             "Localização Residencial Próxima ao Centro",
@@ -474,7 +487,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/gisa-araujo/1.jpg"],
         specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas", floors: "7 Andares", units: "13 Unidades", leisure: "Área Privativa, Cobertura e Loja" },
@@ -500,10 +514,11 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/costa-monteiro/1.jpg"],
-        specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 a 2 Vagas", floors: "5 Andares", units: "10 Unidades", leisure: "Área Privativa e Cobertura" },
+        specs: { area: "44m²", beds: "1 Quarto", parking: "1 Vaga", floors: "4 Andares", units: "10 Unidades", leisure: "Área Privativa e Cobertura" },
         desc: "O Edifício Costa Monteiro é a escolha ideal para quem busca conforto e exclusividade no bairro Sagrada Família. Com apenas 10 unidades, o projeto oferece uma variedade de plantas que se adaptam ao seu estilo de vida, desde studios práticos a coberturas espaçosas. Tudo isso com o padrão de qualidade CHR e uma localização privilegiada e tranquila.",
         differentials: [
             "Apenas 10 Unidades",
@@ -526,7 +541,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/sao-manoel/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -552,7 +568,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/enio-soares/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -578,7 +595,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/isabela-lima/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -604,7 +622,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/sao-pedro/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -630,7 +649,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/chicago/1.JPG"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -656,11 +676,12 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/dom-vital/1.jpg"],
-        specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
-        desc: "Exclusividade e estilo se encontram na Rua Dom Vital. No coração do bairro Anchieta, o Edifício Dom Vital oferece apartamentos de 2 e 3 quartos com plantas inteligentes e acabamento premium. Unidades exclusivas com área privativa e coberturas que proporcionam lazer e conforto para toda a família.",
+        specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 a 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
+        desc: "Exclusividade e estilo se encontram na Rua Dom Vital. No coração do bairro Anchieta, o Edifício Dom Vital oferece apartamentos de 1 quarto com plantas inteligentes e acabamento premium. Unidades exclusivas com área privativa e coberturas que proporcionam lazer e conforto para toda a família.",
         differentials: [
             "Localização Nobre no Anchieta",
             "Plantas de 2 e 3 Quartos",
@@ -682,7 +703,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/amaro-linari/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -708,7 +730,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/francisco-bressane/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -734,7 +757,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/machado-lima/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
@@ -760,7 +784,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/jardins-do-prado/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "Jogos, Fitness, Gourmet, Spa, Festas" },
@@ -786,7 +811,8 @@ const db = {
             { name: "Fundações", v: 0 },
             { name: "Superestrutura", v: 0 },
             { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 }
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
         ],
         images: ["/gallery/arnaldo-xavier/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -812,7 +838,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/sao-roque/1.jpg"],
         specs: { area: "A Definir", beds: "1 Quarto", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -838,10 +865,11 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/marechal-hermes/1.jpg"],
-        specs: { area: "A Definir", beds: "2 Quartos", parking: "A Definir", floors: "5 Andares", units: "A Definir", leisure: "Área Privativa e Cobertura" },
+        specs: { area: "60m² a 120m²", beds: "2 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "A Definir", leisure: "Área Privativa e Cobertura" },
         desc: "O Edifício Marechal Hermes é um destaque no bairro Gutierrez pela sua arquitetura sóbria e elegante. Este empreendimento concluído pela CHR oferece apartamentos de 2 quartos em uma das ruas mais arborizadas e tranquilas da região. Com unidades de área privativa e coberturas, o projeto entrega o máximo de conforto em um dos bairros mais tradicionais de BH.",
         differentials: [
             "Empreendimento Concluído",
@@ -864,7 +892,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/geraldo-rezende/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "A Definir", floors: "4 Andares", units: "A Definir", leisure: "A Definir" },
@@ -890,7 +919,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/itajuba/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -916,7 +946,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/iracema-drummond/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -939,7 +970,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/dona-anisia/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -962,7 +994,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/caldeira-brant/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -986,7 +1019,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/adelson-pazzini/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1009,7 +1043,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/macedo/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1032,7 +1067,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/itabira/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1055,7 +1091,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/mem-de-sa/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1078,7 +1115,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/nelson-souza/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1095,7 +1133,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/dona-cleonice/1.jpg"],
         specs: { area: "A Definir", beds: "2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1112,7 +1151,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/stela-de-souza2/1.jpg"],
         specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1129,7 +1169,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/getulio-vargas/1.jpg"],
         specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1146,7 +1187,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/waldir-chaves/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1163,7 +1205,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/joao-ayres/1.jpg"],
         specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1180,7 +1223,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/maria-das-dores-brandao/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1197,7 +1241,8 @@ const db = {
             { name: "Fundações", v: 100 },
             { name: "Superestrutura", v: 100 },
             { name: "Alvenaria", v: 100 },
-            { name: "Instalações", v: 100 }
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/efigenia-de-freitas/1.jpg"],
         specs: { area: "A Definir", beds: "A Definir", parking: "A Definir", floors: "A Definir", units: "A Definir", leisure: "A Definir" },
@@ -1471,12 +1516,14 @@ export default function PropertyDetail() {
                     >
                         Galeria de Imagens
                     </button>
-                    <button
-                        className={`tab-btn ${activeTab === 'plans' ? 'active' : ''}`}
-                        onClick={() => { setActiveTab('plans'); setActiveImageIdx(0); }}
-                    >
-                        Plantas
-                    </button>
+                    {property.plans && property.plans.length > 0 && (
+                        <button
+                            className={`tab-btn ${activeTab === 'plans' ? 'active' : ''}`}
+                            onClick={() => { setActiveTab('plans'); setActiveImageIdx(0); }}
+                        >
+                            Plantas
+                        </button>
+                    )}
                 </div>
 
                 <div className="gallery-container">

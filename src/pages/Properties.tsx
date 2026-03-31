@@ -38,12 +38,12 @@ const allProperties: PropertyProps[] = [
     {
         id: "major-lopes", title: "Edifício F. Duarte Vidigal", location: "Rua Major Lopes, 142 - São Pedro",
         image: "/gallery/major-lopes/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "1 Quarto", parking: "1 Vaga" }
+        status: "Em Obras", specs: { area: "34m² a 61m²", beds: "1 Quarto", parking: "1 Vaga" }
     },
     {
         id: "mar-de-espanha", title: "Edifício Mar de Espanha", location: "Rua Mar de Espanha, 422 - Santo Antônio",
         image: "/gallery/mar-de-espanha/1.jpg",
-        status: "Em Obras", specs: { area: "60m²", beds: "2 Quartos", parking: "A Definir" }
+        status: "Em Obras", specs: { area: "60m² a 127,50m²", beds: "2 Quartos", parking: "2 Vagas" }
     },
     {
         id: "studio-aimores", title: "Studio Aimorés", location: "Rua Aimorés - Funcionários",
@@ -53,7 +53,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "stela-de-souza", title: "Studio Stela de Souza", location: "Rua Stela de Souza, 107 - Sagrada Família",
         image: "/gallery/stela-de-souza/1.jpg",
-        status: "Em Obras", specs: { area: "36 a 76m²", beds: "1 Quarto", parking: "1 Vaga" }
+        status: "Em Obras", specs: { area: "37m² a 55m²", beds: "1 Quarto", parking: "1 Vaga" }
     },
     {
         id: "odilon-braga", title: "Edifício Odilon Braga", location: "Rua Odilon Braga, 369 - Anchieta",
@@ -68,7 +68,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "silvestre-ferraz", title: "Studio Silvestre Ferraz", location: "Rua Silvestre Ferraz, 132 - Sagrada Família",
         image: "/gallery/silvestre-ferraz/1.jpg",
-        status: "Em Obras", specs: { area: "37 a 88m²", beds: "1 Quarto", parking: "1 Vaga" }
+        status: "Em Obras", specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 Vaga" }
     },
     {
         id: "gisa-araujo", title: "Edifício Gisa Araújo", location: "Rua Pium-í, 930 - Sion",
@@ -78,7 +78,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "costa-monteiro", title: "Edifício Costa Monteiro", location: "Rua Costa Monteiro, 699 - Sagrada Família",
         image: "/gallery/costa-monteiro/1.jpg",
-        status: "Em Obras", specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 a 2 Vagas" }
+        status: "Em Obras", specs: { area: "44m²", beds: "1 Quarto", parking: "1 Vaga" }
     },
     {
         id: "sao-manoel", title: "Edifício São Manoel", location: "Rua São Manoel, 263 - Bairro Floresta",
@@ -108,7 +108,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "dom-vital", title: "Edifício Dom Vital", location: "Rua Dom Vital, 47 - Anchieta",
         image: "/gallery/dom-vital/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Em Obras", specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 a 2 Vagas" }
     },
     {
         id: "amaro-linari", title: "Edifício Eng. Amaro Linari", location: "Rua Engenheiro Amaro Linari, 366 - Sion",
@@ -146,7 +146,7 @@ const completedProperties: PropertyProps[] = [
     {
         id: "marechal-hermes", title: "Edifício Marechal Hermes", location: "Rua Marechal Hermes, 778 - Gutierrez",
         image: "/gallery/marechal-hermes/1.jpg",
-        status: "Concluído", specs: { area: "A Definir", beds: "2 Quartos", parking: "A Definir" }
+        status: "Concluído", specs: { area: "60m² a 120m²", beds: "2 Quartos", parking: "2 Vagas" }
     },
     {
         id: "geraldo-rezende", title: "Edifício Geraldo Rezende", location: "Rua Itajubá, 1138 - Sagrada Família",
