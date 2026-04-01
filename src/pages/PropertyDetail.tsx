@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+﻿import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X } from 'lucide-react';
@@ -8,11 +8,11 @@ import './PropertyDetail.css';
 const db = {
     "maranhao": {
         title: "Edifício Maranhão", location: "Rua Maranhão 1427 - Funcionários, Belo Horizonte",
-        status: "Em Obras", progress: 18,
+        status: "Lançamento", progress: 36,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
-            { name: "Fundações", v: 10 },
-            { name: "Superestrutura", v: 0 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 15 },
             { name: "Alvenaria", v: 0 },
             { name: "Instalações", v: 0 },
             { name: "Acabamento", v: 0 }
@@ -131,12 +131,12 @@ const db = {
     },
     "sao-domingos": {
         title: "Edifício\nE. Pinheiro", location: "Rua São Domingos do Prata, 119 - São Pedro",
-        status: "Em Obras", progress: 52,
+        status: "Em Obras", progress: 41,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
-            { name: "Superestrutura", v: 100 },
-            { name: "Alvenaria", v: 10 },
+            { name: "Superestrutura", v: 30 },
+            { name: "Alvenaria", v: 15 },
             { name: "Instalações", v: 0 },
             { name: "Acabamento", v: 0 }
         ],
@@ -185,7 +185,7 @@ const db = {
     },
     "j-silva": {
         title: "Edifício J. Silva", location: "Rua Teixeira Magalhães, 130 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -221,7 +221,7 @@ const db = {
     },
     "m-faria": {
         title: "Edifício\nM. Faria", location: "Rua Itajubá, 108 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -258,7 +258,7 @@ const db = {
     },
     "silva-jardim": {
         title: "Edifício Silva Jardim", location: "Rua Silva Jardim, 192 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -346,14 +346,14 @@ const db = {
     },
     "mar-de-espanha": {
         title: "Edifício\nMar de Espanha", location: "Rua Mar de Espanha, 422 - Santo Antônio",
-        status: "Em Obras", progress: 38,
+        status: "Em Obras", progress: 92,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
-            { name: "Superestrutura", v: 30 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 80 },
+            { name: "Acabamento", v: 70 }
         ],
         images: ["/gallery/mar-de-espanha/1.jpg"],
         specs: { area: "60m² a 127,50m²", beds: "2 Quartos", parking: "2 Vagas", floors: "4 Andares", units: "A Definir", leisure: "Espaço Gourmet" },
@@ -400,17 +400,17 @@ const db = {
     },
     "odilon-braga": {
         title: "Edifício\nOdilon Braga", location: "Rua Odilon Braga, 369 - Anchieta",
-        status: "Em Obras", progress: 0,
+        status: "Em Obras", progress: 98,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 90 }
         ],
         images: ["/gallery/odilon-braga/1.jpg"],
-        specs: { area: "60 a 124m²", beds: "2 a 3 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "8 Unidades", leisure: "A Definir" },
+        specs: { area: "60 a 124m²", beds: "2 a 3 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "8 Unidades", leisure: "Espaço Gourmet e Fitness" },
         desc: "Requinte e sofisticação no bairro Anchieta. O Edifício Odilon Braga oferece a exclusividade de apenas 8 unidades em uma das ruas mais desejadas da região. Com plantas versáteis de 2 a 3 quartos, este projeto une conforto, segurança e alto padrão em uma localização privilegiada.",
         differentials: [
             "Localização Nobre no Anchieta",
@@ -427,17 +427,17 @@ const db = {
     },
     "barao-de-cocais": {
         title: "Studio\nBarão de Cocais", location: "Rua Barão de Cocais, 54 - Sagrada Família",
-        status: "Em Obras", progress: 0,
+        status: "Em Obras", progress: 93,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 60 }
         ],
         images: ["/gallery/barao-de-cocais/1.jpg"],
-        specs: { area: "37 a 100m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "15 Unidades", leisure: "Área Privativa e Duplex" },
+        specs: { area: "37 a 100m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "15 Unidades", leisure: "Sem Área de Lazer" },
         desc: "Arquitetura arrojada no coração da Sagrada Família. O Studio Barão de Cocais redefine o conceito de estúdio com metragens amplas e exclusivas, incluindo unidades com área privativa e duplex. Um projeto limitado a 15 unidades que une sofisticação e funcionalidade em um dos bairros mais tradicionais da cidade.",
         differentials: [
             "Localização Estratégica",
@@ -454,17 +454,17 @@ const db = {
     },
     "silvestre-ferraz": {
         title: "Studio\nSilvestre Ferraz", location: "Rua Silvestre Ferraz, 132 - Sagrada Família",
-        status: "Em Obras", progress: 0,
+        status: "Em Obras", progress: 96,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 75 }
         ],
         images: ["/gallery/silvestre-ferraz/1.jpg"],
-        specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "12 Unidades", leisure: "Área Privativa e Duplex" },
+        specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 Vaga", floors: "5 Andares", units: "12 Unidades", leisure: "Sem Área de Lazer" },
         desc: "Viva a exclusividade no Studio Silvestre Ferraz. Localizado estrategicamente no bairro Sagrada Família, este projeto inovador traz apenas 12 unidades com acabamento de alto padrão. Unidades duplex e áreas privativas oferecem o espaço ideal para quem não abre mão do conforto em um ambiente compacto e moderno.",
         differentials: [
             "Localização Residencial Próxima ao Centro",
@@ -481,17 +481,17 @@ const db = {
     },
     "gisa-araujo": {
         title: "Edifício\nGisa Araújo", location: "Rua Pium-í, 930 - Sion",
-        status: "Em Obras", progress: 0,
+        status: "Pronto para Morar", progress: 100,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/gisa-araujo/1.jpg"],
-        specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas", floors: "7 Andares", units: "13 Unidades", leisure: "Área Privativa, Cobertura e Loja" },
+        specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas", floors: "7 Andares", units: "13 Unidades", leisure: "Sem Área de Lazer" },
         desc: "Exclusividade e sofisticação no coração do bairro Sion. O Edifício Gisa Araújo oferece uma variedade única de plantas, desde apartamentos tipo a coberturas lineares e áreas privativas, além de uma loja de conveniência no térreo. Com acabamento impecável e localização privilegiada, é o empreendimento ideal para quem busca versatilidade e conforto em uma das regiões mais valorizadas de BH.",
         differentials: [
             "Localização Privilegiada no Sion",
@@ -508,17 +508,17 @@ const db = {
     },
     "costa-monteiro": {
         title: "Edifício\nCosta Monteiro", location: "Rua Costa Monteiro, 699 - Sagrada Família",
-        status: "Em Obras", progress: 0,
+        status: "Pronto para Morar", progress: 100,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/costa-monteiro/1.jpg"],
-        specs: { area: "44m²", beds: "1 Quarto", parking: "1 Vaga", floors: "4 Andares", units: "10 Unidades", leisure: "Área Privativa e Cobertura" },
+        specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas", floors: "4 Andares", units: "10 Unidades", leisure: "Sem Área de Lazer" },
         desc: "O Edifício Costa Monteiro é a escolha ideal para quem busca conforto e exclusividade no bairro Sagrada Família. Com apenas 10 unidades, o projeto oferece uma variedade de plantas que se adaptam ao seu estilo de vida, desde studios práticos a coberturas espaçosas. Tudo isso com o padrão de qualidade CHR e uma localização privilegiada e tranquila.",
         differentials: [
             "Apenas 10 Unidades",
@@ -535,14 +535,14 @@ const db = {
     },
     "sao-manoel": {
         title: "Edifício\nSão Manoel", location: "Rua São Manoel, 263 - Bairro Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
-            { name: "Preparo do Terreno", v: 0 },
-            { name: "Fundações", v: 0 },
-            { name: "Superestrutura", v: 0 },
-            { name: "Alvenaria", v: 0 },
-            { name: "Instalações", v: 0 },
-            { name: "Acabamento", v: 0 }
+            { name: "Preparo do Terreno", v: 100 },
+            { name: "Fundações", v: 100 },
+            { name: "Superestrutura", v: 100 },
+            { name: "Alvenaria", v: 100 },
+            { name: "Instalações", v: 100 },
+            { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/sao-manoel/1.jpg"],
         specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },

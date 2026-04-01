@@ -8,7 +8,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "maranhao", title: "Edifício Maranhão", location: "Funcionários, Belo Horizonte",
         image: "/gallery/maranhao/maranhao1.jpg",
-        status: "Em Obras", specs: { area: "68m² a 182m²", beds: "2 e 3 Quartos", parking: "1 e 2 Vagas" }
+        status: "Lançamento", specs: { area: "68m² a 182m²", beds: "2 e 3 Quartos", parking: "1 e 2 Vagas" }
     },
     {
         id: "sion-prime", title: "Sion Prime", location: "Sion, Belo Horizonte",
@@ -23,17 +23,17 @@ const allProperties: PropertyProps[] = [
     {
         id: "j-silva", title: "Edifício J. Silva", location: "Rua Teixeira Magalhães, 130 - Floresta",
         image: "/gallery/j-silva/1.jpg",
-        status: "Em Obras", specs: { area: "59 a 124m²", beds: "2 Quartos", parking: "2 Vagas" }
+        status: "Lançamento", specs: { area: "59 a 124m²", beds: "2 Quartos", parking: "2 Vagas" }
     },
     {
         id: "m-faria", title: "Edifício M. Faria", location: "Rua Itajubá, 108 - Floresta",
         image: "/gallery/m-faria/1.jpg",
-        status: "Em Obras", specs: { area: "36m² a 90m²", beds: "1 Quarto", parking: "1 Vaga" }
+        status: "Lançamento", specs: { area: "36m² a 90m²", beds: "1 Quarto", parking: "1 Vaga" }
     },
     {
         id: "silva-jardim", title: "Edifício Silva Jardim", location: "Rua Silva Jardim, 192 - Floresta",
         image: "/gallery/silva-jardim/1.jpg",
-        status: "Em Obras", specs: { area: "60 a 191m²", beds: "2 a 4 Quartos", parking: "2 Vagas" }
+        status: "Lançamento", specs: { area: "60 a 191m²", beds: "2 a 4 Quartos", parking: "2 Vagas" }
     },
     {
         id: "major-lopes", title: "Edifício F. Duarte Vidigal", location: "Rua Major Lopes, 142 - São Pedro",
@@ -73,17 +73,12 @@ const allProperties: PropertyProps[] = [
     {
         id: "gisa-araujo", title: "Edifício Gisa Araújo", location: "Rua Pium-í, 930 - Sion",
         image: "/gallery/gisa-araujo/1.jpg",
-        status: "Em Obras", specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas" }
+        status: "Pronto para Morar", specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas" }
     },
     {
         id: "costa-monteiro", title: "Edifício Costa Monteiro", location: "Rua Costa Monteiro, 699 - Sagrada Família",
         image: "/gallery/costa-monteiro/1.jpg",
-        status: "Em Obras", specs: { area: "44m²", beds: "1 Quarto", parking: "1 Vaga" }
-    },
-    {
-        id: "sao-manoel", title: "Edifício São Manoel", location: "Rua São Manoel, 263 - Bairro Floresta",
-        image: "/gallery/sao-manoel/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
+        status: "Pronto para Morar", specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas" }
     },
     {
         id: "enio-soares", title: "Edifício Enio Soares", location: "Rua Conselheiro Lafaiete, 497 - Sagrada Família",
@@ -138,6 +133,11 @@ const allProperties: PropertyProps[] = [
 ];
 
 const completedProperties: PropertyProps[] = [
+    {
+        id: "sao-manoel", title: "Edifício São Manoel", location: "Rua São Manoel, 263 - Bairro Floresta",
+        image: "/gallery/sao-manoel/1.jpg",
+        status: "Concluído", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
+    },
     {
         id: "sao-roque", title: "Edifício São Roque", location: "Rua São Roque, 620 - Sagrada Família",
         image: "/gallery/sao-roque/1.jpg",
@@ -239,9 +239,16 @@ export default function Properties() {
     const [activeStatus, setActiveStatus] = useState<string>('Todos');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const statusOptions = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar'];
+    const statusOptions = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Concluído'];
 
     const filteredProperties = useMemo(() => {
+        if (activeStatus === 'Concluído') {
+            return completedProperties.filter(property => {
+                const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    property.location.toLowerCase().includes(searchQuery.toLowerCase());
+                return matchesSearch;
+            });
+        }
         return allProperties.filter(property => {
             const matchesStatus = activeStatus === 'Todos' || property.status === activeStatus;
             const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -307,28 +314,6 @@ export default function Properties() {
                     </AnimatePresence>
                 </div>
             </main>
-
-            <section className="completed-section container">
-                <div className="completed-header">
-                    <span className="completed-tag">Nossa História</span>
-                    <h2 className="completed-title"><span>Empreendimentos</span> <br /> Concluídos</h2>
-                    <p className="completed-desc">A excelência e solidez de quem já construiu grandes sonhos. Confira os empreendimentos entregues com o padrão CHR.</p>
-                </div>
-
-                <div className="luxury-listing-grid">
-                    {completedProperties.map((p, idx) => (
-                        <motion.div
-                            key={p.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ delay: idx * 0.1 }}
-                        >
-                            <PropertyCard {...p} />
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
         </div>
     );
 }
