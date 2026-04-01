@@ -8,7 +8,7 @@ export interface PropertyProps {
     title: string;
     location: string;
     image: string;
-    status: 'Lançamento' | 'Em Obras' | 'Pronto para Morar' | 'Concluído';
+    status: 'Lançamento' | 'Em Obras' | 'Pronto para Morar' | 'Últimas Unidades' | 'Concluído';
     specs: {
         area: string;
         beds: string;
@@ -16,10 +16,11 @@ export interface PropertyProps {
     };
 }
 
-const statusColors = {
+const statusColors: Record<string, string> = {
     'Lançamento': 'status-launch',
     'Em Obras': 'status-construction',
     'Pronto para Morar': 'status-ready',
+    'Últimas Unidades': 'status-ready',
     'Concluído': 'status-completed'
 };
 

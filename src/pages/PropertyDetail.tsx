@@ -481,7 +481,7 @@ const db = {
     },
     "gisa-araujo": {
         title: "Edifício\nGisa Araújo", location: "Rua Pium-í, 930 - Sion",
-        status: "Pronto para Morar", progress: 100,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
@@ -508,7 +508,7 @@ const db = {
     },
     "costa-monteiro": {
         title: "Edifício\nCosta Monteiro", location: "Rua Costa Monteiro, 699 - Sagrada Família",
-        status: "Pronto para Morar", progress: 100,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },

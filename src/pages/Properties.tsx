@@ -73,12 +73,12 @@ const allProperties: PropertyProps[] = [
     {
         id: "gisa-araujo", title: "Edifício Gisa Araújo", location: "Rua Pium-í, 930 - Sion",
         image: "/gallery/gisa-araujo/1.jpg",
-        status: "Pronto para Morar", specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas" }
+        status: "Últimas Unidades", specs: { area: "60 a 203m²", beds: "2, 3 e 4 Quartos", parking: "2 a 4 Vagas" }
     },
     {
         id: "costa-monteiro", title: "Edifício Costa Monteiro", location: "Rua Costa Monteiro, 699 - Sagrada Família",
         image: "/gallery/costa-monteiro/1.jpg",
-        status: "Pronto para Morar", specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas" }
+        status: "Últimas Unidades", specs: { area: "40 a 122m²", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas" }
     },
     {
         id: "enio-soares", title: "Edifício Enio Soares", location: "Rua Conselheiro Lafaiete, 497 - Sagrada Família",
@@ -250,7 +250,8 @@ export default function Properties() {
             });
         }
         return allProperties.filter(property => {
-            const matchesStatus = activeStatus === 'Todos' || property.status === activeStatus;
+            const filterStatus = activeStatus === 'Pronto para Morar' ? 'Últimas Unidades' : activeStatus;
+            const matchesStatus = activeStatus === 'Todos' || property.status === filterStatus;
             const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 property.location.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesStatus && matchesSearch;
