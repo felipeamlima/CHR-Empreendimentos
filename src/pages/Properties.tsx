@@ -239,10 +239,10 @@ export default function Properties() {
     const [activeStatus, setActiveStatus] = useState<string>('Todos');
     const [searchQuery, setSearchQuery] = useState('');
 
-    const statusOptions = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Concluído'];
+    const statusOptions = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portfólio'];
 
     const filteredProperties = useMemo(() => {
-        if (activeStatus === 'Concluído') {
+        if (activeStatus === 'Portfólio') {
             return completedProperties.filter(property => {
                 const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     property.location.toLowerCase().includes(searchQuery.toLowerCase());
