@@ -32,7 +32,7 @@ export default function Contact() {
         setStatus('sending');
 
         try {
-            const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook/chr-leads';
+            const N8N_WEBHOOK_URL = 'https://felipeamlima.app.n8n.cloud/webhook/chr-leads';
             
             const response = await fetch(N8N_WEBHOOK_URL, {
                 method: 'POST',
