@@ -1756,12 +1756,13 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
         setStatus('sending');
 
         try {
-            const N8N_WEBHOOK_URL = 'https://felipeamlima.app.n8n.cloud/webhook/chr-leads';
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoR0s8CRngON_wkHvlS-GVGdXCajsRtZkjSQCxLACl7FQs59HePmUk6wzxy383oKYiEQ/exec';
             
-            const response = await fetch(N8N_WEBHOOK_URL, {
+            await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
+                mode: 'no-cors',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'text/plain;charset=utf-8',
                 },
                 body: JSON.stringify({
                     nome: form.nome,
@@ -1774,10 +1775,7 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
                 }),
             });
 
-            if (!response.ok) {
-                throw new Error('Falha ao enviar para o n8n');
-            }
-
+            // Com mode: 'no-cors', não podemos ler a resposta, então assumimos sucesso se a promise não falhar.
             setStatus('success');
         } catch (error) {
             console.error('Erro no formulário:', error);
