@@ -202,7 +202,7 @@
 /* --- Differentials Grid --- */
 .differentials-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     width: 100%;
     max-width: 1200px;
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -1206,7 +1206,7 @@
 
 @media (max-width: 1200px) {
     .differentials-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .progress-dashboard {

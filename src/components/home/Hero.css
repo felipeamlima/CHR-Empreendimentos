@@ -1,3 +1,9 @@
+/* ======================================
+   HERO — LUXURY GOLD EDITION
+   Premium aesthetic with gold accents,
+   25 years legacy branding
+   ====================================== */
+
 .hero {
     position: relative;
     height: 100vh;
@@ -20,22 +26,81 @@
     overflow: hidden;
 }
 
-.hero-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.85) 0%,
+        rgba(0, 0, 0, 0.3) 40%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
     z-index: 2;
 }
 
+/* --- Legacy Badge (top-right corner) --- */
+.hero-legacy-badge {
+    position: absolute;
+    top: 120px;
+    right: 5%;
+    z-index: 5;
+}
+
+.legacy-badge-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1.2rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    border-radius: 4px;
+    gap: 0.2rem;
+}
+
+.legacy-since {
+    font-size: 0.55rem;
+    letter-spacing: 5px;
+    color: rgba(212, 175, 55, 0.7);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.legacy-year {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(212, 175, 55, 0.9);
+    letter-spacing: 3px;
+}
+
+.legacy-divider {
+    width: 20px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    margin: 0.4rem 0;
+}
+
+.legacy-years-count {
+    font-size: 2.2rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #f5d76e 0%, #d4af37 40%, #b8860b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.legacy-years-label {
+    font-size: 0.55rem;
+    letter-spacing: 6px;
+    color: rgba(212, 175, 55, 0.7);
+    font-weight: 800;
+}
+
+/* --- Hero Content --- */
 .hero-content {
     position: relative;
     z-index: 3;
@@ -49,14 +114,14 @@
 
 .hero-badge {
     display: inline-block;
-    color: var(--color-primary);
+    color: #d4af37;
     padding: 0.5rem 0;
     font-size: 0.75rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 5px;
     margin-bottom: 2.5rem;
-    border-bottom: 2px solid var(--color-primary);
+    border-bottom: 2px solid #d4af37;
 }
 
 .hero-title {
@@ -72,7 +137,7 @@
 
 .hero-subtitle {
     font-size: clamp(1rem, 1.5vw, 1.2rem);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.8;
     max-width: 600px;
     margin-bottom: 3.5rem;
@@ -85,6 +150,7 @@
     flex-wrap: wrap;
 }
 
+/* --- Gold CTA Button --- */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -113,6 +179,40 @@
     box-shadow: 0 30px 60px rgba(255, 255, 255, 0.2);
 }
 
+.btn-gold {
+    background: linear-gradient(135deg, #d4af37 0%, #f5d76e 50%, #b8860b 100%);
+    color: #1a1a1a;
+    border: none;
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        transparent 100%
+    );
+    transition: left 0.6s ease;
+}
+
+.btn-gold:hover::before {
+    left: 100%;
+}
+
+.btn-gold:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 60px rgba(212, 175, 55, 0.4);
+}
+
 .hero-cta {
     border-radius: 50px !important;
     padding: 1.2rem 3rem !important;
@@ -133,7 +233,35 @@
     transform: translateY(-8px);
 }
 
-/* === NOVO SLIDER HERO (ESTILO SOMATTOS) === */
+/* --- Tagline Strip --- */
+.hero-tagline {
+    position: absolute;
+    left: 5%;
+    bottom: 100px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.tagline-text {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    white-space: nowrap;
+}
+
+.tagline-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+}
+
+/* === SLIDER CONTROLS === */
 
 .hero-bottom-bar {
     position: absolute;
@@ -157,15 +285,15 @@
 
 .progress-num {
     font-size: 0.8rem;
-    color: #fff;
+    color: rgba(212, 175, 55, 0.8);
     font-weight: 600;
     letter-spacing: 1px;
 }
 
 .progress-track {
     flex: 1;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 1px;
+    background: rgba(212, 175, 55, 0.15);
     position: relative;
     overflow: hidden;
 }
@@ -175,7 +303,7 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: var(--color-primary);
+    background: linear-gradient(90deg, #d4af37, #f5d76e);
 }
 
 .hero-scroll-wrapper {
@@ -186,8 +314,7 @@
 
 .hero-scroll-btn {
     background: transparent;
-    color: #F0F0F0;
-    /* Override global text */
+    color: rgba(212, 175, 55, 0.6);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -196,7 +323,7 @@
 }
 
 .hero-scroll-btn:hover {
-    color: var(--color-primary);
+    color: #d4af37;
 }
 
 .hero-controls {
@@ -210,9 +337,9 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    color: rgba(212, 175, 55, 0.8);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -221,10 +348,13 @@
 }
 
 .control-btn:hover {
-    background: #fff;
-    color: var(--bg-primary);
-    transform: scale(1.05);
+    background: rgba(212, 175, 55, 0.15);
+    border-color: #d4af37;
+    color: #f5d76e;
+    transform: scale(1.08);
 }
+
+/* === RESPONSIVE === */
 
 @media (max-width: 768px) {
     .hero-actions {
@@ -254,7 +384,6 @@
     .hero-bottom-bar {
         bottom: 40px;
         flex-direction: row;
-        /* KEEP ROW BUT SMALLER */
         justify-content: space-between;
         padding: 0 5%;
         gap: 0;
@@ -280,5 +409,53 @@
     .control-btn {
         width: 36px;
         height: 36px;
+    }
+
+    .hero-legacy-badge {
+        top: 90px;
+        right: 4%;
+    }
+
+    .legacy-badge-inner {
+        padding: 1rem 0.8rem;
+    }
+
+    .legacy-years-count {
+        font-size: 1.6rem;
+    }
+
+    .legacy-since,
+    .legacy-years-label {
+        font-size: 0.45rem;
+        letter-spacing: 3px;
+    }
+
+    .legacy-year {
+        font-size: 0.8rem;
+    }
+
+    .hero-tagline {
+        bottom: 85px;
+        left: 4%;
+    }
+
+    .tagline-text {
+        font-size: 0.5rem;
+        letter-spacing: 4px;
+    }
+
+    .tagline-line {
+        width: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-legacy-badge {
+        top: 85px;
+        right: 3%;
+    }
+
+    .hero-tagline {
+        display: none;
     }
 }

@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import './Hero.css';
 
-// 5 Lançamentos/Obras (como pedido, estilo Somattos)
 const slides = [
     {
         id: "maranhao",
@@ -46,12 +45,17 @@ const slides = [
 export default function Hero() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const navigate = useNavigate();
+    const heroRef = useRef<HTMLElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: heroRef,
+        offset: ["start start", "end start"]
+    });
+    const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.9]);
 
-    // Auto-play
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-        }, 6000); // 6 seconds per slide
+        }, 6000);
         return () => clearInterval(timer);
     }, []);
 
@@ -66,7 +70,7 @@ export default function Hero() {
     };
 
     return (
-        <section className="hero">
+        <section className="hero" ref={heroRef}>
             <AnimatePresence mode="popLayout">
                 <motion.div
                     key={currentSlide}
@@ -78,7 +82,23 @@ export default function Hero() {
                     style={{ backgroundImage: `url('${slides[currentSlide].image}')` }}
                 />
             </AnimatePresence>
-            <div className="hero-overlay"></div>
+            <motion.div className="hero-overlay" style={{ opacity: overlayOpacity }}></motion.div>
+
+            {/* Luxurious top-left branding */}
+            <div className="hero-legacy-badge">
+                <motion.div
+                    className="legacy-badge-inner"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.2, delay: 0.5 }}
+                >
+                    <span className="legacy-since">DESDE</span>
+                    <span className="legacy-year">2001</span>
+                    <div className="legacy-divider"></div>
+                    <span className="legacy-years-count">25</span>
+                    <span className="legacy-years-label">ANOS</span>
+                </motion.div>
+            </div>
 
             <div className="hero-content container">
                 <AnimatePresence mode="wait">
@@ -105,7 +125,7 @@ export default function Hero() {
                         <div className="hero-actions" style={{ marginTop: '2rem' }}>
                             <button
                                 onClick={() => navigate(`/empreendimentos/${slides[currentSlide].id}`)}
-                                className="btn btn-primary hero-cta"
+                                className="btn btn-gold hero-cta"
                             >
                                 SABER MAIS
                             </button>
@@ -114,7 +134,18 @@ export default function Hero() {
                 </AnimatePresence>
             </div>
 
-            {/* Status Slider (Bottom Left) e Controls (Bottom Right) */}
+            {/* Luxurious bottom tagline */}
+            <motion.div
+                className="hero-tagline"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5, delay: 1 }}
+            >
+                <span className="tagline-text">CONSTRUINDO O LEGADO DE MINAS</span>
+                <div className="tagline-line"></div>
+            </motion.div>
+
+            {/* Bottom Bar */}
             <div className="hero-bottom-bar container">
                 <div className="hero-progress">
                     <span className="progress-num">{(currentSlide + 1).toString().padStart(2, '0')}</span>
