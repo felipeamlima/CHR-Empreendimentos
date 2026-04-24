@@ -1,4 +1,4 @@
-﻿import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X } from 'lucide-react';
@@ -545,7 +545,7 @@ const db = {
             { name: "Acabamento", v: 100 }
         ],
         images: ["/gallery/sao-manoel/1.jpg"],
-        specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
+        specs: { area: "40m² a 95m²", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "A Definir", leisure: "Área Privativa e Cobertura" },
         desc: "O Edifício São Manoel traz modernidade e elegância em uma das ruas mais tradicionais do bairro Floresta. Com opções de 1 e 2 quartos, o projeto contempla áreas privativas e coberturas que atendem aos mais altos padrões de exigência. Qualidade construtiva e localização privilegiada em um único lugar.",
         differentials: [
             "Localização Nobre no Floresta",
@@ -1756,22 +1756,31 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
         setStatus('sending');
 
         try {
-            // Replace with your EmailJS credentials after creating account at emailjs.com
-            const emailjs = await import('@emailjs/browser');
-            await emailjs.send(
-                'YOUR_SERVICE_ID',    // ← seu Service ID do EmailJS
-                'YOUR_TEMPLATE_ID',   // ← seu Template ID do EmailJS
-                {
-                    from_name: form.nome,
-                    from_email: form.email,
-                    phone: form.telefone,
-                    message: form.interesse,
-                    property: propertyTitle,
+            const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook/chr-leads';
+            
+            const response = await fetch(N8N_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-                'YOUR_PUBLIC_KEY'     // ← sua Public Key do EmailJS
-            );
+                body: JSON.stringify({
+                    nome: form.nome,
+                    email: form.email,
+                    telefone: form.telefone,
+                    interesse: form.interesse,
+                    imovel: propertyTitle,
+                    data: new Date().toISOString(),
+                    pagina: window.location.href,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao enviar para o n8n');
+            }
+
             setStatus('success');
-        } catch {
+        } catch (error) {
+            console.error('Erro no formulário:', error);
             setStatus('error');
         }
     };

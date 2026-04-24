@@ -136,7 +136,7 @@ const completedProperties: PropertyProps[] = [
     {
         id: "sao-manoel", title: "Edifício São Manoel", location: "Rua São Manoel, 263 - Bairro Floresta",
         image: "/gallery/sao-manoel/1.jpg",
-        status: "Concluído", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
+        status: "Concluído", specs: { area: "40m² a 95m²", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
     },
     {
         id: "sao-roque", title: "Edifício São Roque", location: "Rua São Roque, 620 - Sagrada Família",

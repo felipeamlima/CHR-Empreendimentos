@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
 import './Contact.css';
 
 export default function Contact() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let value = e.target.value.replace(/\D/g, ''); // only digits
@@ -21,6 +26,51 @@ export default function Contact() {
         }
         setPhone(value);
     };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('sending');
+
+        try {
+            const N8N_WEBHOOK_URL = 'http://localhost:5678/webhook/chr-leads';
+            
+            const response = await fetch(N8N_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    nome: name,
+                    email: email,
+                    telefone: phone,
+                    interesse: `${subject} - ${message}`,
+                    imovel: 'Página de Contato (Geral)',
+                    data: new Date().toISOString(),
+                    pagina: window.location.href,
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Falha ao enviar para o n8n');
+            }
+
+            setStatus('success');
+            // Limpar formulário
+            setName('');
+            setEmail('');
+            setPhone('');
+            setSubject('');
+            setMessage('');
+            
+            // Voltar para idle depois de 5 segundos
+            setTimeout(() => setStatus('idle'), 5000);
+        } catch (error) {
+            console.error('Erro no formulário de contato:', error);
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    };
+
     return (
         <div className="contact-page">
             {/* Cinematic Hero */}
@@ -106,54 +156,116 @@ export default function Contact() {
                         transition={{ duration: 1 }}
                     >
                         <h3 className="glass-form-title">Envie sua mensagem</h3>
-                        <form className="glass-form" onSubmit={(e) => e.preventDefault()}>
-                            <div className="glass-input-group">
-                                <label>Nome Completo</label>
-                                <input
-                                    type="text"
-                                    placeholder="Como deseja ser chamado?"
-                                    autoCapitalize="words"
-                                    style={{ textTransform: 'capitalize' }}
-                                    required
-                                />
-                            </div>
+                        {status === 'success' ? (
+                            <motion.div 
+                                className="glass-form-success"
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: '3rem 2rem',
+                                    textAlign: 'center',
+                                    background: 'rgba(255, 255, 255, 0.03)',
+                                    borderRadius: '16px',
+                                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                                    gap: '1rem'
+                                }}
+                            >
+                                <CheckCircle2 size={48} color="#4ade80" />
+                                <h4>Mensagem Enviada!</h4>
+                                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem' }}>
+                                    Recebemos sua solicitação com sucesso. Nossa equipe entrará em contato em breve pelo telefone {phone} ou e-mail {email}.
+                                </p>
+                            </motion.div>
+                        ) : (
+                            <form className="glass-form" onSubmit={handleSubmit}>
+                                <div className="glass-input-group">
+                                    <label>Nome Completo</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Como deseja ser chamado?"
+                                        autoCapitalize="words"
+                                        style={{ textTransform: 'capitalize' }}
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-                            <div className="glass-input-group">
-                                <label>Telefone para contato</label>
-                                <input
-                                    type="tel"
-                                    placeholder="(00) 0 0000-0000"
-                                    value={phone}
-                                    onChange={handlePhoneChange}
-                                    inputMode="numeric"
-                                    required
-                                />
-                            </div>
+                                <div className="glass-input-group">
+                                    <label>E-mail</label>
+                                    <input
+                                        type="email"
+                                        placeholder="seu.email@exemplo.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        required
+                                    />
+                                </div>
 
-                            <div className="glass-input-group">
-                                <label>Assunto</label>
-                                <select required>
-                                    <option value="">Selecione a finalidade</option>
-                                    <option value="interesse-empreendimento">Interesse em Empreendimento</option>
-                                    <option value="seja-investidor">Seja um Investidor CHR</option>
-                                    <option value="simulacao-financiamento">Simulação de Financiamento</option>
-                                    <option value="negociacao-debito">Negociação de Débito</option>
-                                    <option value="documentacao">Informações sobre Documentação</option>
-                                    <option value="terreno-parceria">Oferta de Terreno / Parceria</option>
-                                    <option value="sac">SAC – Atendimento Pós-Venda</option>
-                                    <option value="outros">Outros Assuntos</option>
-                                </select>
-                            </div>
+                                <div className="glass-input-group">
+                                    <label>Telefone para contato</label>
+                                    <input
+                                        type="tel"
+                                        placeholder="(00) 0 0000-0000"
+                                        value={phone}
+                                        onChange={handlePhoneChange}
+                                        inputMode="numeric"
+                                        required
+                                    />
+                                </div>
 
-                            <div className="glass-input-group">
-                                <label>Sua Mensagem</label>
-                                <textarea rows={4} placeholder="Descreva brevemente sua necessidade..."></textarea>
-                            </div>
+                                <div className="glass-input-group">
+                                    <label>Assunto</label>
+                                    <select 
+                                        required
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
+                                    >
+                                        <option value="">Selecione a finalidade</option>
+                                        <option value="Interesse em Empreendimento">Interesse em Empreendimento</option>
+                                        <option value="Seja um Investidor CHR">Seja um Investidor CHR</option>
+                                        <option value="Simulação de Financiamento">Simulação de Financiamento</option>
+                                        <option value="Negociação de Débito">Negociação de Débito</option>
+                                        <option value="Informações sobre Documentação">Informações sobre Documentação</option>
+                                        <option value="Oferta de Terreno / Parceria">Oferta de Terreno / Parceria</option>
+                                        <option value="SAC – Atendimento Pós-Venda">SAC – Atendimento Pós-Venda</option>
+                                        <option value="Outros Assuntos">Outros Assuntos</option>
+                                    </select>
+                                </div>
 
-                            <button type="submit" className="btn-glass-submit">
-                                SOLICITAR ATENDIMENTO <ArrowRight size={18} style={{ marginLeft: '1rem' }} />
-                            </button>
-                        </form>
+                                <div className="glass-input-group">
+                                    <label>Sua Mensagem</label>
+                                    <textarea 
+                                        rows={4} 
+                                        placeholder="Descreva brevemente sua necessidade..."
+                                        value={message}
+                                        onChange={(e) => setMessage(e.target.value)}
+                                        required
+                                    ></textarea>
+                                </div>
+
+                                <button 
+                                    type="submit" 
+                                    className="btn-glass-submit"
+                                    disabled={status === 'sending'}
+                                    style={{ opacity: status === 'sending' ? 0.7 : 1 }}
+                                >
+                                    {status === 'sending' ? 'ENVIANDO...' : (
+                                        <>SOLICITAR ATENDIMENTO <ArrowRight size={18} style={{ marginLeft: '1rem' }} /></>
+                                    )}
+                                </button>
+                                
+                                {status === 'error' && (
+                                    <p style={{ color: '#ff6b6b', fontSize: '0.85rem', marginTop: '1rem', textAlign: 'center' }}>
+                                        Ocorreu um erro ao enviar. Por favor, tente novamente ou use nosso WhatsApp.
+                                    </p>
+                                )}
+                            </form>
+                        )}
                     </motion.div>
                 </div>
             </main>
