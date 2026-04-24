@@ -46,8 +46,8 @@
 }
 
 .logo-img {
-    height: 36px;
-    /* Subtle — more elegant */
+    height: 55px;
+    /* Increased height for the wide logo to be readable */
     width: auto;
     object-fit: contain;
 }
