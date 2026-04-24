@@ -47,14 +47,15 @@
 
 .contact-hero-spotlight {
     position: absolute;
-    top: -10%;
+    top: -20%;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(80, 149, 57, 0.1) 0%, transparent 70%);
+    width: 80%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(80, 149, 57, 0.05) 30%, transparent 70%);
     z-index: 1;
     pointer-events: none;
+    filter: blur(40px);
 }
 
 /* --- Split Layout --- */
@@ -134,12 +135,32 @@
 
 /* --- Glass Form --- */
 .contact-glass-form-container {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
     padding: 5rem;
-    border-radius: 4px;
-    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-glass-form-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: skewX(-25deg);
+    animation: glassShine 8s infinite;
+}
+
+@keyframes glassShine {
+    0% { left: -100%; }
+    20% { left: 200%; }
+    100% { left: 200%; }
 }
 
 .glass-form-title {
@@ -162,31 +183,36 @@
 }
 
 .glass-input-group label {
-    font-size: 0.65rem;
-    font-weight: 800;
-    letter-spacing: 2px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
 }
 
 .glass-input-group input,
 .glass-input-group select,
 .glass-input-group textarea {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1.2rem 1.5rem;
     color: #fff;
-    font-size: 1rem;
-    border-radius: 4px;
+    font-size: 1.05rem;
+    border-radius: 6px;
     outline: none;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .glass-input-group input:focus,
 .glass-input-group select:focus,
 .glass-input-group textarea:focus {
-    border-color: var(--color-primary);
-    background: rgba(255, 255, 255, 0.08);
+    border-bottom-color: var(--color-primary);
+    background: rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 .glass-input-group select option {
@@ -197,21 +223,42 @@
 }
 
 .btn-glass-submit {
-    background: var(--color-primary);
+    position: relative;
+    background: transparent;
     color: #fff;
     padding: 1.5rem;
     font-weight: 900;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     text-transform: uppercase;
     font-size: 0.85rem;
     margin-top: 1.5rem;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    border: 1px solid var(--color-primary);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btn-glass-submit::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--color-primary);
+    z-index: -1;
+    transition: all 0.4s ease;
+    transform-origin: left;
+    transform: scaleX(1);
 }
 
 .btn-glass-submit:hover {
-    background: #fff;
     color: #000;
-    transform: translateY(-5px);
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(80, 149, 57, 0.3);
+}
+
+.btn-glass-submit:hover::before {
+    transform: scaleX(0);
 }
 
 @media (max-width: 1200px) {
