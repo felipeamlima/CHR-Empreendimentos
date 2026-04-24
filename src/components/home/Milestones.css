@@ -1,0 +1,262 @@
+/* ============================================
+   MILESTONES — "Marcos de uma história sólida"
+   Home page timeline section
+   ============================================ */
+
+.milestones-section {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, #0a0a0a 0%, #0c0c0c 50%, #0a0a0a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative background glow */
+.milestones-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 400px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(80, 149, 57, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.milestones-header {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.milestones-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 6px;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+.milestones-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: #fff;
+}
+
+.milestones-title span {
+    color: var(--color-primary);
+    font-style: italic;
+}
+
+/* Timeline Container */
+.milestones-timeline {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 0;
+    z-index: 1;
+}
+
+/* Horizontal line track (desktop) */
+.milestones-line-track {
+    position: absolute;
+    top: 38px;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    z-index: 0;
+}
+
+.milestones-line-fill {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    transform-origin: left;
+    will-change: transform;
+}
+
+/* Items row */
+.milestones-items {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Individual milestone */
+.milestone-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: default;
+}
+
+/* Glowing dot */
+.milestone-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow:
+        0 0 0 5px rgba(80, 149, 57, 0.15),
+        0 0 20px rgba(80, 149, 57, 0.4);
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+                box-shadow 0.4s ease;
+}
+
+.milestone-item:hover .milestone-dot {
+    transform: scale(1.3);
+    box-shadow:
+        0 0 0 8px rgba(80, 149, 57, 0.2),
+        0 0 30px rgba(80, 149, 57, 0.6);
+}
+
+/* Card */
+.milestone-card {
+    padding: 2rem 1.5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 6px;
+    width: 100%;
+    transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+                border-color 0.4s ease,
+                background 0.4s ease;
+}
+
+.milestone-item:hover .milestone-card {
+    transform: translateY(-6px);
+    border-color: rgba(80, 149, 57, 0.35);
+    background: linear-gradient(145deg, rgba(80, 149, 57, 0.06), rgba(255, 255, 255, 0.015));
+}
+
+.milestone-year {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-primary);
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.milestone-name {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.3px;
+}
+
+.milestone-desc {
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.88rem;
+    line-height: 1.55;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 1024px) {
+    .milestones-items {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    .milestones-line-track {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .milestones-section {
+        padding: 5rem 0;
+    }
+
+    .milestones-header {
+        margin-bottom: 3rem;
+    }
+
+    .milestones-line-track {
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 18px;
+        right: auto;
+        width: 2px;
+        height: auto;
+    }
+
+    .milestones-line-fill {
+        background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+        transform-origin: top;
+    }
+
+    .milestones-items {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding-left: 3rem;
+    }
+
+    .milestone-item {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        gap: 0;
+    }
+
+    .milestone-dot {
+        width: 14px;
+        height: 14px;
+        margin-bottom: 0;
+        margin-right: 0;
+        position: absolute;
+        left: -2.25rem;
+        top: 1.4rem;
+        flex-shrink: 0;
+    }
+
+    .milestone-card {
+        padding: 1.5rem 1.25rem;
+        width: 100%;
+    }
+
+    .milestone-year {
+        font-size: 1.6rem;
+    }
+
+    .milestone-name {
+        font-size: 0.9rem;
+    }
+
+    .milestone-desc {
+        font-size: 0.82rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .milestones-title {
+        font-size: 1.8rem;
+        letter-spacing: -1px;
+    }
+
+    .milestones-label {
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+    }
+}

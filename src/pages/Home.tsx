@@ -1,4 +1,5 @@
 import Hero from '../components/home/Hero';
+import Milestones from '../components/home/Milestones';
 import Heritage from '../components/home/Heritage';
 import FeaturedProperties from '../components/home/FeaturedProperties';
 import Testimonials from '../components/home/Testimonials';
@@ -9,6 +10,7 @@ export default function Home() {
     return (
         <div className="home-page">
             <Hero />
+            <Milestones />
             <Heritage />
             <FeaturedProperties />
             <Testimonials />
