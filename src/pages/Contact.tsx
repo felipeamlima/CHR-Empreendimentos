@@ -172,10 +172,10 @@ export default function Contact() {
                                     gap: '1rem'
                                 }}
                             >
-                                <CheckCircle2 size={48} color="#4ade80" />
-                                <h4>Mensagem Enviada!</h4>
-                                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem' }}>
-                                    Recebemos sua solicitação com sucesso. Nossa equipe entrará em contato em breve pelo telefone {phone} ou e-mail {email}.
+                                <CheckCircle2 size={56} color="var(--color-primary)" style={{ marginBottom: '0.5rem' }} />
+                                <h4 style={{ fontSize: '1.5rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '1px' }}>Solicitação Recebida!</h4>
+                                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '400px' }}>
+                                    Agradecemos muito o seu contato. Um de nossos especialistas retornará em breve através do telefone <strong>{phone}</strong> ou e-mail para um atendimento exclusivo.
                                 </p>
                             </motion.div>
                         ) : (
