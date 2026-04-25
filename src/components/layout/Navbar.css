@@ -46,8 +46,9 @@
 }
 
 .logo-img {
-    height: 36px;
+    height: 70px;
     width: auto;
+    max-width: 280px;
     object-fit: contain;
 }
 
