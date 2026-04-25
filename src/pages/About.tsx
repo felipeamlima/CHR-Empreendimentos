@@ -444,7 +444,7 @@ export default function About() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
                     >
-                        Próximo capítulo
+                        CHR EXPERIENCE
                     </motion.span>
 
                     <motion.h2
@@ -454,8 +454,8 @@ export default function About() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1 }}
                     >
-                        Pronto para fazer parte da{' '}
-                        <span>história CHR?</span>
+                        Pronto para o{' '}
+                        <span>próximo capítulo?</span>
                     </motion.h2>
 
                     <motion.p
