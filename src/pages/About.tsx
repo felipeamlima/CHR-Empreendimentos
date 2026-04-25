@@ -314,7 +314,7 @@ export default function About() {
                         transition={{ duration: 1 }}
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3"
+                            src="/about-narrative.png"
                             alt="Interior CHR"
                             className="narrative-image"
                         />
