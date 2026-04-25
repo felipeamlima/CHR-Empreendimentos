@@ -84,7 +84,11 @@
 }
 
 .hero-word-accent {
-    color: var(--color-primary);
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
 }
 
 .hero-scroll-hint {
@@ -95,13 +99,18 @@
     font-size: 0.7rem;
     letter-spacing: 4px;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.hero-scroll-hint:hover {
+    color: #d4af37;
 }
 
 .hero-scroll-line {
     width: 1px;
     height: 60px;
-    background: linear-gradient(to bottom, var(--color-primary), transparent);
+    background: linear-gradient(to bottom, #d4af37, transparent);
     animation: scroll-pulse 2.5s ease-in-out infinite;
     transform-origin: top;
 }

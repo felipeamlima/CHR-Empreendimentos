@@ -217,8 +217,10 @@ export default function About() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 2, duration: 1 }}
+                        onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+                        style={{ cursor: 'pointer' }}
                     >
-                        <span>Role para descobrir</span>
+                        <span>SAIBA MAIS</span>
                         <div className="hero-scroll-line" />
                     </motion.div>
                 </div>
