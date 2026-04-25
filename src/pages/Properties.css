@@ -10,6 +10,36 @@
     text-align: center;
     background: #000;
     overflow: hidden;
+    isolation: isolate;
+}
+
+.listing-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('/portfolio-hero-bg.png');
+    background-size: cover;
+    background-position: center left;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.listing-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, transparent 25%, rgba(0, 0, 0, 0.55) 75%, #0c0c0c 100%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.4) 0%, transparent 35%, transparent 65%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.listing-hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero-tag {

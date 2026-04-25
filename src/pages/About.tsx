@@ -172,7 +172,7 @@ export default function About() {
             <section className="about-hero" ref={heroRef}>
                 <motion.div className="about-hero-bg" style={{ y: bgY }}>
                     <img
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3"
+                        src="/about-hero-bg.png"
                         alt="Arquitetura CHR"
                         className="about-hero-image"
                     />
@@ -319,10 +319,17 @@ export default function About() {
                             className="narrative-image"
                         />
                         <div className="image-floating-badge">
-                            <span className="badge-ornament">◆</span>
-                            <strong className="badge-number">100%</strong>
-                            <div className="badge-divider" />
-                            <span className="badge-label">Prazos Cumpridos</span>
+                            <div className="medal-coin">
+                                <div className="medal-face">
+                                    <span className="medal-star medal-star-l">✦</span>
+                                    <span className="medal-star medal-star-r">✦</span>
+                                    <strong className="medal-number">
+                                        100<em>%</em>
+                                    </strong>
+                                    <span className="medal-divider" />
+                                    <span className="medal-label">Prazos<br/>Cumpridos</span>
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>

@@ -29,7 +29,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.35) saturate(0.85) contrast(1.05);
+    filter: brightness(0.85) saturate(1.1) contrast(1.05);
 }
 
 .about-hero-overlay {
@@ -318,59 +318,113 @@
 
 .image-floating-badge {
     position: absolute;
-    bottom: -24px;
-    left: -24px;
+    bottom: -32px;
+    left: -32px;
+    width: 175px;
+    height: 175px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    filter: drop-shadow(0 28px 36px rgba(0, 0, 0, 0.55));
+}
+
+.medal-coin {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 5px;
+    background:
+        conic-gradient(
+            from 220deg,
+            #8a5a14 0deg,
+            #f5d76e 60deg,
+            #fff2c0 90deg,
+            #d4af37 150deg,
+            #8a5a14 220deg,
+            #d4af37 290deg,
+            #f5d76e 330deg,
+            #8a5a14 360deg
+        );
+    box-shadow:
+        inset 0 1px 0 rgba(255, 245, 200, 0.5),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(0, 0, 0, 0.4);
+}
+
+.medal-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.65rem;
-    padding: 2.5rem 2.2rem;
-    min-width: 170px;
-    background: rgba(6, 6, 6, 0.92);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(201, 168, 76, 0.3);
+    text-align: center;
+    background:
+        radial-gradient(circle at 32% 28%, rgba(255, 248, 210, 0.7) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, #e8c352 0%, #c9a84c 45%, #8b6014 100%);
     box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.75),
-        inset 0 1px 0 rgba(201, 168, 76, 0.12),
-        inset 0 0 40px rgba(201, 168, 76, 0.03);
+        inset 0 0 0 1px rgba(0, 0, 0, 0.25),
+        inset 0 0 0 5px rgba(245, 215, 110, 0.35),
+        inset 0 0 0 6px rgba(0, 0, 0, 0.18),
+        inset 0 4px 12px rgba(255, 248, 210, 0.25),
+        inset 0 -4px 12px rgba(80, 50, 0, 0.4);
+    gap: 4px;
 }
 
-.badge-ornament {
-    font-size: 0.55rem;
-    color: #c9a84c;
-    opacity: 0.7;
-    letter-spacing: 6px;
+.medal-star {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    color: rgba(40, 22, 0, 0.55);
+    text-shadow: 0 1px 0 rgba(255, 240, 180, 0.5);
 }
 
-.badge-number {
-    display: block;
-    font-size: 3rem;
-    font-weight: 900;
+.medal-star-l { left: 18px; }
+.medal-star-r { right: 18px; }
+
+.medal-number {
     font-family: var(--font-heading);
-    background: linear-gradient(160deg, #f5d76e 0%, #d4af37 45%, #a8732a 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 2.4rem;
+    font-weight: 900;
     line-height: 1;
     letter-spacing: -2px;
+    color: #2a1700;
+    text-shadow:
+        0 1px 0 rgba(255, 240, 180, 0.6),
+        0 -1px 1px rgba(0, 0, 0, 0.35);
 }
 
-.badge-divider {
-    width: 36px;
+.medal-number em {
+    font-style: normal;
+    font-size: 0.55em;
+    margin-left: 1px;
+    vertical-align: 4px;
+    font-weight: 800;
+}
+
+.medal-divider {
+    width: 32px;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.6), transparent);
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(40, 22, 0, 0.55),
+        transparent
+    );
+    margin: 1px 0;
 }
 
-.badge-label {
-    font-size: 0.58rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+.medal-label {
+    font-size: 0.52rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    color: rgba(201, 168, 76, 0.55);
-    text-align: center;
-    line-height: 1.5;
+    color: rgba(35, 20, 0, 0.78);
+    line-height: 1.35;
+    text-shadow: 0 1px 0 rgba(255, 240, 180, 0.4);
 }
 
 /* --- Timeline --- */
@@ -822,34 +876,31 @@
     }
 
     .image-floating-badge {
-        position: absolute;
-        bottom: 12px;
-        left: 12px;
-        width: 120px;
-        height: 120px;
         bottom: 16px;
         left: 16px;
-        z-index: 10;
+        width: 130px;
+        height: 130px;
     }
 
-    .badge-ring {
-        width: 120px;
-        height: 120px;
+    .medal-number {
+        font-size: 1.8rem;
     }
 
-    .badge-inner {
-        width: 84px;
-        height: 84px;
+    .medal-label {
+        font-size: 0.42rem;
+        letter-spacing: 1.8px;
     }
 
-    .badge-number {
-        font-size: 1.4rem;
+    .medal-divider {
+        width: 24px;
     }
 
-    .badge-label {
-        font-size: 0.48rem;
-        letter-spacing: 1.5px;
+    .medal-star {
+        font-size: 0.55rem;
     }
+
+    .medal-star-l { left: 12px; }
+    .medal-star-r { right: 12px; }
 
     /* Timeline mobile: left-aligned rail */
     .about-timeline {
