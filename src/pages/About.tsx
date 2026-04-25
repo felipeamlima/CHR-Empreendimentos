@@ -454,7 +454,7 @@ export default function About() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.1 }}
                     >
-                        Pronto para o{' '}
+                        Pronto para seu{' '}
                         <span>próximo capítulo?</span>
                     </motion.h2>
 
