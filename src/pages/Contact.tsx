@@ -81,7 +81,7 @@ export default function Contact() {
                         transition={{ duration: 1 }}
                     >
                         <span className="contact-hero-label">Atendimento Exclusivo</span>
-                        <h1 className="contact-hero-title">VAMOS INICIAR<br />UM <span>NOVO</span> LEGADO.</h1>
+                        <h1 className="contact-hero-title">VAMOS INICIAR<br />UM NOVO <span>LEGADO</span>.</h1>
                         <p className="contact-hero-subtitle">
                             Nossa equipe está pronta para oferecer um atendimento sob medida para o seu próximo grande investimento.
                         </p>
