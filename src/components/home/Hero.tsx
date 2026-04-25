@@ -37,7 +37,7 @@ const slides = [
         id: "mar-de-espanha",
         image: "/gallery/mar-de-espanha/2.jpg",
         badge: "Pronto para Morar",
-        title: "Edf. M. de\nEspanha",
+        title: "Mar de\nEspanha",
         subtitle: "Seu lugar ideal no bairro Santo Antônio."
     }
 ];
