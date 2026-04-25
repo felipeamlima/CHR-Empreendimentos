@@ -18,11 +18,15 @@
 }
 
 .blog-label {
-    display: block;
+    display: inline-block;
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 6px;
-    color: var(--color-primary);
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
     margin-bottom: 2rem;
     text-transform: uppercase;
 }
@@ -38,7 +42,12 @@
 }
 
 .blog-main-title span {
-    color: var(--color-primary);
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    display: inline-block;
     font-family: serif;
     font-style: italic;
     font-weight: 400;

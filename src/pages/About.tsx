@@ -319,8 +319,10 @@ export default function About() {
                             className="narrative-image"
                         />
                         <div className="image-floating-badge">
-                            <strong>100%</strong>
-                            <span>Prazos Cumpridos</span>
+                            <span className="badge-ornament">◆</span>
+                            <strong className="badge-number">100%</strong>
+                            <div className="badge-divider" />
+                            <span className="badge-label">Prazos Cumpridos</span>
                         </div>
                     </motion.div>
                 </div>

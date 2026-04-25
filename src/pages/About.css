@@ -53,7 +53,11 @@
     font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 6px;
-    color: var(--color-primary);
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
     margin-bottom: 2rem;
     text-transform: uppercase;
 }
@@ -314,25 +318,59 @@
 
 .image-floating-badge {
     position: absolute;
-    bottom: -30px;
-    left: -30px;
-    background: var(--color-primary);
-    color: white;
-    padding: 3rem;
-    border-radius: 4px;
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    bottom: -24px;
+    left: -24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.65rem;
+    padding: 2.5rem 2.2rem;
+    min-width: 170px;
+    background: rgba(6, 6, 6, 0.92);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.75),
+        inset 0 1px 0 rgba(201, 168, 76, 0.12),
+        inset 0 0 40px rgba(201, 168, 76, 0.03);
 }
 
-.image-floating-badge strong {
+.badge-ornament {
+    font-size: 0.55rem;
+    color: #c9a84c;
+    opacity: 0.7;
+    letter-spacing: 6px;
+}
+
+.badge-number {
     display: block;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 900;
+    font-family: var(--font-heading);
+    background: linear-gradient(160deg, #f5d76e 0%, #d4af37 45%, #a8732a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    letter-spacing: -2px;
 }
 
-.image-floating-badge span {
-    font-size: 0.8rem;
+.badge-divider {
+    width: 36px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.6), transparent);
+}
+
+.badge-label {
+    font-size: 0.58rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.55);
+    text-align: center;
+    line-height: 1.5;
 }
 
 /* --- Timeline --- */
@@ -785,31 +823,32 @@
 
     .image-floating-badge {
         position: absolute;
-        bottom: 20px;
-        left: 20px;
-        right: auto;
-        padding: 1.5rem;
-        width: 130px;
-        height: 130px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: var(--color-primary);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+        bottom: 12px;
+        left: 12px;
+        width: 120px;
+        height: 120px;
+        bottom: 16px;
+        left: 16px;
         z-index: 10;
-        text-align: center;
     }
 
-    .image-floating-badge strong {
-        font-size: 1.8rem;
-        line-height: 1;
-        margin-bottom: 5px;
+    .badge-ring {
+        width: 120px;
+        height: 120px;
     }
 
-    .image-floating-badge span {
-        font-size: 0.6rem;
-        line-height: 1.2;
+    .badge-inner {
+        width: 84px;
+        height: 84px;
+    }
+
+    .badge-number {
+        font-size: 1.4rem;
+    }
+
+    .badge-label {
+        font-size: 0.48rem;
+        letter-spacing: 1.5px;
     }
 
     /* Timeline mobile: left-aligned rail */
