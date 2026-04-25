@@ -180,12 +180,12 @@
 }
 
 .footer-logo-chique-mini {
-    height: 22px;
+    height: 40px;
     width: auto;
     object-fit: contain;
     margin-right: 3rem;
     filter: grayscale(1) brightness(2);
-    opacity: 0.2;
+    opacity: 0.4;
     transition: all 0.5s ease;
 }
 
