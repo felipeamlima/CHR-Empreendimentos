@@ -46,10 +46,9 @@
 }
 
 .logo-img {
-    height: 140px;
+    height: 210px;
     width: auto;
     object-fit: contain;
-    transform: translateY(20px);
 }
 
 @media (min-width: 769px) {
