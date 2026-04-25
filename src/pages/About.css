@@ -704,10 +704,6 @@
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
     display: inline-block;
-    font-family: serif;
-    font-style: italic;
-    font-weight: 400;
-    padding-left: 0.15em;
 }
 
 .about-cta-sub {
