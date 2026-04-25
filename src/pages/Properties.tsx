@@ -268,7 +268,32 @@ export default function Properties() {
                         className="hero-text"
                     >
                         <span className="hero-tag">CHR EXPERIENCE</span>
-                        <h1 className="hero-main-title">PORTIFÓLIO <br /> <span>EXCLUSIVO</span></h1>
+                        <h1 className="hero-main-title" aria-label="Portifólio Exclusivo">
+                            <span className="hero-line">
+                                <span className="hero-word-wrap">
+                                    <motion.span
+                                        className="hero-word"
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        PORTIFÓLIO
+                                    </motion.span>
+                                </span>
+                            </span>
+                            <span className="hero-line">
+                                <span className="hero-word-wrap">
+                                    <motion.span
+                                        className="hero-word hero-word-accent"
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.55, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        EXCLUSIVO
+                                    </motion.span>
+                                </span>
+                            </span>
+                        </h1>
                         <p>Onde cada traço é pensado para você. Viva a experiência CHR.</p>
                     </motion.div>
                 </div>

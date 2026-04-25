@@ -10,6 +10,7 @@ import {
     TrendingUp,
     ArrowRight,
     MessageCircle,
+    ChevronDown,
 } from 'lucide-react';
 import './About.css';
 
@@ -221,7 +222,9 @@ export default function About() {
                         style={{ cursor: 'pointer' }}
                     >
                         <span>SAIBA MAIS</span>
-                        <div className="hero-scroll-line" />
+                        <span className="hero-scroll-arrow">
+                            <ChevronDown size={24} strokeWidth={2.5} />
+                        </span>
                     </motion.div>
                 </div>
             </section>

@@ -6,7 +6,11 @@
 
 .listing-hero {
     position: relative;
-    padding: 12rem 0 6rem;
+    padding: 17rem 0 11rem;
+    min-height: 78vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     background: #000;
     overflow: hidden;
@@ -56,22 +60,35 @@
 }
 
 .hero-main-title {
-    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-size: clamp(2.8rem, 9vw, 7rem);
     font-weight: 900;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     letter-spacing: -2px;
     line-height: 0.95;
-    overflow-wrap: anywhere;
-    /* Use anywhere but not word-break: break-all */
+    text-transform: uppercase;
 }
 
-.hero-main-title span {
+.hero-main-title .hero-line {
+    display: block;
+}
+
+.hero-main-title .hero-word-wrap {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1.05;
+}
+
+.hero-main-title .hero-word {
+    display: inline-block;
+    color: #fff;
+}
+
+.hero-main-title .hero-word-accent {
     background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-    display: inline-block;
 }
 
 .hero-text p {

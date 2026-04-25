@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Search, Hash } from 'lucide-react';
+import { ArrowRight, Search, Hash, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Blog.css';
 
@@ -56,8 +56,40 @@ export default function Blog() {
                         animate={{ opacity: 1, y: 0 }}
                     >
                         <span className="blog-label">BLOG</span>
-                        <h1 className="blog-main-title">Perspectivas <span>&</span> Insights</h1>
-                        <p className="blog-main-subtitle">A curadoria definitiva sobre o morar contemporâneo e o mercado de alto padrão.</p>
+                        <h1 className="blog-main-title" aria-label="Perspectivas & Insights">
+                            {['PERSPECTIVAS', '&', 'INSIGHTS'].map((word, i) => (
+                                <span className="blog-word-wrap" key={i}>
+                                    <motion.span
+                                        className={`blog-word ${word === '&' ? 'gold-ampersand' : ''}`}
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.3 + i * 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        {word}
+                                    </motion.span>
+                                </span>
+                            ))}
+                        </h1>
+
+                        <motion.div
+                            className="blog-scroll-hint"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.6, duration: 1 }}
+                            onClick={() =>
+                                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+                            }
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+                                }
+                            }}
+                        >
+                            <span>ACESSE ABAIXO</span>
+                            <ChevronDown size={20} strokeWidth={1.5} className="blog-scroll-arrow" />
+                        </motion.div>
                     </motion.div>
                 </div>
                 <div className="header-spotlight"></div>

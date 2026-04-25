@@ -111,17 +111,14 @@
     color: #d4af37;
 }
 
-.hero-scroll-line {
-    width: 1px;
-    height: 60px;
-    background: linear-gradient(to bottom, #d4af37, transparent);
-    animation: scroll-pulse 2.5s ease-in-out infinite;
-    transform-origin: top;
+.hero-scroll-arrow {
+    color: #d4af37;
+    animation: scroll-arrow-bounce 2s ease-in-out infinite;
 }
 
-@keyframes scroll-pulse {
-    0%, 100% { transform: scaleY(0.3); opacity: 0.4; }
-    50% { transform: scaleY(1); opacity: 1; }
+@keyframes scroll-arrow-bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(8px); opacity: 1; }
 }
 
 /* --- Stats --- */

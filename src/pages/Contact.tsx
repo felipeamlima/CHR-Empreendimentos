@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { MapPin, Phone, Mail, ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 import './Contact.css';
 
 export default function Contact() {
@@ -76,18 +76,76 @@ export default function Contact() {
                 <div className="container">
                     <motion.div
                         className="contact-hero-content"
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.8 }}
                     >
                         <span className="contact-hero-label">Atendimento Exclusivo</span>
-                        <h1 className="contact-hero-title">VAMOS INICIAR<br />UM NOVO <span>LEGADO</span>.</h1>
+                        <h1 className="contact-hero-title" aria-label="Vamos iniciar um novo legado.">
+                            <span className="contact-hero-line">
+                                {['VAMOS', 'INICIAR'].map((word, i) => (
+                                    <span className="contact-word-wrap" key={`l1-${i}`}>
+                                        <motion.span
+                                            className="contact-word"
+                                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                            transition={{ duration: 1, delay: 0.3 + i * 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                        >
+                                            {word}
+                                        </motion.span>
+                                    </span>
+                                ))}
+                            </span>
+                            <span className="contact-hero-line">
+                                {['UM', 'NOVO'].map((word, i) => (
+                                    <span className="contact-word-wrap" key={`l2-${i}`}>
+                                        <motion.span
+                                            className="contact-word"
+                                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                            transition={{ duration: 1, delay: 0.6 + i * 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                        >
+                                            {word}
+                                        </motion.span>
+                                    </span>
+                                ))}
+                                <span className="contact-word-wrap">
+                                    <motion.span
+                                        className="contact-word contact-word-accent"
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.9, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        LEGADO.
+                                    </motion.span>
+                                </span>
+                            </span>
+                        </h1>
                         <p className="contact-hero-subtitle">
                             Nossa equipe está pronta para oferecer um atendimento sob medida para o seu próximo grande investimento.
                         </p>
+
+                        <motion.div
+                            className="contact-scroll-hint"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.6, duration: 1 }}
+                            onClick={() =>
+                                window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })
+                            }
+                            role="button"
+                            tabIndex={0}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+                                }
+                            }}
+                        >
+                            <span>FALE CONOSCO</span>
+                            <ChevronDown size={20} strokeWidth={1.5} className="contact-scroll-arrow" />
+                        </motion.div>
                     </motion.div>
                 </div>
-                <div className="contact-hero-spotlight"></div>
             </header>
 
             <main className="container">
