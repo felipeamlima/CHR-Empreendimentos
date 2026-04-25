@@ -65,7 +65,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="chr-contact-block border-right border-top" style={{ gridColumn: 'span 2', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '3rem 4rem' }}>
+                <div className="chr-contact-block border-right border-top chr-contact-social-block" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '3rem 4rem' }}>
 
                     <div className="chr-social-wrap" style={{ display: 'flex', flexDirection: 'column' }}>
                         <span className="chr-contact-label" style={{ marginBottom: '1rem' }}>SIGA NAS REDES</span>

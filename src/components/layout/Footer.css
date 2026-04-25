@@ -168,6 +168,11 @@
     transform: translateY(-8px) scale(1.1);
 }
 
+.chr-contact-social-block {
+    grid-column: span 2;
+    flex-direction: row;
+}
+
 .chr-contact-footer-bar {
     display: flex;
     justify-content: space-between;
@@ -244,6 +249,12 @@
     .chr-contact-block.border-top {
         border-top: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .chr-contact-social-block {
+        grid-column: 1 / -1;
+        flex-direction: column !important;
+        gap: 2rem;
     }
 
     .chr-contact-city {
