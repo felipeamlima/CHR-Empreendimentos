@@ -80,7 +80,7 @@ export default function Footer() {
                     </div>
 
                     <div className="chr-brand-signature" style={{ display: 'flex', alignItems: 'center' }}>
-                        <img src="/logo.png" alt="CHR" style={{ height: '50px', filter: 'brightness(0) invert(1)', opacity: 0.8 }} />
+                        <img src="/logo.svg" alt="CHR" style={{ height: '50px', filter: 'brightness(0) invert(1)', opacity: 0.8 }} />
                     </div>
 
                 </div>
@@ -89,7 +89,7 @@ export default function Footer() {
             <div className="chr-contact-footer-bar">
                 <span>© {new Date().getFullYear()} · CHR Construtora</span>
                 <div className="chr-footer-links">
-                    <img src="/logo.png" alt="CHR Logo" className="footer-logo-chique-mini" />
+                    <img src="/logo.svg" alt="CHR Logo" className="footer-logo-chique-mini" />
                     <a href="#">Política de Privacidade</a>
                     <a href="#">Termos de Uso</a>
                 </div>
