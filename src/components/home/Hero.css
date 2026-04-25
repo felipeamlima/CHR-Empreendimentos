@@ -60,7 +60,6 @@
     border-radius: 4px;
     gap: 0.2rem;
     box-shadow: 0 0 30px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.1);
-    animation: float-badge 6s ease-in-out infinite;
 }
 
 @keyframes float-badge {
