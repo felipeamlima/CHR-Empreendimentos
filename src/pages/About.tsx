@@ -466,13 +466,11 @@ export default function About() {
                             <ArrowRight size={18} />
                         </a>
                         <a
-                            href="https://wa.me/5531999999999"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/contato"
                             className="about-cta-btn about-cta-btn-ghost"
                         >
                             <MessageCircle size={18} />
-                            Falar com Especialista
+                            FALE CONOSCO
                         </a>
                     </motion.div>
                 </div>
