@@ -3,10 +3,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, Star, BadgeCheck, ChevronLeft, ChevronRight, Pencil, X, CheckCircle2 } from 'lucide-react';
 import './Testimonials.css';
 
-// Cole aqui a URL gerada após publicar o Google Apps Script
-// (ver instruções no chat). Enquanto estiver vazio, o site continua
-// funcionando apenas com os depoimentos base.
-const TESTIMONIALS_API_URL = '';
+// URL do Google Apps Script que recebe submissões e retorna aprovados.
+const TESTIMONIALS_API_URL =
+    'https://script.google.com/macros/s/AKfycbw7jJjQiIMIiwlVEcTbcQfcgEGJQoxIsdWJ8cwfv65ovL4BdYe7ztbZaVVOIyIQTNDk/exec';
 
 const CACHE_KEY = 'chr_testimonials_cache_v1';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutos
