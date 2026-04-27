@@ -25,7 +25,7 @@ const mockProperties: PropertyProps[] = [
 
 export default function FeaturedProperties() {
     const [activeFilter, setActiveFilter] = useState('Todos');
-    const filters = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar'];
+    const filters = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portfólio'];
 
     const filtered = activeFilter === 'Todos'
         ? mockProperties

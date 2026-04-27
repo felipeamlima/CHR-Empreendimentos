@@ -11,15 +11,28 @@ const feedImages = [
     "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3"
 ];
 
+// Duplicate for seamless infinite loop
+const rowTop = [...feedImages, ...feedImages];
+const rowBottom = [...feedImages.slice().reverse(), ...feedImages.slice().reverse()];
+
 export default function InstagramFeed() {
     return (
         <section className="insta-section">
-            <div className="insta-grid">
-                {feedImages.map((img, idx) => (
-                    <div key={idx} className="insta-item">
-                        <img src={img} alt={`Social feed ${idx}`} />
-                    </div>
-                ))}
+            <div className="insta-marquee" aria-hidden="true">
+                <div className="insta-row insta-row-left">
+                    {rowTop.map((img, idx) => (
+                        <div key={`t-${idx}`} className="insta-item">
+                            <img src={img} alt="" loading="lazy" />
+                        </div>
+                    ))}
+                </div>
+                <div className="insta-row insta-row-right">
+                    {rowBottom.map((img, idx) => (
+                        <div key={`b-${idx}`} className="insta-item">
+                            <img src={img} alt="" loading="lazy" />
+                        </div>
+                    ))}
+                </div>
             </div>
 
             <div className="insta-overlay">

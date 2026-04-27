@@ -80,7 +80,7 @@ export default function Footer() {
                     </div>
 
                     <div className="chr-brand-signature" style={{ display: 'flex', alignItems: 'center' }}>
-                        <img src="/logo.png" alt="CHR" style={{ height: '50px', filter: 'brightness(0) invert(1)', opacity: 0.8 }} />
+                        <img src="/logo.png" alt="CHR" className="chr-brand-logo" />
                     </div>
 
                 </div>

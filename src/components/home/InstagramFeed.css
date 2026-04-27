@@ -1,35 +1,71 @@
 .insta-section {
     position: relative;
-    padding: 3rem 0;
-    /* Reduced padding for a more compact look */
+    padding: 0;
     background-color: #0c0c0c;
     overflow: hidden;
+    height: 60vh;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
 }
 
-.insta-grid {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    gap: 0;
-    opacity: 0.2;
-    /* Dimm the background more for a subtle look */
+.insta-marquee {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+.insta-row {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    flex-shrink: 0;
+    will-change: transform;
+}
+
+.insta-row-left {
+    animation: insta-marquee-left 60s linear infinite;
+}
+
+.insta-row-right {
+    animation: insta-marquee-right 75s linear infinite;
+}
+
+@keyframes insta-marquee-left {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes insta-marquee-right {
+    from { transform: translateX(-50%); }
+    to   { transform: translateX(0); }
 }
 
 .insta-item {
+    flex: 0 0 auto;
+    width: 280px;
     aspect-ratio: 1;
     overflow: hidden;
+    border-radius: 6px;
 }
 
 .insta-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(1);
-    transition: all 0.5s ease;
+    filter: grayscale(0.9) brightness(0.85);
 }
 
-.insta-item:hover img {
-    filter: grayscale(0);
-    transform: scale(1.1);
+@media (prefers-reduced-motion: reduce) {
+    .insta-row-left,
+    .insta-row-right {
+        animation: none;
+    }
 }
 
 .insta-overlay {
@@ -38,7 +74,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle, rgba(12, 12, 12, 0.9) 0%, rgba(12, 12, 12, 0.4) 100%);
+    background:
+        radial-gradient(ellipse at center, rgba(12, 12, 12, 0.85) 0%, rgba(12, 12, 12, 0.55) 100%),
+        linear-gradient(to right, #0c0c0c 0%, transparent 12%, transparent 88%, #0c0c0c 100%);
     z-index: 5;
 }
 
@@ -93,14 +131,35 @@
 }
 
 @media (max-width: 1024px) {
-    .insta-grid {
-        grid-template-columns: repeat(3, 1fr);
+    .insta-item {
+        width: 220px;
     }
 }
 
 @media (max-width: 768px) {
-    .insta-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .insta-section {
+        height: 50vh;
+        min-height: 420px;
+    }
+
+    .insta-item {
+        width: 170px;
+    }
+
+    .insta-marquee {
+        gap: 0.6rem;
+    }
+
+    .insta-row {
+        gap: 0.6rem;
+    }
+
+    .insta-row-left {
+        animation-duration: 45s;
+    }
+
+    .insta-row-right {
+        animation-duration: 55s;
     }
 
     .insta-title {

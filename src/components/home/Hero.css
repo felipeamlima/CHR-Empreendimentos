@@ -416,7 +416,7 @@
     }
 
     .hero-legacy-badge {
-        top: 90px;
+        top: 130px;
         right: 4%;
     }
 
@@ -455,7 +455,7 @@
 
 @media (max-width: 480px) {
     .hero-legacy-badge {
-        top: 85px;
+        top: 120px;
         right: 3%;
     }
 

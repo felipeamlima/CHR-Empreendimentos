@@ -7,8 +7,8 @@
 /* --- Hero Section --- */
 .about-hero {
     position: relative;
-    height: 92vh;
-    min-height: 640px;
+    height: 100vh;
+    min-height: 720px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -783,8 +783,8 @@
 
 @media (max-width: 768px) {
     .about-hero {
-        height: 75vh;
-        min-height: 520px;
+        height: 100vh;
+        min-height: 600px;
     }
 
     .about-hero-title {

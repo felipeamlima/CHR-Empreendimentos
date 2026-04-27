@@ -173,6 +173,18 @@
     flex-direction: row;
 }
 
+.chr-brand-logo {
+    height: 90px;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
+}
+
+.chr-brand-logo:hover {
+    opacity: 1;
+}
+
 .chr-contact-footer-bar {
     display: flex;
     justify-content: space-between;
@@ -185,17 +197,15 @@
 }
 
 .footer-logo-chique-mini {
-    height: 40px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     margin-right: 3rem;
-    filter: grayscale(1) brightness(2);
-    opacity: 0.4;
+    opacity: 0.7;
     transition: all 0.5s ease;
 }
 
 .footer-logo-chique-mini:hover {
-    filter: grayscale(0) brightness(1);
     opacity: 1;
 }
 
@@ -231,18 +241,18 @@
     }
 
     .chr-contact-inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
         margin: 0 1.5rem;
     }
 
     .chr-contact-block {
-        padding: 3rem 2rem;
+        padding: 3rem 2rem !important;
         text-align: center;
         align-items: center;
     }
 
     .chr-contact-block.border-right {
-        border-right: none;
+        border-right: none !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
@@ -252,9 +262,13 @@
     }
 
     .chr-contact-social-block {
-        grid-column: 1 / -1;
+        grid-column: 1 / -1 !important;
         flex-direction: column !important;
         gap: 2rem;
+    }
+
+    .chr-brand-logo {
+        height: 70px;
     }
 
     .chr-contact-city {
@@ -301,9 +315,10 @@
     }
 
     .footer-logo-chique-mini {
+        height: 70px;
         margin-right: 0;
         margin-bottom: 1rem;
-        opacity: 0.5;
+        opacity: 0.7;
     }
 
     .chr-contact-block {
