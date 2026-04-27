@@ -1,3 +1,8 @@
+/* ============================================================
+   HERITAGE — premium CHR section
+   Black background · video atmosphere · subtle green accents
+   ============================================================ */
+
 .heritage-section {
     position: relative;
     min-height: 100vh;
@@ -6,14 +11,12 @@
     align-items: center;
     overflow: hidden;
     background-color: #000;
+    isolation: isolate;
 }
 
 .heritage-video-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     z-index: 1;
 }
 
@@ -21,16 +24,68 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.4;
+    opacity: 0.32;
 }
 
 .heritage-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.95) 100%);
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, transparent 0%, rgba(0, 0, 0, 0.6) 60%, #000 100%),
+        linear-gradient(to right, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.95) 100%);
+    z-index: 2;
+}
+
+/* Subtle aurora orbs drifting slowly */
+.heritage-aurora {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: 2;
+    will-change: transform;
+}
+
+.heritage-aurora-a {
+    width: 620px;
+    height: 620px;
+    top: -200px;
+    left: -180px;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.18) 0%, transparent 65%);
+    animation: heritage-drift-a 22s ease-in-out infinite alternate;
+}
+
+.heritage-aurora-b {
+    width: 520px;
+    height: 520px;
+    bottom: -180px;
+    right: -120px;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.1) 0%, transparent 65%);
+    animation: heritage-drift-b 28s ease-in-out infinite alternate;
+}
+
+@keyframes heritage-drift-a {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(60px, 40px, 0); }
+}
+
+@keyframes heritage-drift-b {
+    from { transform: translate3d(0, 0, 0); }
+    to   { transform: translate3d(-50px, -30px, 0); }
+}
+
+.heritage-grid-overlay {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 75%);
+    pointer-events: none;
+    opacity: 0.35;
     z-index: 2;
 }
 
@@ -41,127 +96,353 @@
 
 .heritage-main-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 6rem;
     align-items: center;
 }
 
-.heritage-label {
-    display: inline-block;
+/* ---------- LEFT — narrative ---------- */
+.heritage-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.heritage-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+}
+
+.heritage-eyebrow-line {
+    width: 36px;
+    height: 1px;
+    background: var(--color-primary);
+}
+
+.heritage-eyebrow-text {
     font-size: 0.7rem;
     font-weight: 800;
     letter-spacing: 5px;
     color: var(--color-primary);
-    margin-bottom: 2rem;
     text-transform: uppercase;
+}
+
+.heritage-label {
+    /* Legacy class kept for safety */
+    display: none;
 }
 
 .heritage-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-family: var(--font-heading);
+    font-size: clamp(2.6rem, 5.2vw, 4.8rem);
     font-weight: 900;
-    line-height: 1.1;
-    color: #fff;
-    margin-bottom: 2.5rem;
-    letter-spacing: -1.5px;
+    line-height: 1.02;
+    letter-spacing: -2.5px;
+    color: #ffffff;
+    margin: 0 0 2.25rem;
+    text-transform: none;
 }
 
-@media (max-width: 480px) {
-    .heritage-title {
-        font-size: 2.2rem;
-    }
+.heritage-title-static {
+    display: block;
 }
 
-.heritage-title span {
+.heritage-title-rotator {
+    position: relative;
+    display: block;
+    height: 1.05em;
+    overflow: hidden;
+}
+
+.heritage-title-word {
+    position: absolute;
+    inset: 0;
+    display: inline-flex;
+    align-items: flex-start;
+    background: linear-gradient(180deg, #7fbf5d 0%, #509539 60%, #366622 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    will-change: transform, opacity;
+}
+
+.heritage-title-dot {
     color: var(--color-primary);
+    -webkit-text-fill-color: var(--color-primary);
+}
+
+/* Override legacy span color so the rotating word controls itself */
+.heritage-title span.heritage-title-static,
+.heritage-title span.heritage-title-rotator {
+    color: inherit;
 }
 
 .heritage-desc {
-    font-size: 1.05rem;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.8;
-    max-width: 500px;
-    margin-bottom: 4rem;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 540px;
+    margin: 0 0 3rem;
 }
 
+/* ---------- Stats ---------- */
+.heritage-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 2.5rem 3.5rem;
+    padding: 2rem 0 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: 3rem;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.heritage-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.heritage-stat-value {
+    font-family: var(--font-heading);
+    font-size: clamp(1.85rem, 2.4vw, 2.5rem);
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.heritage-stat-plus {
+    color: var(--color-primary);
+    font-size: 0.7em;
+    margin-right: 2px;
+    font-weight: 800;
+}
+
+.heritage-stat-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+}
+
+/* ---------- CTA ---------- */
 .heritage-btn {
     display: inline-flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 0.75rem;
+    padding: 1rem 1.85rem;
+    width: fit-content;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
     color: #fff;
-    padding: 1.2rem 2.8rem;
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
-    transition: all var(--transition-normal);
+    text-decoration: none;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.heritage-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(80, 149, 57, 0.95) 0%, rgba(54, 102, 34, 0.95) 100%);
+    transform: translateX(-101%);
+    transition: transform 0.55s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: -1;
 }
 
 .heritage-btn:hover {
-    background: #fff;
-    color: #000;
-    border-color: #fff;
-    transform: translateY(-5px);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(80, 149, 57, 0.25);
+    background: transparent;
 }
 
-/* Differentials Grid */
+.heritage-btn:hover::before {
+    transform: translateX(0);
+}
+
+.heritage-btn-arrow {
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.heritage-btn:hover .heritage-btn-arrow {
+    transform: translate(3px, -3px);
+}
+
+/* ---------- RIGHT — pillars ---------- */
+.heritage-right {
+    width: 100%;
+}
+
 .differentials-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
+    gap: 1.25rem;
 }
 
 .diff-item {
-    background: rgba(255, 255, 255, 0.03);
+    position: relative;
+    padding: 2.5rem 1.85rem;
+    background: linear-gradient(160deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 14px;
+    overflow: hidden;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 2.5rem;
-    border-radius: 4px;
-    transition: all var(--transition-normal);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1),
+                border-color 0.5s ease,
+                background 0.5s ease,
+                box-shadow 0.5s ease;
+    isolation: isolate;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+}
+
+.diff-item::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 38%, rgba(80, 149, 57, 0.08) 50%, transparent 62%);
+    background-size: 220% 100%;
+    background-position: 200% 0;
+    transition: background-position 0.95s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .diff-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: var(--color-primary);
-    transform: translateY(-8px);
+    transform: translateY(-6px);
+    border-color: rgba(80, 149, 57, 0.45);
+    background: linear-gradient(160deg, rgba(80, 149, 57, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(80, 149, 57, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.diff-item:hover::before {
+    background-position: -120% 0;
+}
+
+.diff-glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    top: -60px;
+    right: -120px;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.18) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+    filter: blur(20px);
+}
+
+.diff-item:hover .diff-glow {
+    opacity: 1;
+}
+
+.diff-index {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.65rem;
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.25);
+    transition: color 0.4s ease;
+}
+
+.diff-item:hover .diff-index {
+    color: rgba(80, 149, 57, 0.7);
 }
 
 .diff-icon-wrapper {
-    width: 50px;
-    height: 50px;
-    border-radius: 4px;
-    background: rgba(var(--color-primary-rgb), 0.1);
-    color: var(--color-primary);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: rgba(80, 149, 57, 0.1);
+    border: 1px solid rgba(80, 149, 57, 0.2);
+    border-radius: 10px;
+    color: var(--color-primary);
     margin-bottom: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.diff-item:hover .diff-icon-wrapper {
+    background: rgba(80, 149, 57, 0.18);
+    border-color: rgba(80, 149, 57, 0.45);
+    box-shadow: 0 0 24px rgba(80, 149, 57, 0.25);
 }
 
 .diff-text h3 {
-    font-size: 0.85rem;
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
     font-weight: 800;
-    letter-spacing: 1px;
-    color: #fff;
-    margin-bottom: 0.8rem;
-    text-transform: uppercase;
+    color: #ffffff;
+    margin: 0 0 0.85rem;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    text-transform: none;
 }
 
 .diff-text p {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 1.6;
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    margin: 0;
 }
 
+/* ---------- Responsive ---------- */
 @media (max-width: 1100px) {
     .heritage-main-grid {
         grid-template-columns: 1fr;
         gap: 5rem;
     }
 
-    .differentials-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .heritage-stats {
+        gap: 2rem 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .heritage-section {
+        padding: 7rem 0;
+    }
+
+    .heritage-title {
+        font-size: clamp(2.2rem, 8vw, 3.6rem);
+        letter-spacing: -1.5px;
+    }
+
+    .heritage-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem 1rem;
+    }
+
+    .heritage-stat-value {
+        font-size: 1.65rem;
+    }
+
+    .heritage-stat-label {
+        font-size: 0.62rem;
+        letter-spacing: 2px;
     }
 }
 
@@ -171,51 +452,70 @@
     }
 
     .differentials-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr 1fr;
         gap: 1rem;
-        padding: 0 1rem;
-        /* Added padding to ensure no edge collision */
+        padding: 0;
         width: 100%;
-        justify-items: center;
     }
 
     .diff-item {
-        padding: 1.5rem 1rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        padding: 1.75rem 1.25rem;
+        min-height: 200px;
     }
 
     .diff-icon-wrapper {
-        margin: 0 auto 1rem;
         width: 40px;
         height: 40px;
+        margin-bottom: 1.25rem;
     }
 
     .diff-text h3 {
-        font-size: 0.7rem;
-        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.6rem;
     }
 
     .diff-text p {
-        font-size: 0.7rem;
-        line-height: 1.4;
+        font-size: 0.82rem;
+        line-height: 1.55;
+    }
+
+    .diff-index {
+        top: 1.1rem;
+        right: 1.2rem;
+        font-size: 0.62rem;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
     .heritage-title {
-        font-size: 2.2rem;
-    }
-
-    .heritage-label {
-        letter-spacing: 3px;
-        font-size: 0.6rem;
+        font-size: 2.4rem;
     }
 
     .heritage-desc {
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 1rem;
+        margin-bottom: 2.25rem;
+    }
+
+    .heritage-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem 1rem;
+    }
+
+    .heritage-stat-value {
+        font-size: 1.85rem;
+    }
+
+    .heritage-aurora {
+        opacity: 0.4;
+    }
+
+    .differentials-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .heritage-aurora {
+        animation: none;
     }
 }
