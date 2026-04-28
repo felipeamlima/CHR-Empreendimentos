@@ -68,8 +68,7 @@ export default function FeaturedProperties() {
                                         <motion.span
                                             className="fp-word"
                                             initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                                            whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                                            viewport={{ once: true, amount: 0.5 }}
+                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
                                             transition={{
                                                 duration: 0.9,
                                                 delay: 0.15 + i * 0.1,
@@ -89,8 +88,7 @@ export default function FeaturedProperties() {
                                                 word === 'Alma.' ? 'fp-word-accent' : ''
                                             }`}
                                             initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                                            whileInView={{ clipPath: 'inset(0 0% 0 0)' }}
-                                            viewport={{ once: true, amount: 0.5 }}
+                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
                                             transition={{
                                                 duration: 0.9,
                                                 delay: 0.5 + i * 0.1,
@@ -107,8 +105,7 @@ export default function FeaturedProperties() {
                         <motion.span
                             className="fp-title-underline"
                             initial={{ scaleX: 0 }}
-                            whileInView={{ scaleX: 1 }}
-                            viewport={{ once: true, amount: 0.5 }}
+                            animate={{ scaleX: 1 }}
                             transition={{ duration: 1, delay: 0.9, ease: [0.19, 1, 0.22, 1] }}
                             aria-hidden="true"
                         />
