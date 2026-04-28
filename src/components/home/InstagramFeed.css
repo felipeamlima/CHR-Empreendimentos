@@ -3,13 +3,13 @@
     padding: 0;
     background-color: #0c0c0c;
     overflow: hidden;
-    height: 60vh;
-    min-height: 480px;
+    height: 50vh;
+    min-height: 420px;
     display: flex;
     align-items: center;
     /* Skip rendering work when section is far off-screen */
     content-visibility: auto;
-    contain-intrinsic-size: 480px;
+    contain-intrinsic-size: 420px;
 }
 
 .insta-marquee {
