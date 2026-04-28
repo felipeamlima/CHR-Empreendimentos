@@ -34,11 +34,38 @@ const stats: Stat[] = [
 ];
 
 const timeline = [
-    { year: '2001', title: 'Fundação', text: 'Nasce a CHR em Minas Gerais, com o propósito de construir com excelência.' },
-    { year: '2008', title: 'Verticalização', text: 'Entregamos nosso primeiro grande empreendimento vertical.' },
-    { year: '2015', title: 'Mil lares', text: 'Alcançamos a marca de 1.000 famílias atendidas.' },
-    { year: '2019', title: 'Expansão', text: 'Levamos a marca CHR a novos municípios de Minas Gerais.' },
-    { year: '2024', title: 'Legado consolidado', text: '2.500 famílias e mais de 40 empreendimentos entregues.' },
+    {
+        year: '2001',
+        title: 'Fundação',
+        text: 'Nasce a CHR com a missão de desenvolver empreendimentos guiados por engenharia, confiança e visão de longo prazo.',
+    },
+    {
+        year: '2008',
+        title: 'Primeiro Marco Vertical',
+        text: 'Entrega do primeiro edifício residencial, consolidando presença no mercado mineiro.',
+    },
+    {
+        year: '2015',
+        title: 'Escala e Reconhecimento',
+        text: 'Mais de mil famílias impactadas por projetos entregues com excelência.',
+    },
+    {
+        year: '2019',
+        title: 'Nova Expansão',
+        text: 'A CHR amplia atuação e fortalece sua presença estratégica em Belo Horizonte.',
+    },
+    {
+        year: '2024',
+        title: 'Legado em Evolução',
+        text: 'Mais de 40 empreendimentos entregues e uma nova fase de crescimento.',
+    },
+];
+
+const trajectoryStats = [
+    '25 anos de mercado',
+    '+40 empreendimentos',
+    'Milhares de vidas impactadas',
+    'Construindo valor desde 2001',
 ];
 
 const differentials = [
@@ -125,9 +152,11 @@ function StatItem({ stat, index }: { stat: Stat; index: number }) {
 function TimelineItem({
     item,
     index,
+    total,
 }: {
     item: (typeof timeline)[number];
     index: number;
+    total: number;
 }) {
     const side = index % 2 === 0 ? 'left' : 'right';
     return (
@@ -135,15 +164,26 @@ function TimelineItem({
             className={`timeline-item timeline-item-${side}`}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.7, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: index * 0.08, ease: [0.19, 1, 0.22, 1] }}
         >
-            <div className="timeline-dot" />
-            <div className="timeline-card">
-                <span className="timeline-year">{item.year}</span>
+            <span className="timeline-dot" aria-hidden="true">
+                <span className="timeline-dot-pulse" />
+                <span className="timeline-dot-core" />
+            </span>
+
+            <article className="timeline-card">
+                <header className="timeline-card-head">
+                    <span className="timeline-year">{item.year}</span>
+                    <span className="timeline-step">
+                        {String(index + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                    </span>
+                </header>
+                <span className="timeline-rule" />
                 <h3 className="timeline-title">{item.title}</h3>
                 <p className="timeline-text">{item.text}</p>
-            </div>
+                <span className="timeline-card-glow" aria-hidden="true" />
+            </article>
         </motion.div>
     );
 }
@@ -336,12 +376,62 @@ export default function About() {
 
             {/* Timeline */}
             <section className="about-timeline">
+                <div className="timeline-aurora" aria-hidden="true" />
+
                 <div className="container">
                     <div className="timeline-title-block">
-                        <span className="gold-label">Nossa jornada</span>
-                        <h2 className="luxury-title">
-                            Marcos de uma <span>história sólida</span>
-                        </h2>
+                        <div className="timeline-eyebrow">
+                            <span className="timeline-eyebrow-line" />
+                            <span className="timeline-eyebrow-text">NOSSA TRAJETÓRIA</span>
+                        </div>
+
+                        <motion.h2
+                            className="timeline-headline"
+                            aria-label="Uma história erguida com excelência."
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.3 }}
+                        >
+                            <span className="timeline-line-mask">
+                                <motion.span
+                                    className="timeline-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.1, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    Uma história erguida
+                                </motion.span>
+                            </span>
+                            <span className="timeline-line-mask">
+                                <motion.span
+                                    className="timeline-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.1, delay: 0.4, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    com <em className="timeline-soul">excelência.</em>
+                                </motion.span>
+                            </span>
+                        </motion.h2>
+
+                        <ul className="timeline-stats" aria-label="Marcos da CHR">
+                            {trajectoryStats.map((stat, i) => (
+                                <motion.li
+                                    key={stat}
+                                    className="timeline-stat"
+                                    initial={{ opacity: 0, y: 12 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, amount: 0.5 }}
+                                    transition={{ duration: 0.6, delay: 0.6 + i * 0.08 }}
+                                >
+                                    {stat}
+                                </motion.li>
+                            ))}
+                        </ul>
                     </div>
 
                     <div className="timeline-wrapper" ref={timelineRef}>
@@ -354,7 +444,12 @@ export default function About() {
 
                         <div className="timeline-items">
                             {timeline.map((item, i) => (
-                                <TimelineItem key={i} item={item} index={i} />
+                                <TimelineItem
+                                    key={i}
+                                    item={item}
+                                    index={i}
+                                    total={timeline.length}
+                                />
                             ))}
                         </div>
                     </div>
