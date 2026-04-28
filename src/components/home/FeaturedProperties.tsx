@@ -33,7 +33,6 @@ const mockProperties: PropertyProps[] = [
 ];
 
 const filters = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portfólio'];
-const headlineWords = ['Onde', 'a', 'Arquitetura', 'Encontra', 'a', 'Alma.'];
 
 export default function FeaturedProperties() {
     const [activeFilter, setActiveFilter] = useState('Todos');
@@ -62,43 +61,33 @@ export default function FeaturedProperties() {
                         </motion.div>
 
                         <h2 className="luxury-title" aria-label="Onde a Arquitetura Encontra a Alma.">
-                            <span className="fp-title-line">
-                                {headlineWords.slice(0, 3).map((word, i) => (
-                                    <span className="fp-word-wrap" key={`a-${i}`}>
-                                        <motion.span
-                                            className="fp-word"
-                                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
-                                            transition={{
-                                                duration: 0.9,
-                                                delay: 0.15 + i * 0.1,
-                                                ease: [0.77, 0, 0.175, 1],
-                                            }}
-                                        >
-                                            {word}
-                                        </motion.span>
-                                    </span>
-                                ))}
+                            <span className="fp-line-mask">
+                                <motion.span
+                                    className="fp-line"
+                                    initial={{ y: '105%' }}
+                                    animate={{ y: '0%' }}
+                                    transition={{
+                                        duration: 1.1,
+                                        delay: 0.15,
+                                        ease: [0.77, 0, 0.175, 1],
+                                    }}
+                                >
+                                    Onde a Arquitetura
+                                </motion.span>
                             </span>
-                            <span className="fp-title-line">
-                                {headlineWords.slice(3).map((word, i) => (
-                                    <span className="fp-word-wrap" key={`b-${i}`}>
-                                        <motion.span
-                                            className={`fp-word ${
-                                                word === 'Alma.' ? 'fp-word-accent' : ''
-                                            }`}
-                                            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                                            animate={{ clipPath: 'inset(0 0% 0 0)' }}
-                                            transition={{
-                                                duration: 0.9,
-                                                delay: 0.5 + i * 0.1,
-                                                ease: [0.77, 0, 0.175, 1],
-                                            }}
-                                        >
-                                            {word}
-                                        </motion.span>
-                                    </span>
-                                ))}
+                            <span className="fp-line-mask">
+                                <motion.span
+                                    className="fp-line"
+                                    initial={{ y: '105%' }}
+                                    animate={{ y: '0%' }}
+                                    transition={{
+                                        duration: 1.1,
+                                        delay: 0.4,
+                                        ease: [0.77, 0, 0.175, 1],
+                                    }}
+                                >
+                                    Encontra a <em className="fp-soul">Alma.</em>
+                                </motion.span>
                             </span>
                         </h2>
 
@@ -106,7 +95,7 @@ export default function FeaturedProperties() {
                             className="fp-title-underline"
                             initial={{ scaleX: 0 }}
                             animate={{ scaleX: 1 }}
-                            transition={{ duration: 1, delay: 0.9, ease: [0.19, 1, 0.22, 1] }}
+                            transition={{ duration: 1, delay: 1.1, ease: [0.19, 1, 0.22, 1] }}
                             aria-hidden="true"
                         />
                     </div>

@@ -3,6 +3,8 @@
    Black background · quiet luxury · refined motion
    ============================================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&display=swap');
+
 .featured-experience-dark {
     background-color: #0c0c0c;
     color: #fff;
@@ -87,42 +89,59 @@
 
 .luxury-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 5vw, 4.2rem);
+    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
     font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1.05;
+    letter-spacing: -2.2px;
+    line-height: 1.02;
     color: #ffffff;
     margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.luxury-title .fp-title-line {
+/* Reset color leak from .luxury-title span rule defined globally
+   in Testimonials.css (CSS is global in Vite). */
+.luxury-title span,
+.luxury-title em {
+    color: inherit;
+}
+
+.fp-line-mask {
     display: block;
-}
-
-.fp-word-wrap {
-    display: inline-block;
     overflow: hidden;
-    line-height: 1.05;
-    margin-right: 0.32em;
-    vertical-align: baseline;
+    padding-bottom: 0.05em;
+    line-height: inherit;
 }
 
-.fp-word {
+.fp-line {
     display: inline-block;
-    color: #ffffff;
+    will-change: transform;
 }
 
-.fp-word-accent {
-    color: var(--color-primary);
+/* Editorial luxury accent — Playfair italic with green gradient.
+   Mimics the magazine pull-quote aesthetic of JHSF / Cyrela hero pages. */
+.fp-soul {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.18em;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #9fdc7a 0%, #5fa442 45%, #2d5719 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-left: 0.18em;
+    padding-right: 0.05em;
+    line-height: 1;
 }
 
 .fp-title-underline {
     display: block;
-    width: 70px;
-    height: 2px;
-    background: linear-gradient(90deg, var(--color-primary), transparent);
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-primary), rgba(80, 149, 57, 0.15) 75%, transparent);
     transform-origin: left center;
-    margin-top: 0.5rem;
+    margin-top: 1rem;
 }
 
 /* ---------- Filters ---------- */
