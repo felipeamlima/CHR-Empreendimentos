@@ -442,14 +442,21 @@ export default function About() {
                         CHR EXPERIENCE
                     </motion.span>
 
-                    <h2 className="about-cta-title" aria-label="Pronto para seu próximo capítulo?">
+                    <motion.h2
+                        className="about-cta-title"
+                        aria-label="Pronto para seu próximo capítulo?"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.2 }}
+                    >
                         <span className="cta-line-mask">
                             <motion.span
                                 className="cta-line"
-                                initial={{ y: '105%' }}
-                                whileInView={{ y: '0%' }}
-                                viewport={{ once: true, amount: 0.4 }}
-                                transition={{ duration: 1.1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
+                                variants={{
+                                    hidden: { y: '105%' },
+                                    visible: { y: '0%' },
+                                }}
+                                transition={{ duration: 1.1, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
                             >
                                 Pronto para seu
                             </motion.span>
@@ -457,15 +464,16 @@ export default function About() {
                         <span className="cta-line-mask">
                             <motion.span
                                 className="cta-line"
-                                initial={{ y: '105%' }}
-                                whileInView={{ y: '0%' }}
-                                viewport={{ once: true, amount: 0.4 }}
-                                transition={{ duration: 1.1, delay: 0.45, ease: [0.77, 0, 0.175, 1] }}
+                                variants={{
+                                    hidden: { y: '105%' },
+                                    visible: { y: '0%' },
+                                }}
+                                transition={{ duration: 1.1, delay: 0.4, ease: [0.77, 0, 0.175, 1] }}
                             >
                                 <span className="cta-soul">próximo capítulo?</span>
                             </motion.span>
                         </span>
-                    </h2>
+                    </motion.h2>
 
                     <motion.p
                         className="about-cta-sub"
