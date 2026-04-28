@@ -72,22 +72,22 @@ const differentials = [
     {
         icon: Building2,
         title: 'Engenharia Própria',
-        text: 'Equipe técnica interna em todas as etapas da obra, garantindo controle absoluto sobre qualidade e prazos.',
+        text: 'Controle técnico total em todas as etapas da obra, assegurando qualidade e eficiência.',
     },
     {
         icon: Award,
         title: 'Arquitetura Premiada',
-        text: 'Projetos assinados com foco em design e funcionalidade, reconhecidos no mercado mineiro.',
+        text: 'Projetos que unem estética, funcionalidade e valor duradouro.',
     },
     {
         icon: Clock,
         title: 'Prazo Garantido',
-        text: '100% dos empreendimentos entregues no prazo contratado — um compromisso inegociável.',
+        text: 'Compromisso rigoroso com cronogramas e previsibilidade de entrega.',
     },
     {
         icon: TrendingUp,
         title: 'Valorização Real',
-        text: 'Imóveis com histórico consistente de valorização acima da média do mercado.',
+        text: 'Empreendimentos pensados para preservar e ampliar valor patrimonial.',
     },
 ];
 
@@ -280,10 +280,31 @@ export default function About() {
             <section className="about-differentials">
                 <div className="container">
                     <div className="differentials-title-block">
-                        <span className="gold-label">Nossos Diferenciais</span>
-                        <h2 className="luxury-title">
-                            O que nos torna <span>singulares</span>
-                        </h2>
+                        <div className="diff-eyebrow">
+                            <span className="diff-eyebrow-line" />
+                            <span className="diff-eyebrow-text">NOSSOS DIFERENCIAIS</span>
+                        </div>
+
+                        <motion.h2
+                            className="diff-headline"
+                            aria-label="O que nos torna singulares"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.3 }}
+                        >
+                            <span className="diff-line-mask">
+                                <motion.span
+                                    className="diff-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.05, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    O que nos torna <em className="diff-soul">singulares</em>
+                                </motion.span>
+                            </span>
+                        </motion.h2>
                     </div>
 
                     <div className="differentials-grid">
@@ -293,17 +314,25 @@ export default function About() {
                                 <motion.article
                                     key={i}
                                     className="differential-card"
-                                    initial={{ opacity: 0, y: 30 }}
+                                    initial={{ opacity: 0, y: 24 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, amount: 0.3 }}
-                                    transition={{ duration: 0.6, delay: i * 0.08 }}
+                                    viewport={{ once: true, amount: 0.2 }}
+                                    transition={{
+                                        duration: 0.7,
+                                        delay: 0.1 + i * 0.1,
+                                        ease: [0.19, 1, 0.22, 1],
+                                    }}
                                 >
+                                    <span className="differential-index">
+                                        {String(i + 1).padStart(2, '0')}
+                                    </span>
                                     <div className="differential-icon">
-                                        <Icon size={48} strokeWidth={1.3} />
+                                        <Icon size={28} strokeWidth={1.4} />
                                     </div>
                                     <h3 className="differential-title">{item.title}</h3>
                                     <p className="differential-text">{item.text}</p>
                                     <span className="differential-border" />
+                                    <span className="differential-glow" aria-hidden="true" />
                                 </motion.article>
                             );
                         })}
