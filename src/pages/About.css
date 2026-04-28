@@ -693,19 +693,41 @@
     font-family: var(--font-heading);
     font-size: clamp(2.2rem, 5vw, 4.2rem);
     font-weight: 900;
-    line-height: 1.1;
+    line-height: 1.05;
     letter-spacing: -2px;
     color: #fff;
     margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: column;
 }
 
-.about-cta-title span {
+.cta-line-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.05em;
+    line-height: inherit;
+}
+
+.cta-line {
+    display: inline-block;
+    will-change: transform;
+}
+
+.cta-soul {
+    display: inline-block;
     background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
-    display: inline-block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
+}
+
+/* Reset legacy .about-cta-title span color leak (kept rule for safety) */
+.about-cta-title .cta-line-mask,
+.about-cta-title .cta-line {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: inherit;
 }
 
 .about-cta-sub {

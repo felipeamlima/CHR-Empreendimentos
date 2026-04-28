@@ -442,16 +442,30 @@ export default function About() {
                         CHR EXPERIENCE
                     </motion.span>
 
-                    <motion.h2
-                        className="about-cta-title"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.1 }}
-                    >
-                        Pronto para seu<br />
-                        <span>próximo capítulo?</span>
-                    </motion.h2>
+                    <h2 className="about-cta-title" aria-label="Pronto para seu próximo capítulo?">
+                        <span className="cta-line-mask">
+                            <motion.span
+                                className="cta-line"
+                                initial={{ y: '105%' }}
+                                whileInView={{ y: '0%' }}
+                                viewport={{ once: true, amount: 0.4 }}
+                                transition={{ duration: 1.1, delay: 0.2, ease: [0.77, 0, 0.175, 1] }}
+                            >
+                                Pronto para seu
+                            </motion.span>
+                        </span>
+                        <span className="cta-line-mask">
+                            <motion.span
+                                className="cta-line"
+                                initial={{ y: '105%' }}
+                                whileInView={{ y: '0%' }}
+                                viewport={{ once: true, amount: 0.4 }}
+                                transition={{ duration: 1.1, delay: 0.45, ease: [0.77, 0, 0.175, 1] }}
+                            >
+                                <span className="cta-soul">próximo capítulo?</span>
+                            </motion.span>
+                        </span>
+                    </h2>
 
                     <motion.p
                         className="about-cta-sub"
