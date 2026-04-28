@@ -174,7 +174,7 @@
 }
 
 .chr-brand-logo {
-    height: 90px;
+    height: 270px;
     width: auto;
     object-fit: contain;
     opacity: 0.85;
@@ -197,7 +197,7 @@
 }
 
 .footer-logo-chique-mini {
-    height: 90px;
+    height: 270px;
     width: auto;
     object-fit: contain;
     margin-right: 3rem;
@@ -268,7 +268,7 @@
     }
 
     .chr-brand-logo {
-        height: 70px;
+        height: 210px;
     }
 
     .chr-contact-city {
@@ -315,7 +315,7 @@
     }
 
     .footer-logo-chique-mini {
-        height: 70px;
+        height: 210px;
         margin-right: 0;
         margin-bottom: 1rem;
         opacity: 0.7;
