@@ -143,8 +143,9 @@
 .luxury-filters {
     display: inline-flex;
     align-items: center;
+    gap: 0.15rem;
     background: rgba(255, 255, 255, 0.03);
-    padding: 0.45rem;
+    padding: 0.5rem 0.55rem;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(10px);
@@ -157,13 +158,14 @@
     background: transparent;
     color: rgba(255, 255, 255, 0.55);
     font-family: var(--font-heading);
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     font-weight: 800;
-    padding: 0.78rem 1.5rem;
+    padding: 0.85rem 1.85rem;
     border-radius: 999px;
     border: 0;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1.6px;
+    white-space: nowrap;
     transition: color 0.4s ease;
     cursor: pointer;
     overflow: hidden;
