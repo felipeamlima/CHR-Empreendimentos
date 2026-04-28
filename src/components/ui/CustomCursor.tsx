@@ -1,50 +1,62 @@
 import { useEffect, useState } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
 import './CustomCursor.css';
 
 export default function CustomCursor() {
+    // Raw position — tracks mouse 1:1 (instant, no spring)
+    const mouseX = useMotionValue(-100);
+    const mouseY = useMotionValue(-100);
+
+    // Ring trail — spring derived from the raw motion value
+    const ringX = useSpring(mouseX, { stiffness: 320, damping: 30, mass: 0.4 });
+    const ringY = useSpring(mouseY, { stiffness: 320, damping: 30, mass: 0.4 });
+
     const [isHovering, setIsHovering] = useState(false);
     const [isActive, setIsActive] = useState(false);
-
-    const mouseX = useSpring(0, { stiffness: 500, damping: 28 });
-    const mouseY = useSpring(0, { stiffness: 500, damping: 28 });
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => {
+        const handleMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
+            if (!isVisible) setIsVisible(true);
         };
 
-        const handleMouseOver = (e: MouseEvent) => {
-            const target = e.target as HTMLElement;
-            if (
-                target.tagName === 'A' ||
-                target.tagName === 'BUTTON' ||
-                target.closest('button') ||
-                target.closest('a') ||
-                target.classList.contains('interactive')
-            ) {
-                setIsHovering(true);
-            } else {
-                setIsHovering(false);
+        const handleEnter = () => setIsVisible(true);
+        const handleLeave = (e: MouseEvent) => {
+            // Only hide when leaving the window itself, not when crossing into iframes
+            if (!e.relatedTarget && !(e as unknown as { toElement?: Node }).toElement) {
+                setIsVisible(false);
             }
         };
 
-        const handleMouseDown = () => setIsActive(true);
-        const handleMouseUp = () => setIsActive(false);
+        const handleOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const interactive = target.closest(
+                'a, button, [role="button"], input, textarea, select, label, .interactive'
+            );
+            setIsHovering(!!interactive);
+        };
 
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseover', handleMouseOver);
-        window.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('mouseup', handleMouseUp);
+        const handleDown = () => setIsActive(true);
+        const handleUp = () => setIsActive(false);
+
+        window.addEventListener('mousemove', handleMove, { passive: true });
+        window.addEventListener('mouseover', handleOver, { passive: true });
+        window.addEventListener('mousedown', handleDown);
+        window.addEventListener('mouseup', handleUp);
+        document.documentElement.addEventListener('mouseenter', handleEnter);
+        document.documentElement.addEventListener('mouseleave', handleLeave);
 
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseover', handleMouseOver);
-            window.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('mouseup', handleMouseUp);
+            window.removeEventListener('mousemove', handleMove);
+            window.removeEventListener('mouseover', handleOver);
+            window.removeEventListener('mousedown', handleDown);
+            window.removeEventListener('mouseup', handleUp);
+            document.documentElement.removeEventListener('mouseenter', handleEnter);
+            document.documentElement.removeEventListener('mouseleave', handleLeave);
         };
-    }, [mouseX, mouseY]);
+    }, [mouseX, mouseY, isVisible]);
 
     return (
         <>
@@ -54,16 +66,18 @@ export default function CustomCursor() {
                     x: mouseX,
                     y: mouseY,
                     translateX: '-50%',
-                    translateY: '-50%'
+                    translateY: '-50%',
+                    opacity: isVisible ? 1 : 0,
                 }}
             />
             <motion.div
                 className={`cursor-ring ${isHovering ? 'hovering' : ''} ${isActive ? 'active' : ''}`}
                 style={{
-                    x: mouseX,
-                    y: mouseY,
+                    x: ringX,
+                    y: ringY,
                     translateX: '-50%',
-                    translateY: '-50%'
+                    translateY: '-50%',
+                    opacity: isVisible ? 1 : 0,
                 }}
             />
         </>

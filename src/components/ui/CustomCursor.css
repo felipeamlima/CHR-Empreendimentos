@@ -9,6 +9,8 @@
     z-index: 10000;
     pointer-events: none;
     box-shadow: 0 0 12px rgba(80, 149, 57, 0.6);
+    will-change: transform, opacity;
+    transition: opacity 0.2s ease;
 }
 
 .cursor-ring {
@@ -21,10 +23,12 @@
     border-radius: 50%;
     z-index: 9999;
     pointer-events: none;
+    will-change: transform, opacity, width, height;
     transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1),
         height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
         background-color 0.4s ease,
-        border-color 0.4s ease;
+        border-color 0.4s ease,
+        opacity 0.2s ease;
 }
 
 .cursor-ring.hovering {
@@ -51,15 +55,17 @@
     }
 }
 
-/* Hide default cursor only when custom is available */
+/* Hide default cursor everywhere when custom is available */
 html,
-body {
-    cursor: none !important;
-}
-
+body,
+*,
 a,
 button,
 [role="button"],
+input,
+textarea,
+select,
+label,
 .interactive {
     cursor: none !important;
 }
