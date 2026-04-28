@@ -120,11 +120,22 @@ export default function FeaturedProperties() {
                                     className={`luxury-f-btn ${isActive ? 'active' : ''}`}
                                     onClick={(e) => {
                                         setActiveFilter(f);
-                                        e.currentTarget.scrollIntoView({
-                                            behavior: 'smooth',
-                                            inline: 'center',
-                                            block: 'nearest',
-                                        });
+                                        // Scroll only the filter container (not the window)
+                                        const btn = e.currentTarget;
+                                        const container = btn.parentElement;
+                                        if (
+                                            container &&
+                                            container.scrollWidth > container.clientWidth
+                                        ) {
+                                            const target =
+                                                btn.offsetLeft -
+                                                container.clientWidth / 2 +
+                                                btn.offsetWidth / 2;
+                                            container.scrollTo({
+                                                left: target,
+                                                behavior: 'smooth',
+                                            });
+                                        }
                                     }}
                                 >
                                     {isActive && (
