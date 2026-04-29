@@ -571,63 +571,91 @@ export default function About() {
             <section className="about-values">
                 <div className="container">
                     <div className="values-title-block">
-                        <span className="gold-label">Nossos Pilares</span>
-                        <h2 className="luxury-title">
-                            O que nos move <span>diariamente</span>
-                        </h2>
+                        <div className="values-eyebrow">
+                            <span className="values-eyebrow-line" />
+                            <span className="values-eyebrow-text">NOSSOS PILARES</span>
+                        </div>
+
+                        <motion.h2
+                            className="values-headline"
+                            aria-label="A base da nossa excelência."
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.3 }}
+                        >
+                            <span className="values-line-mask">
+                                <motion.span
+                                    className="values-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.05, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    A base da nossa <em className="values-soul">excelência.</em>
+                                </motion.span>
+                            </span>
+                        </motion.h2>
                     </div>
 
                     <div className="values-container">
-                        <motion.div
+                        <motion.article
                             className="value-glass-card"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.7, delay: 0.1, ease: [0.19, 1, 0.22, 1] }}
                         >
+                            <span className="value-index">01</span>
                             <div className="value-icon-circle">
-                                <Target size={32} />
+                                <Target size={26} strokeWidth={1.4} />
                             </div>
                             <h3>Missão</h3>
                             <p>
-                                Projetar e construir com excelência técnica, garantindo
-                                a satisfação absoluta e a valorização do patrimônio de
-                                nossos clientes.
+                                Projetar e construir empreendimentos que unem excelência
+                                técnica, valorização patrimonial e satisfação duradoura.
                             </p>
-                        </motion.div>
+                            <span className="value-card-glow" aria-hidden="true" />
+                        </motion.article>
 
-                        <motion.div
+                        <motion.article
                             className="value-glass-card"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.1 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.7, delay: 0.22, ease: [0.19, 1, 0.22, 1] }}
                         >
+                            <span className="value-index">02</span>
                             <div className="value-icon-circle">
-                                <Eye size={32} />
+                                <Eye size={26} strokeWidth={1.4} />
                             </div>
                             <h3>Visão</h3>
                             <p>
-                                Ser a referência definitiva em inovação e sofisticação
-                                no mercado imobiliário de alto padrão em Minas Gerais.
+                                Ser referência em desenvolvimento imobiliário de alto
+                                padrão em Minas Gerais, reconhecida por inovação,
+                                consistência e confiança.
                             </p>
-                        </motion.div>
+                            <span className="value-card-glow" aria-hidden="true" />
+                        </motion.article>
 
-                        <motion.div
+                        <motion.article
                             className="value-glass-card"
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 24 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.2 }}
+                            viewport={{ once: true, amount: 0.2 }}
+                            transition={{ duration: 0.7, delay: 0.34, ease: [0.19, 1, 0.22, 1] }}
                         >
+                            <span className="value-index">03</span>
                             <div className="value-icon-circle">
-                                <Shield size={32} />
+                                <Shield size={26} strokeWidth={1.4} />
                             </div>
                             <h3>Valores</h3>
                             <p>
-                                Ética, Transparência, Respeito ao Cliente e um
-                                Compromisso Inegociável com Prazos e Qualidade Superior.
+                                Ética, transparência, respeito ao cliente, rigor técnico
+                                e compromisso inegociável com qualidade e prazo.
                             </p>
-                        </motion.div>
+                            <span className="value-card-glow" aria-hidden="true" />
+                        </motion.article>
                     </div>
                 </div>
             </section>
