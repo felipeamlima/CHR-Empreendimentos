@@ -203,6 +203,14 @@ export default function About() {
     });
     const lineScale = useTransform(timelineProgress, [0, 1], [0, 1]);
 
+    // Subtle parallax on the narrative image
+    const narrativeRef = useRef<HTMLElement>(null);
+    const { scrollYProgress: narrativeProgress } = useScroll({
+        target: narrativeRef,
+        offset: ['start end', 'end start'],
+    });
+    const narrativeImageY = useTransform(narrativeProgress, [0, 1], ['-40px', '40px']);
+
     return (
         <div className="about-page">
             {/* Cinematic Hero */}
@@ -341,64 +349,138 @@ export default function About() {
             </section>
 
             {/* Narrative */}
-            <section className="about-narrative container">
+            <section className="about-narrative container" ref={narrativeRef}>
                 <div className="narrative-grid">
                     <motion.div
                         className="narrative-text-block"
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.25 }}
                     >
-                        <span className="gold-label">A CONSTRUTORA</span>
-                        <h2 className="luxury-title">
-                            Uma trajetória construída com{' '}
-                            <span>visão e consistência.</span>
+                        <motion.div
+                            className="narrative-eyebrow"
+                            variants={{
+                                hidden: { opacity: 0, y: 12 },
+                                visible: { opacity: 1, y: 0 },
+                            }}
+                            transition={{ duration: 0.7, delay: 0.05 }}
+                        >
+                            <span className="narrative-eyebrow-line" />
+                            <span className="narrative-eyebrow-text">A CONSTRUTORA</span>
+                        </motion.div>
+
+                        <h2 className="narrative-headline" aria-label="Uma trajetória construída com visão e consistência.">
+                            <span className="narrative-line-mask">
+                                <motion.span
+                                    className="narrative-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.05, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    Uma trajetória
+                                </motion.span>
+                            </span>
+                            <span className="narrative-line-mask">
+                                <motion.span
+                                    className="narrative-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.05, delay: 0.3, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    construída com
+                                </motion.span>
+                            </span>
+                            <span className="narrative-line-mask">
+                                <motion.span
+                                    className="narrative-line-text"
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
+                                    transition={{ duration: 1.05, delay: 0.45, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    <em className="narrative-soul">visão e consistência.</em>
+                                </motion.span>
+                            </span>
                         </h2>
-                        <div className="title-separator"></div>
-                        <p>
+
+                        <motion.span
+                            className="narrative-rule"
+                            variants={{
+                                hidden: { scaleX: 0 },
+                                visible: { scaleX: 1 },
+                            }}
+                            transition={{ duration: 0.9, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
+                        />
+
+                        <motion.p
+                            variants={{
+                                hidden: { opacity: 0, y: 16 },
+                                visible: { opacity: 1, y: 0 },
+                            }}
+                            transition={{ duration: 0.8, delay: 0.55 }}
+                        >
                             A CHR Empreendimentos e Construções atua no desenvolvimento
-                            de projetos imobiliários que unem qualidade construtiva,
-                            arquitetura e valorização urbana.
-                        </p>
-                        <p>
-                            Com presença consolidada no mercado mineiro, cada
-                            empreendimento é concebido com planejamento, engenharia e
-                            atenção aos detalhes, criando espaços pensados para viver
-                            bem e investir com segurança.
-                        </p>
-                        <p>
-                            Mais do que construir edifícios, a CHR desenvolve
-                            empreendimentos que geram valor para moradores, investidores
-                            e para a cidade.
-                        </p>
+                            de projetos imobiliários guiados por engenharia, arquitetura
+                            e valorização urbana.
+                        </motion.p>
+                        <motion.p
+                            variants={{
+                                hidden: { opacity: 0, y: 16 },
+                                visible: { opacity: 1, y: 0 },
+                            }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
+                        >
+                            Cada empreendimento nasce de planejamento rigoroso, atenção
+                            aos detalhes e compromisso com valor de longo prazo.
+                        </motion.p>
+                        <motion.p
+                            variants={{
+                                hidden: { opacity: 0, y: 16 },
+                                visible: { opacity: 1, y: 0 },
+                            }}
+                            transition={{ duration: 0.8, delay: 0.85 }}
+                        >
+                            Mais do que construir edifícios, a CHR desenvolve ativos
+                            sólidos para moradores, investidores e para a cidade.
+                        </motion.p>
                     </motion.div>
 
                     <motion.div
                         className="narrative-image-wrapper"
-                        initial={{ opacity: 0, x: 30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1 }}
+                        initial={{ opacity: 0, scale: 0.96 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
                     >
-                        <img
+                        <motion.img
                             src="/about-narrative.png"
-                            alt="Interior CHR"
+                            alt="Empreendimento CHR"
                             className="narrative-image"
+                            style={{ y: narrativeImageY }}
                         />
-                        <div className="image-floating-badge">
+                        <motion.div
+                            className="image-floating-badge"
+                            initial={{ opacity: 0, y: 24, scale: 0.9 }}
+                            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                            viewport={{ once: true, amount: 0.4 }}
+                            transition={{ duration: 0.9, delay: 0.4, ease: [0.19, 1, 0.22, 1] }}
+                        >
                             <div className="medal-coin">
                                 <div className="medal-face">
                                     <span className="medal-star medal-star-l">✦</span>
                                     <span className="medal-star medal-star-r">✦</span>
-                                    <strong className="medal-number">
-                                        100<em>%</em>
-                                    </strong>
+                                    <strong className="medal-number">25</strong>
+                                    <span className="medal-anos">ANOS</span>
                                     <span className="medal-divider" />
-                                    <span className="medal-label">Prazos<br/>Cumpridos</span>
+                                    <span className="medal-label">Construindo<br/>valor</span>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>

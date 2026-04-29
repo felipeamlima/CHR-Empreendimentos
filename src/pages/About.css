@@ -383,15 +383,18 @@
     transform: scaleX(1);
 }
 
-/* --- Narrative --- */
+/* ============================================================
+   NARRATIVE — institutional trajectory section
+   ============================================================ */
+
 .about-narrative {
     padding: 10rem 5%;
 }
 
 .narrative-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 7rem;
     align-items: center;
 }
 
@@ -400,38 +403,107 @@
     flex-direction: column;
 }
 
-.narrative-text-block .luxury-title {
-    font-size: clamp(2.2rem, 4vw, 3.5rem);
-    line-height: 1.1;
-    margin-bottom: 2rem;
-    letter-spacing: -2px;
+.narrative-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.75rem;
 }
 
-.title-separator {
+.narrative-eyebrow-line {
+    width: 36px;
+    height: 1px;
+    background: var(--color-primary);
+}
+
+.narrative-eyebrow-text {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+}
+
+.narrative-headline {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.narrative-line-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.05em;
+}
+
+.narrative-line-text {
+    display: inline-block;
+    will-change: transform;
+}
+
+.narrative-soul {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.05em;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #9fdc7a 0%, #5fa442 45%, #2d5719 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.narrative-headline em {
+    color: inherit;
+}
+
+.narrative-rule {
+    display: block;
     width: 60px;
-    height: 4px;
-    background-color: var(--color-primary);
-    margin-bottom: 3rem;
-    border-radius: 2px;
+    height: 1px;
+    background: linear-gradient(90deg, var(--color-primary), transparent);
+    transform-origin: left center;
+    margin: 1.75rem 0 2.5rem;
 }
 
 .narrative-text-block p {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 2rem;
-    text-align: justify;
+    color: rgba(255, 255, 255, 0.62);
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
+.narrative-text-block p:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ---------- Image with subtle parallax ---------- */
 .narrative-image-wrapper {
     position: relative;
+    overflow: visible;
 }
 
 .narrative-image {
+    display: block;
     width: 100%;
-    height: 600px;
+    height: 640px;
     object-fit: cover;
-    border-radius: 4px;
+    border-radius: 6px;
+    will-change: transform;
+}
+
+/* Legacy class kept for safety, no-op */
+.title-separator {
+    display: none;
 }
 
 .image-floating-badge {
@@ -450,23 +522,23 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    padding: 5px;
+    padding: 4px;
     background:
         conic-gradient(
             from 220deg,
-            #8a5a14 0deg,
-            #f5d76e 60deg,
-            #fff2c0 90deg,
-            #d4af37 150deg,
-            #8a5a14 220deg,
-            #d4af37 290deg,
-            #f5d76e 330deg,
-            #8a5a14 360deg
+            #6f4910 0deg,
+            #c9a84c 70deg,
+            #d8bf6a 100deg,
+            #b89339 160deg,
+            #6f4910 220deg,
+            #b89339 290deg,
+            #c9a84c 330deg,
+            #6f4910 360deg
         );
     box-shadow:
-        inset 0 1px 0 rgba(255, 245, 200, 0.5),
-        inset 0 -2px 4px rgba(0, 0, 0, 0.35),
-        0 0 0 1px rgba(0, 0, 0, 0.4);
+        inset 0 1px 0 rgba(220, 195, 130, 0.35),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(0, 0, 0, 0.5);
 }
 
 .medal-face {
@@ -480,15 +552,15 @@
     justify-content: center;
     text-align: center;
     background:
-        radial-gradient(circle at 32% 28%, rgba(255, 248, 210, 0.7) 0%, transparent 40%),
-        radial-gradient(circle at 50% 50%, #e8c352 0%, #c9a84c 45%, #8b6014 100%);
+        radial-gradient(circle at 32% 28%, rgba(220, 195, 130, 0.35) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, #c9a84c 0%, #a88936 50%, #6f4910 100%);
     box-shadow:
-        inset 0 0 0 1px rgba(0, 0, 0, 0.25),
-        inset 0 0 0 5px rgba(245, 215, 110, 0.35),
-        inset 0 0 0 6px rgba(0, 0, 0, 0.18),
-        inset 0 4px 12px rgba(255, 248, 210, 0.25),
-        inset 0 -4px 12px rgba(80, 50, 0, 0.4);
-    gap: 4px;
+        inset 0 0 0 1px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 4px rgba(180, 145, 65, 0.3),
+        inset 0 0 0 5px rgba(0, 0, 0, 0.22),
+        inset 0 3px 8px rgba(220, 195, 130, 0.18),
+        inset 0 -3px 8px rgba(60, 38, 0, 0.45);
+    gap: 2px;
 }
 
 .medal-star {
@@ -505,14 +577,25 @@
 
 .medal-number {
     font-family: var(--font-heading);
-    font-size: 2.4rem;
+    font-size: 2.6rem;
     font-weight: 900;
-    line-height: 1;
+    line-height: 0.95;
     letter-spacing: -2px;
     color: #2a1700;
     text-shadow:
         0 1px 0 rgba(255, 240, 180, 0.6),
         0 -1px 1px rgba(0, 0, 0, 0.35);
+}
+
+.medal-anos {
+    font-family: var(--font-heading);
+    font-size: 0.6rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(35, 20, 0, 0.78);
+    text-shadow: 0 1px 0 rgba(255, 240, 180, 0.45);
+    margin-top: 2px;
 }
 
 .medal-number em {
@@ -1207,20 +1290,25 @@
         gap: 3rem;
     }
 
-    .narrative-text-block .luxury-title {
-        font-size: 2.4rem;
-        margin-bottom: 1.5rem;
+    .narrative-text-block .luxury-title,
+    .narrative-headline {
+        font-size: 2.2rem;
+        margin-bottom: 0;
+    }
+
+    .narrative-rule {
+        margin: 1.5rem 0 2rem;
+        width: 44px;
     }
 
     .title-separator {
-        margin-bottom: 2rem;
-        width: 40px;
+        display: none;
     }
 
     .narrative-text-block p {
         font-size: 1rem;
         line-height: 1.7;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
     }
 
     .narrative-image-wrapper {
