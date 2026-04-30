@@ -474,10 +474,11 @@ export default function About() {
                                 <div className="medal-face">
                                     <span className="medal-star medal-star-l">✦</span>
                                     <span className="medal-star medal-star-r">✦</span>
-                                    <strong className="medal-number">25</strong>
-                                    <span className="medal-anos">ANOS</span>
+                                    <strong className="medal-number">
+                                        100<em>%</em>
+                                    </strong>
                                     <span className="medal-divider" />
-                                    <span className="medal-label">Construindo<br/>valor</span>
+                                    <span className="medal-label">Prazos<br/>Cumpridos</span>
                                 </div>
                             </div>
                         </motion.div>
