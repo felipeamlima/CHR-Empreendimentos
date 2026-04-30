@@ -125,7 +125,7 @@
 .about-stats {
     padding: 7rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    background: linear-gradient(to bottom, #0c0c0c, #0a0a0a);
+    background: #0c0c0c;
 }
 
 .stats-grid {
@@ -187,7 +187,7 @@
 
 .about-differentials {
     padding: 9rem 0 10rem;
-    background: #0a0a0a;
+    background: #0c0c0c;
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -635,7 +635,7 @@
 
 .about-timeline {
     padding: 10rem 0 11rem;
-    background: linear-gradient(to bottom, #0a0a0a, #0c0c0c);
+    background: #0c0c0c;
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -982,7 +982,7 @@
 
 .about-values {
     padding: 9rem 0 10rem;
-    background: #000;
+    background: #0c0c0c;
     position: relative;
     overflow: hidden;
     isolation: isolate;
@@ -1188,8 +1188,8 @@
 .about-cta {
     position: relative;
     padding: 12rem 0 13rem;
-    background-color: #0d0d0d;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.9)), url('/cta-bg.png?v=3');
+    background-color: #0c0c0c;
+    background-image: linear-gradient(to bottom, rgba(12, 12, 12, 0.9), rgba(12, 12, 12, 0.4), rgba(12, 12, 12, 0.95)), url('/cta-bg.png?v=3');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
