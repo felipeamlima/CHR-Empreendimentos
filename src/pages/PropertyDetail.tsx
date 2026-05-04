@@ -1614,32 +1614,6 @@ export default function PropertyDetail() {
                 </div>
             </section>
 
-            {/* ===== VIDEO TOUR SECTION ===== */}
-            <section className="video-tour-section">
-                <div className="video-background">
-                    <video autoPlay muted loop playsInline className="detail-video">
-                        <source src="https://player.vimeo.com/external/494443965.sd.mp4?s=33c62376dc86c073356064fcf430858e" type="video/mp4" />
-                    </video>
-                    <div className="video-overlay" />
-                </div>
-
-                <div className="container video-content">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <span className="video-label">CINEMATIC TOUR</span>
-                        <h2 className="video-title">Sinta a experiência de viver no {property.title}</h2>
-                        <button className="video-play-btn">
-                            <div className="play-icon">▶</div>
-                            <span>ASSISTIR TOUR COMPLETO</span>
-                        </button>
-                    </motion.div>
-                </div>
-            </section>
-
             {/* Minimalist Location Section */}
             <section className="location-minimal-section">
                 <div className="location-minimal-container">
