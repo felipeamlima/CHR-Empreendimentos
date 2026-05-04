@@ -1536,9 +1536,8 @@ export default function PropertyDetail() {
                                 exit={{ opacity: 0, scale: 0.98 }}
                                 transition={{ duration: 0.3 }}
                                 className="main-gallery-view"
-                                onClick={() => setIsLightboxOpen(true)}
                             >
-                                <div className="gallery-zoom-overlay">
+                                <div className="gallery-zoom-overlay" onClick={() => setIsLightboxOpen(true)}>
                                     <ZoomIn size={48} strokeWidth={1.5} />
                                     <span>Ampliar Imagem</span>
                                 </div>
