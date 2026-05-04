@@ -81,7 +81,7 @@
 /* Title */
 .contact-hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 8.5vw, 6.4rem);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
     font-weight: 900;
     line-height: 1;
     letter-spacing: -2px;
