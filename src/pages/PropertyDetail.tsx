@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight } from 'lucide-react';
 import './PropertyDetail.css';
 
 // Centralised mock data to simulate DB fetch based on ID
@@ -1656,7 +1656,7 @@ export default function PropertyDetail() {
                 </div>
             </section>
 
-            {/* ===== INTEREST / CONTACT FORM SECTION ===== */}
+            {/* ===== PREMIUM INQUIRY SECTION ===== */}
             <section className="interest-section">
                 {/* Background lifestyle image */}
                 <div className="interest-bg">
@@ -1668,29 +1668,50 @@ export default function PropertyDetail() {
                 </div>
 
                 <div className="interest-content">
-                    {/* LEFT — text & actions */}
+                    {/* LEFT — editorial text & premium actions */}
                     <motion.div
                         className="interest-left"
-                        initial={{ opacity: 0, x: -40 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     >
+                        <motion.span
+                            className="interest-eyebrow"
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: 0.1 }}
+                        >
+                            Atendimento Consultivo
+                        </motion.span>
+
                         <h2 className="interest-headline">
-                            Tem <span>interesse?</span>
+                            Seu próximo grande{' '}
+                            <span className="interest-accent">investimento</span>{' '}
+                            começa aqui.
                         </h2>
-                        <p className="interest-subtitle">SUA EXPERIÊNCIA COMEÇA AQUI.</p>
+
                         <p className="interest-desc">
-                            Preencha o formulário ou escolha uma das opções de contato abaixo para falar conosco.
+                            Preencha o formulário e receba um atendimento personalizado
+                            para conhecer melhor este empreendimento, tirar dúvidas e
+                            avaliar a melhor oportunidade para o seu perfil.
                         </p>
+
+                        <div className="interest-divider" />
 
                         <div className="interest-contact-options">
                             <a
                                 href="tel:+553133334444"
                                 className="contact-option-btn"
                             >
-                                <div className="contact-option-icon">📞</div>
-                                <span>Ligamos<br />pra você</span>
+                                <div className="contact-option-icon">
+                                    <Phone size={20} strokeWidth={1.5} />
+                                </div>
+                                <div className="contact-option-text">
+                                    <strong>Ligar agora</strong>
+                                    <span>Fale com um consultor</span>
+                                </div>
                             </a>
                             <a
                                 href={`https://wa.me/5531333344444?text=Olá! Tenho interesse no ${property.title}.`}
@@ -1698,20 +1719,29 @@ export default function PropertyDetail() {
                                 rel="noreferrer"
                                 className="contact-option-btn"
                             >
-                                <div className="contact-option-icon">💬</div>
-                                <span>Fale por<br />WhatsApp</span>
+                                <div className="contact-option-icon">
+                                    <MessageCircle size={20} strokeWidth={1.5} />
+                                </div>
+                                <div className="contact-option-text">
+                                    <strong>WhatsApp</strong>
+                                    <span>Resposta imediata</span>
+                                </div>
                             </a>
                         </div>
                     </motion.div>
 
-                    {/* RIGHT — form card */}
+                    {/* RIGHT — premium form card */}
                     <motion.div
                         className="interest-form-card"
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
+                        transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                     >
+                        <div className="form-card-header">
+                            <span className="form-card-label">Private Inquiry</span>
+                            <h3 className="form-card-title">Solicitar Atendimento</h3>
+                        </div>
                         <InterestForm propertyTitle={property.title} />
                     </motion.div>
                 </div>
@@ -1786,7 +1816,7 @@ export default function PropertyDetail() {
     );
 }
 
-// ===== Interest Form Component with EmailJS =====
+// ===== Premium Interest Form Component =====
 function InterestForm({ propertyTitle }: { propertyTitle: string }) {
     const [form, setForm] = useState({
         nome: '', email: '', telefone: '', interesse: ''
@@ -1835,38 +1865,41 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
         return (
             <div className="form-success">
                 <div className="form-success-icon">✓</div>
-                <h3>Mensagem enviada!</h3>
-                <p>Nossa equipe entrará em contato em breve. Verifique também seu e-mail.</p>
+                <h3>Solicitação enviada</h3>
+                <p>Um consultor especializado entrará em contato em breve para oferecer um atendimento personalizado.</p>
             </div>
         );
     }
 
     return (
         <form className="interest-form" onSubmit={handleSubmit}>
-            <div className="form-field">
-                <label>NOME</label>
-                <input
-                    name="nome"
-                    type="text"
-                    placeholder="Digite seu nome"
-                    value={form.nome}
-                    onChange={handleChange}
-                    required
-                />
+            <div className="form-row">
+                <div className="form-field">
+                    <label>Nome completo</label>
+                    <input
+                        name="nome"
+                        type="text"
+                        placeholder="Como deseja ser chamado?"
+                        value={form.nome}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+                <div className="form-field">
+                    <label>Seu melhor e-mail</label>
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="exemplo@email.com"
+                        value={form.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
             </div>
+
             <div className="form-field">
-                <label>E-MAIL</label>
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="Digite seu e-mail"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                />
-            </div>
-            <div className="form-field">
-                <label>CELULAR / WHATSAPP</label>
+                <label>Telefone / WhatsApp</label>
                 <input
                     name="telefone"
                     type="tel"
@@ -1876,26 +1909,29 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
                     required
                 />
             </div>
+
             <div className="form-field">
-                <label>SEU INTERESSE</label>
+                <label>Seu interesse</label>
                 <textarea
                     name="interesse"
-                    placeholder={`Descreva o que você busca no ${propertyTitle}...`}
+                    placeholder="Conte-nos brevemente o que você procura neste projeto..."
                     value={form.interesse}
                     onChange={handleChange}
                     rows={3}
                 />
             </div>
 
+            <div className="form-divider" />
+
             <div className="form-lgpd">
                 <input
                     type="checkbox"
-                    id="lgpd"
+                    id="lgpd-interest"
                     checked={lgpd}
                     onChange={e => setLgpd(e.target.checked)}
                 />
-                <label htmlFor="lgpd">
-                    De acordo com a LGPD, concordo em fornecer os dados acima para que a CHR Construtora entre em contato comigo para apresentar produtos e serviços.
+                <label htmlFor="lgpd-interest">
+                    De acordo com a LGPD, autorizo a CHR Construtora a utilizar os dados informados para entrar em contato e apresentar oportunidades.
                 </label>
             </div>
 
@@ -1904,10 +1940,11 @@ function InterestForm({ propertyTitle }: { propertyTitle: string }) {
                 className={`form-submit-btn ${status === 'sending' ? 'sending' : ''}`}
                 disabled={status === 'sending'}
             >
-                {status === 'sending' ? 'ENVIANDO...' : 'ENVIAR →'}
+                <span>{status === 'sending' ? 'ENVIANDO...' : 'SOLICITAR ATENDIMENTO'}</span>
+                {status !== 'sending' && <ArrowRight size={18} strokeWidth={2} />}
             </button>
             {status === 'error' && (
-                <p style={{ color: '#ff6b6b', fontSize: '0.85rem', marginTop: '0.5rem' }}>
+                <p style={{ color: '#ff6b6b', fontSize: '0.8rem', marginTop: '0.5rem', textAlign: 'center' }}>
                     Erro ao enviar. Tente novamente ou nos chame pelo WhatsApp.
                 </p>
             )}
