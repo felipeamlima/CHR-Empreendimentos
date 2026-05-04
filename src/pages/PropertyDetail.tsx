@@ -1739,7 +1739,7 @@ export default function PropertyDetail() {
                         transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
                     >
                         <div className="form-card-header">
-                            <span className="form-card-label">Private Inquiry</span>
+                            <span className="form-card-label">CHR Experience</span>
                             <h3 className="form-card-title">Solicitar Atendimento</h3>
                         </div>
                         <InterestForm propertyTitle={property.title} />
