@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin } from 'lucide-react';
@@ -23,12 +24,48 @@ const blogDb: Record<string, any> = {
             <h3>3. Espaços Híbridos</h3>
             <p>Com a consolidação do trabalho flexível, os escritórios domésticos foram elevados ao status de suítes master, com isolamento acústico profissional e design que inspira foco e criatividade.</p>
         `
+    },
+    "valorizacao-bairros-bh": {
+        title: "Os bairros que mais valorizam em BH",
+        date: "10 Mar, 2024",
+        author: "CHR Editorial",
+        category: "Mercado",
+        image: "https://images.unsplash.com/photo-1542361345-89e58247f2d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        content: `
+            <p>A capital mineira sempre foi um polo de grandes oportunidades imobiliárias. Recentemente, algumas regiões específicas de Belo Horizonte têm demonstrado um potencial de valorização acima da média do mercado, atraindo investidores e famílias em busca de qualidade de vida.</p>
+            
+            <h3>Vetor Sul em Expansão</h3>
+            <p>O Vetor Sul continua sendo a principal âncora do mercado de luxo. Bairros tradicionais vêm recebendo novos empreendimentos que misturam o clássico com o contemporâneo, oferecendo infraestrutura completa de serviços e lazer.</p>
+            
+            <h3>Revitalização da Região Central</h3>
+            <p>Com novos projetos de urbanismo e a valorização de edifícios históricos, o Centro de BH e seus arredores estão passando por uma fase de renascimento, atraindo um público jovem e dinâmico.</p>
+        `
+    },
+    "tecnologia-obras-sustentaveis": {
+        title: "Inovação no canteiro de obras",
+        date: "05 Mar, 2024",
+        author: "CHR Editorial",
+        category: "Engenharia",
+        image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+        content: `
+            <p>A construção civil está passando por uma revolução tecnológica. A sustentabilidade e a eficiência agora andam de mãos dadas, transformando completamente o funcionamento dos canteiros de obras modernos.</p>
+            
+            <h3>Materiais Inteligentes</h3>
+            <p>A utilização de novos materiais, como concreto biológico e aço de alta resistência, não só garante maior durabilidade às estruturas, mas também reduz significativamente o impacto ambiental durante a construção.</p>
+            
+            <h3>Gestão de Resíduos</h3>
+            <p>A tecnologia nos permite hoje mapear, reciclar e reaproveitar grande parte do material que antes seria descartado. As obras da CHR Engenharia são um exemplo prático de como o gerenciamento inteligente pode zerar o desperdício.</p>
+        `
     }
 };
 
 export default function BlogPost() {
     const { id } = useParams<{ id: string }>();
     const post = blogDb[id || ""] || blogDb["tendencias-luxo-2024"];
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [id]);
 
     return (
         <div className="blog-post-page">

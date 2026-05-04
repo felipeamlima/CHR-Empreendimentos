@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import './PropertyDetail.css';
 
 // Centralised mock data to simulate DB fetch based on ID
@@ -1527,31 +1527,69 @@ export default function PropertyDetail() {
                 </div>
 
                 <div className="gallery-container">
-                    <AnimatePresence mode="popLayout">
-                        <motion.div
-                            key={`${activeTab}-${activeImageIdx}`}
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.98 }}
-                            transition={{ duration: 0.3 }}
-                            className="main-gallery-view"
-                            onClick={() => setIsLightboxOpen(true)}
-                        >
-                            <div className="gallery-zoom-overlay">
-                                <ZoomIn size={48} strokeWidth={1.5} />
-                                <span>Ampliar Imagem</span>
-                            </div>
-                            {activeTab === 'gallery' && property.gallery && (
-                                <img src={property.gallery[activeImageIdx]} alt={`Galeria ${activeImageIdx + 1}`} />
-                            )}
-                            {activeTab === 'plans' && property.plans && (
+                    <div className="main-gallery-frame">
+                        <AnimatePresence mode="popLayout">
+                            <motion.div
+                                key={`${activeTab}-${activeImageIdx}`}
+                                initial={{ opacity: 0, scale: 0.98 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.98 }}
+                                transition={{ duration: 0.3 }}
+                                className="main-gallery-view"
+                                onClick={() => setIsLightboxOpen(true)}
+                            >
+                                <div className="gallery-zoom-overlay">
+                                    <ZoomIn size={48} strokeWidth={1.5} />
+                                    <span>Ampliar Imagem</span>
+                                </div>
+                                {activeTab === 'gallery' && property.gallery && (
+                                    <img src={property.gallery[activeImageIdx]} alt={`Galeria ${activeImageIdx + 1}`} />
+                                )}
+                                {activeTab === 'plans' && property.plans && (
+                                    <>
+                                        <img src={property.plans[activeImageIdx].image} alt={property.plans[activeImageIdx].name} className="plan-image" />
+                                        <div className="plan-name">{property.plans[activeImageIdx].name}</div>
+                                    </>
+                                )}
+                            </motion.div>
+                        </AnimatePresence>
+
+                        {(() => {
+                            const list =
+                                activeTab === 'gallery' ? property.gallery : property.plans;
+                            const total = list?.length ?? 0;
+                            if (total <= 1) return null;
+                            return (
                                 <>
-                                    <img src={property.plans[activeImageIdx].image} alt={property.plans[activeImageIdx].name} className="plan-image" />
-                                    <div className="plan-name">{property.plans[activeImageIdx].name}</div>
+                                    <button
+                                        type="button"
+                                        className="gallery-nav gallery-nav-prev"
+                                        aria-label="Imagem anterior"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveImageIdx((prev) => (prev - 1 + total) % total);
+                                        }}
+                                    >
+                                        <ChevronLeft size={22} strokeWidth={1.8} />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="gallery-nav gallery-nav-next"
+                                        aria-label="Próxima imagem"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveImageIdx((prev) => (prev + 1) % total);
+                                        }}
+                                    >
+                                        <ChevronRight size={22} strokeWidth={1.8} />
+                                    </button>
+                                    <div className="gallery-counter" aria-hidden="true">
+                                        {String(activeImageIdx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                                    </div>
                                 </>
-                            )}
-                        </motion.div>
-                    </AnimatePresence>
+                            );
+                        })()}
+                    </div>
 
                     <div className="gallery-thumbnails">
                         {activeTab === 'gallery' && property.gallery?.map((img, idx) => (
@@ -1717,7 +1755,44 @@ export default function PropertyDetail() {
                         <button className="lightbox-close" onClick={() => setIsLightboxOpen(false)}>
                             <X size={32} />
                         </button>
-                        <motion.div 
+
+                        {(() => {
+                            const list =
+                                activeTab === 'gallery' ? property.gallery : property.plans;
+                            const total = list?.length ?? 0;
+                            if (total <= 1) return null;
+                            return (
+                                <>
+                                    <button
+                                        type="button"
+                                        className="lightbox-nav lightbox-nav-prev"
+                                        aria-label="Imagem anterior"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveImageIdx((prev) => (prev - 1 + total) % total);
+                                        }}
+                                    >
+                                        <ChevronLeft size={28} strokeWidth={1.8} />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        className="lightbox-nav lightbox-nav-next"
+                                        aria-label="Próxima imagem"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setActiveImageIdx((prev) => (prev + 1) % total);
+                                        }}
+                                    >
+                                        <ChevronRight size={28} strokeWidth={1.8} />
+                                    </button>
+                                    <div className="lightbox-counter" aria-hidden="true">
+                                        {String(activeImageIdx + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
+                                    </div>
+                                </>
+                            );
+                        })()}
+
+                        <motion.div
                             className="lightbox-content"
                             initial={{ scale: 0.9 }}
                             animate={{ scale: 1 }}
