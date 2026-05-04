@@ -81,21 +81,43 @@
 /* Title */
 .contact-hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(2.4rem, 7vw, 5rem);
+    font-size: clamp(2.4rem, 8.5vw, 6.4rem);
     font-weight: 900;
-    line-height: 1.05;
+    line-height: 1;
     letter-spacing: -2px;
     text-transform: uppercase;
-    margin-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2em;
+}
+
+.contact-hero-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0 0.4em;
+}
+
+.contact-word-wrap {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1.05;
+}
+
+.contact-word {
+    display: inline-block;
     color: #fff;
 }
 
-.contact-accent {
-    background: linear-gradient(90deg, var(--color-primary), #6bb855);
+.contact-word-accent {
+    background: linear-gradient(90deg, #f5d76e, #d4af37, #b8860b);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 8px rgba(80, 149, 57, 0.25));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.8));
 }
 
 /* Subtitle */

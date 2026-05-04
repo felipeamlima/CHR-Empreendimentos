@@ -101,14 +101,46 @@ export default function Contact() {
                         Atendimento Exclusivo
                     </motion.span>
 
-                    <motion.h1
-                        className="contact-hero-title"
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.9, delay: 0.35 }}
-                    >
-                        Converse com a <span className="contact-accent">CHR</span>
-                    </motion.h1>
+                    <h1 className="contact-hero-title" aria-label="Vamos iniciar um novo legado.">
+                        <span className="contact-hero-line">
+                            {['VAMOS', 'INICIAR'].map((word, i) => (
+                                <span className="contact-word-wrap" key={`l1-${i}`}>
+                                    <motion.span
+                                        className="contact-word"
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.3 + i * 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        {word}
+                                    </motion.span>
+                                </span>
+                            ))}
+                        </span>
+                        <span className="contact-hero-line">
+                            {['UM', 'NOVO'].map((word, i) => (
+                                <span className="contact-word-wrap" key={`l2-${i}`}>
+                                    <motion.span
+                                        className="contact-word"
+                                        initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                        animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                        transition={{ duration: 1, delay: 0.6 + i * 0.15, ease: [0.77, 0, 0.175, 1] }}
+                                    >
+                                        {word}
+                                    </motion.span>
+                                </span>
+                            ))}
+                            <span className="contact-word-wrap">
+                                <motion.span
+                                    className="contact-word contact-word-accent"
+                                    initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                                    animate={{ clipPath: 'inset(0 0% 0 0)' }}
+                                    transition={{ duration: 1, delay: 0.9, ease: [0.77, 0, 0.175, 1] }}
+                                >
+                                    LEGADO.
+                                </motion.span>
+                            </span>
+                        </span>
+                    </h1>
 
                     <motion.p
                         className="contact-hero-subtitle"
