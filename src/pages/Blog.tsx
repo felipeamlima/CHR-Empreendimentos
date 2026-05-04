@@ -243,19 +243,26 @@ export default function Blog() {
                             <span className="blog-intro-eyebrow-line" />
                             <span className="blog-intro-eyebrow-text">REVISTA CHR · INSIGHTS</span>
                         </div>
-                        <h2 className="blog-intro-title">
+                        <motion.h2
+                            className="blog-intro-title"
+                            aria-label="Conhecimento que antecipa tendências."
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, amount: 0.2 }}
+                        >
                             <span className="blog-intro-line-mask">
                                 <motion.span
                                     className="blog-intro-line"
-                                    initial={{ y: '105%' }}
-                                    whileInView={{ y: '0%' }}
-                                    viewport={{ once: true, amount: 0.3 }}
+                                    variants={{
+                                        hidden: { y: '105%' },
+                                        visible: { y: '0%' },
+                                    }}
                                     transition={{ duration: 1.1, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
                                 >
                                     Conhecimento que <em className="blog-intro-soul">antecipa</em> tendências.
                                 </motion.span>
                             </span>
-                        </h2>
+                        </motion.h2>
                         <p className="blog-intro-lede">
                             Análises sobre arquitetura, bairros estratégicos, investimento
                             imobiliário e tendências de alto padrão em Belo Horizonte.
@@ -347,17 +354,6 @@ export default function Blog() {
                                     className={`cat-btn ${isActive ? 'active' : ''}`}
                                     onClick={() => setActiveCategory(cat)}
                                 >
-                                    {isActive && (
-                                        <motion.span
-                                            layoutId="cat-pill-active"
-                                            className="cat-btn-bg"
-                                            transition={{
-                                                type: 'spring',
-                                                stiffness: 320,
-                                                damping: 30,
-                                            }}
-                                        />
-                                    )}
                                     <span className="cat-btn-label">{cat}</span>
                                 </button>
                             );
