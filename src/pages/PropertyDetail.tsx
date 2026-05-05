@@ -1441,10 +1441,21 @@ export default function PropertyDetail() {
                         if (diff.toLowerCase().includes("acabamento") || diff.toLowerCase().includes("padrão")) Icon = Gem;
 
                         return (
-                            <div className="diff-card" key={i}>
+                            <motion.div 
+                                className="diff-card" 
+                                key={i}
+                                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-40px" }}
+                                transition={{ 
+                                    duration: 0.6, 
+                                    delay: Math.floor(i / 2) * 0.15,
+                                    ease: [0.22, 1, 0.36, 1] 
+                                }}
+                            >
                                 <Icon size={32} />
                                 <span>{diff}</span>
-                            </div>
+                            </motion.div>
                         );
                     })}
                 </div>
@@ -1463,7 +1474,8 @@ export default function PropertyDetail() {
                             { name: "Fundações", v: property.progress > 10 ? 100 : 0 },
                             { name: "Superestrutura", v: property.progress },
                             { name: "Alvenaria", v: Math.max(0, property.progress - 20) },
-                            { name: "Instalações", v: Math.max(0, property.progress - 40) }
+                            { name: "Instalações", v: Math.max(0, property.progress - 40) },
+                            { name: "Acabamento", v: Math.max(0, property.progress - 60) }
                         ]).map((item: any, idx: number) => (
                             <div className="progress-item-line" key={idx}>
                                 <div className="progress-item-header">
@@ -1613,10 +1625,31 @@ export default function PropertyDetail() {
                 </div>
             </section>
 
-            {/* Minimalist Location Section */}
-            <section className="location-minimal-section">
-                <div className="location-minimal-container">
-                    <div className="location-minimal-map">
+            {/* ===== PREMIUM LOCATION SECTION ===== */}
+            <section className="loc-premium-section" id="localizacao">
+                {/* Decorative top border accent */}
+                <div className="loc-premium-accent-line" />
+
+                {/* Section header */}
+                <motion.div
+                    className="loc-premium-header"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <span className="loc-premium-eyebrow">Localização</span>
+                    <h2 className="loc-premium-title">
+                        Localização <span className="loc-premium-title-accent">Estratégica</span>
+                    </h2>
+                    <p className="loc-premium-subtitle">
+                        Em uma das regiões mais valorizadas de Belo Horizonte, com conveniência, mobilidade e acesso rápido aos principais pontos da cidade.
+                    </p>
+                </motion.div>
+
+                {/* Map + Overlay Card composition */}
+                <div className="loc-premium-map-wrapper">
+                    <div className="loc-premium-map-frame">
                         <iframe
                             src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location)}&t=m&z=15&output=embed`}
                             width="100%"
@@ -1627,45 +1660,86 @@ export default function PropertyDetail() {
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Google Maps"
                         ></iframe>
+                        {/* Subtle gradient overlays for visual blending */}
+                        <div className="loc-premium-map-fade-left" />
+                        <div className="loc-premium-map-fade-bottom" />
                     </div>
 
-                    <div className="location-minimal-content">
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <span className="location-minimal-label">LOCATION</span>
-                            <p className="location-minimal-desc">
-                                EM UMA DAS ÁREAS MAIS NOBRES E DESEJADAS DA CIDADE,
-                                COM TODA A COMODIDADE E CONVÊNIÊNCIA A POUCOS PASSOS.
-                            </p>
-
-                            <div className="location-minimal-address-box">
-                                <div className="location-minimal-icon-wrapper">
-                                    <MapPin size={24} />
-                                </div>
-                                <div className="location-minimal-address-text">
-                                    <strong>{property.location.split(',')[0].toUpperCase()}</strong>
-                                    <span>{property.location.split(',')[1]?.trim().toUpperCase()} - MINAS GERAIS</span>
-                                </div>
+                    {/* Floating premium info card */}
+                    <motion.div
+                        className="loc-premium-card"
+                        initial={{ opacity: 0, x: 40, y: 20 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        {/* Card header */}
+                        <div className="loc-premium-card-header">
+                            <div className="loc-premium-card-icon">
+                                <MapPin size={20} />
                             </div>
-                        </motion.div>
-                    </div>
+                            <span className="loc-premium-card-label">Endereço</span>
+                        </div>
+
+                        {/* Address block */}
+                        <div className="loc-premium-card-address">
+                            <strong>{property.location.split(',')[0]?.split('-')[0]?.trim()}</strong>
+                            <span>{property.location.split('-')[1]?.trim() || property.location.split(',')[1]?.trim()}</span>
+                            <span className="loc-premium-card-city">Belo Horizonte — Minas Gerais</span>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="loc-premium-card-divider" />
+
+                        {/* Highlights */}
+                        <div className="loc-premium-highlights">
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Região Nobre</span>
+                            </div>
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Alta Conveniência</span>
+                            </div>
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Forte Valorização</span>
+                            </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="loc-premium-card-divider" />
+
+                        {/* CTAs */}
+                        <div className="loc-premium-ctas">
+                            <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.location)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="loc-premium-cta"
+                            >
+                                <MapPin size={16} />
+                                <span>Ver no Google Maps</span>
+                                <ArrowRight size={14} className="loc-premium-cta-arrow" />
+                            </a>
+                            <a
+                                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(property.location)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="loc-premium-cta"
+                            >
+                                <ArrowRight size={16} />
+                                <span>Traçar Rota</span>
+                                <ArrowRight size={14} className="loc-premium-cta-arrow" />
+                            </a>
+
+                        </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* ===== PREMIUM INQUIRY SECTION ===== */}
             <section className="interest-section">
-                {/* Background lifestyle image */}
-                <div className="interest-bg">
-                    <img
-                        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
-                        alt="Lifestyle"
-                    />
-                    <div className="interest-bg-overlay" />
-                </div>
 
                 <div className="interest-content">
                     {/* LEFT — editorial text & premium actions */}
