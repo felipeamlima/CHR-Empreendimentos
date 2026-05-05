@@ -358,6 +358,8 @@ export default function Blog() {
                                 </button>
                             );
                         })}
+                        {/* Spacer to guarantee padding is not ignored by browser scroll engines */}
+                        <div style={{ minWidth: '0.5rem', flexShrink: 0 }} aria-hidden="true" />
                     </div>
                     <div className="blog-search">
                         <Search size={18} />
