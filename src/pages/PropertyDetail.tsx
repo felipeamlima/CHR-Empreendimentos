@@ -1441,68 +1441,136 @@ export default function PropertyDetail() {
                         if (diff.toLowerCase().includes("acabamento") || diff.toLowerCase().includes("padrão")) Icon = Gem;
 
                         return (
-                            <div className="diff-card" key={i}>
+                            <motion.div 
+                                className="diff-card" 
+                                key={i}
+                                initial={{ opacity: 0, y: 15, filter: "blur(4px)" }}
+                                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                                viewport={{ once: true, margin: "-40px" }}
+                                transition={{ 
+                                    duration: 0.6, 
+                                    delay: Math.floor(i / 2) * 0.15,
+                                    ease: [0.22, 1, 0.36, 1] 
+                                }}
+                            >
                                 <Icon size={32} />
                                 <span>{diff}</span>
-                            </div>
+                            </motion.div>
                         );
                     })}
                 </div>
             </section>
 
-            {/* Progress Circular Block */}
-            <section className="detail-section-block">
-                <h2 className="section-title" style={{ marginBottom: "1rem" }}>Evolução das Obras</h2>
-                <p style={{ color: "var(--text-muted)", marginBottom: "4rem", fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Última Atualização: Hoje</p>
+            {/* Progress Circular Block - Premium Redesign */}
+            <section className="detail-section-block progress-premium-section">
+                <div className="progress-premium-bg-elements">
+                    <div className="progress-noise-overlay"></div>
+                    <div className="progress-glow-center"></div>
+                </div>
 
-                <div className="progress-dashboard">
-                    {/* Fake progress items list */}
-                    <div className="progress-list">
+                <motion.div 
+                    className="progress-premium-header"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <h2 className="section-title premium-title">Evolução das Obras</h2>
+                    <div className="premium-subtitle-wrapper">
+                        <span className="premium-subtitle-line"></span>
+                        <p className="premium-subtitle">Última Atualização: Hoje</p>
+                        <span className="premium-subtitle-line"></span>
+                    </div>
+                </motion.div>
+
+                <div className="progress-premium-dashboard">
+                    {/* Left side: Progress list */}
+                    <div className="progress-premium-list">
                         {((property as any).progressStages || [
                             { name: "Preparo do Terreno", v: property.progress > 0 ? 100 : 0 },
                             { name: "Fundações", v: property.progress > 10 ? 100 : 0 },
                             { name: "Superestrutura", v: property.progress },
                             { name: "Alvenaria", v: Math.max(0, property.progress - 20) },
-                            { name: "Instalações", v: Math.max(0, property.progress - 40) }
-                        ]).map((item: any, idx: number) => (
-                            <div className="progress-item-line" key={idx}>
-                                <div className="progress-item-header">
-                                    <span>{item.name}</span>
-                                    <span>{item.v}%</span>
+                            { name: "Instalações", v: Math.max(0, property.progress - 40) },
+                            { name: "Acabamento", v: Math.max(0, property.progress - 60) }
+                        ]).map((item: any, idx: number) => {
+                            const isCompleted = item.v === 100;
+                            const isCurrent = item.v > 0 && item.v < 100;
+                            const isFuture = item.v === 0;
+
+                            return (
+                            <motion.div 
+                                className={`progress-premium-item ${isCompleted ? 'completed' : ''} ${isCurrent ? 'current' : ''} ${isFuture ? 'future' : ''}`}
+                                key={idx}
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true, margin: "-50px" }}
+                                transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+                            >
+                                <div className="progress-premium-item-info">
+                                    <span className="progress-premium-name">
+                                        {item.name}
+                                        {isCurrent && <span className="status-dot pulsing"></span>}
+                                    </span>
+                                    <span className="progress-premium-value">
+                                        <AnimatedCounter to={item.v} />%
+                                    </span>
                                 </div>
-                                <div className="progress-bar-thin">
+                                <div className="progress-premium-track">
                                     <motion.div
-                                        className="progress-bar-thin-fill"
+                                        className="progress-premium-fill"
                                         initial={{ width: 0 }}
                                         whileInView={{ width: `${item.v}%` }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: true, margin: "-50px" }}
+                                        transition={{ duration: 1.5, delay: 0.3 + (idx * 0.1), ease: [0.22, 1, 0.36, 1] }}
                                     />
                                 </div>
-                            </div>
-                        ))}
+                            </motion.div>
+                        )})}
                     </div>
 
-                    {/* SVG Circle indicator */}
-                    <div className="progress-circle-container">
-                        <svg className="progress-circle-svg" viewBox="0 0 100 100">
-                            <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                            <motion.circle
-                                className="progress-circle-fill"
-                                cx="50" cy="50" r="45"
-                                initial={{ strokeDasharray: 283, strokeDashoffset: 283 }}
-                                whileInView={{ strokeDashoffset: 283 - (283 * property.progress) / 100 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
-                            />
-                        </svg>
-                        <div className="progress-circle-content">
-                            <small>Status Atual</small>
-                            <span className="progress-percentage">
-                                <AnimatedCounter to={property.progress} />%
-                            </span>
-                            <p>{property.status}</p>
+                    {/* Right side: Circular progress */}
+                    <motion.div 
+                        className="progress-premium-circle-wrapper"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        <div className="progress-premium-circle-container">
+                            <svg className="progress-premium-svg" viewBox="0 0 120 120">
+                                <defs>
+                                    <linearGradient id="premiumGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#4CAF50" />
+                                        <stop offset="50%" stopColor="#81C784" />
+                                        <stop offset="100%" stopColor="#388E3C" />
+                                    </linearGradient>
+                                    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feGaussianBlur stdDeviation="3" result="blur" />
+                                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                                    </filter>
+                                </defs>
+                                <circle className="progress-premium-bg" cx="60" cy="60" r="54" />
+                                <motion.circle
+                                    className="progress-premium-fill-circle"
+                                    cx="60" cy="60" r="54"
+                                    stroke="url(#premiumGradient)"
+                                    filter="url(#glow)"
+                                    initial={{ strokeDasharray: 339.29, strokeDashoffset: 339.29 }}
+                                    whileInView={{ strokeDashoffset: 339.29 - (339.29 * property.progress) / 100 }}
+                                    viewport={{ once: true, margin: "-100px" }}
+                                    transition={{ duration: 2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                />
+                            </svg>
+                            <div className="progress-premium-circle-content">
+                                <span className="premium-circle-label">Status Atual</span>
+                                <span className="premium-circle-percentage">
+                                    <AnimatedCounter to={property.progress} />%
+                                </span>
+                                <span className="premium-circle-status">{property.status}</span>
+                            </div>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
@@ -1613,10 +1681,31 @@ export default function PropertyDetail() {
                 </div>
             </section>
 
-            {/* Minimalist Location Section */}
-            <section className="location-minimal-section">
-                <div className="location-minimal-container">
-                    <div className="location-minimal-map">
+            {/* ===== PREMIUM LOCATION SECTION ===== */}
+            <section className="loc-premium-section" id="localizacao">
+                {/* Decorative top border accent */}
+                <div className="loc-premium-accent-line" />
+
+                {/* Section header */}
+                <motion.div
+                    className="loc-premium-header"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                    <span className="loc-premium-eyebrow">Localização</span>
+                    <h2 className="loc-premium-title">
+                        Localização <span className="loc-premium-title-accent">Estratégica</span>
+                    </h2>
+                    <p className="loc-premium-subtitle">
+                        Em uma das regiões mais valorizadas de Belo Horizonte, com conveniência, mobilidade e acesso rápido aos principais pontos da cidade.
+                    </p>
+                </motion.div>
+
+                {/* Map + Overlay Card composition */}
+                <div className="loc-premium-map-wrapper">
+                    <div className="loc-premium-map-frame">
                         <iframe
                             src={`https://maps.google.com/maps?q=${encodeURIComponent(property.location)}&t=m&z=15&output=embed`}
                             width="100%"
@@ -1627,45 +1716,86 @@ export default function PropertyDetail() {
                             referrerPolicy="no-referrer-when-downgrade"
                             title="Google Maps"
                         ></iframe>
+                        {/* Subtle gradient overlays for visual blending */}
+                        <div className="loc-premium-map-fade-left" />
+                        <div className="loc-premium-map-fade-bottom" />
                     </div>
 
-                    <div className="location-minimal-content">
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <span className="location-minimal-label">LOCATION</span>
-                            <p className="location-minimal-desc">
-                                EM UMA DAS ÁREAS MAIS NOBRES E DESEJADAS DA CIDADE,
-                                COM TODA A COMODIDADE E CONVÊNIÊNCIA A POUCOS PASSOS.
-                            </p>
-
-                            <div className="location-minimal-address-box">
-                                <div className="location-minimal-icon-wrapper">
-                                    <MapPin size={24} />
-                                </div>
-                                <div className="location-minimal-address-text">
-                                    <strong>{property.location.split(',')[0].toUpperCase()}</strong>
-                                    <span>{property.location.split(',')[1]?.trim().toUpperCase()} - MINAS GERAIS</span>
-                                </div>
+                    {/* Floating premium info card */}
+                    <motion.div
+                        className="loc-premium-card"
+                        initial={{ opacity: 0, x: 40, y: 20 }}
+                        whileInView={{ opacity: 1, x: 0, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                        {/* Card header */}
+                        <div className="loc-premium-card-header">
+                            <div className="loc-premium-card-icon">
+                                <MapPin size={20} />
                             </div>
-                        </motion.div>
-                    </div>
+                            <span className="loc-premium-card-label">Endereço</span>
+                        </div>
+
+                        {/* Address block */}
+                        <div className="loc-premium-card-address">
+                            <strong>{property.location.split(',')[0]?.split('-')[0]?.trim()}</strong>
+                            <span>{property.location.split('-')[1]?.trim() || property.location.split(',')[1]?.trim()}</span>
+                            <span className="loc-premium-card-city">Belo Horizonte — Minas Gerais</span>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="loc-premium-card-divider" />
+
+                        {/* Highlights */}
+                        <div className="loc-premium-highlights">
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Região Nobre</span>
+                            </div>
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Alta Conveniência</span>
+                            </div>
+                            <div className="loc-premium-highlight">
+                                <span className="loc-premium-highlight-dot" />
+                                <span>Forte Valorização</span>
+                            </div>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="loc-premium-card-divider" />
+
+                        {/* CTAs */}
+                        <div className="loc-premium-ctas">
+                            <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(property.location)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="loc-premium-cta"
+                            >
+                                <MapPin size={16} />
+                                <span>Ver no Google Maps</span>
+                                <ArrowRight size={14} className="loc-premium-cta-arrow" />
+                            </a>
+                            <a
+                                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(property.location)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="loc-premium-cta"
+                            >
+                                <ArrowRight size={16} />
+                                <span>Traçar Rota</span>
+                                <ArrowRight size={14} className="loc-premium-cta-arrow" />
+                            </a>
+
+                        </div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* ===== PREMIUM INQUIRY SECTION ===== */}
             <section className="interest-section">
-                {/* Background lifestyle image */}
-                <div className="interest-bg">
-                    <img
-                        src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1400&q=80"
-                        alt="Lifestyle"
-                    />
-                    <div className="interest-bg-overlay" />
-                </div>
 
                 <div className="interest-content">
                     {/* LEFT — editorial text & premium actions */}
