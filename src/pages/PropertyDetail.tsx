@@ -1461,14 +1461,65 @@ export default function PropertyDetail() {
                 </div>
             </section>
 
-            {/* Progress Circular Block */}
-            <section className="detail-section-block">
-                <h2 className="section-title" style={{ marginBottom: "1rem" }}>Evolução das Obras</h2>
-                <p style={{ color: "var(--text-muted)", marginBottom: "4rem", fontSize: "0.9rem", letterSpacing: "1px", textTransform: "uppercase" }}>Última Atualização: Hoje</p>
+            {/* Progress Premium Block */}
+            <section className="detail-section-block evo-section">
+                <div className="evo-noise" aria-hidden="true" />
+                <div className="evo-grid-pattern" aria-hidden="true" />
+                <div className="evo-aurora" aria-hidden="true" />
 
-                <div className="progress-dashboard">
-                    {/* Fake progress items list */}
-                    <div className="progress-list">
+                <motion.header
+                    className="evo-header"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.3 }}
+                >
+                    <motion.div
+                        className="evo-eyebrow"
+                        variants={{
+                            hidden: { opacity: 0, y: 10 },
+                            visible: { opacity: 1, y: 0 },
+                        }}
+                        transition={{ duration: 0.7, delay: 0.05 }}
+                    >
+                        <span className="evo-eyebrow-line" />
+                        <span className="evo-eyebrow-text">Acompanhamento de Obra</span>
+                    </motion.div>
+
+                    <h2 className="evo-title" aria-label="Evolução das Obras">
+                        <span className="evo-title-mask">
+                            <motion.span
+                                className="evo-title-text"
+                                variants={{
+                                    hidden: { y: '105%' },
+                                    visible: { y: '0%' },
+                                }}
+                                transition={{ duration: 1, delay: 0.15, ease: [0.77, 0, 0.175, 1] }}
+                            >
+                                Evolução das Obras
+                            </motion.span>
+                        </span>
+                    </h2>
+
+                    <motion.div
+                        className="evo-meta"
+                        variants={{
+                            hidden: { opacity: 0, y: 8 },
+                            visible: { opacity: 1, y: 0 },
+                        }}
+                        transition={{ duration: 0.7, delay: 0.45 }}
+                    >
+                        <span className="evo-meta-pulse" aria-hidden="true">
+                            <span className="evo-meta-pulse-dot" />
+                        </span>
+                        <span className="evo-meta-label">Última atualização</span>
+                        <span className="evo-meta-dot">·</span>
+                        <span className="evo-meta-stamp">Hoje</span>
+                    </motion.div>
+                </motion.header>
+
+                <div className="evo-dashboard">
+                    {/* Stages list */}
+                    <div className="evo-stages">
                         {((property as any).progressStages || [
                             { name: "Preparo do Terreno", v: property.progress > 0 ? 100 : 0 },
                             { name: "Fundações", v: property.progress > 10 ? 100 : 0 },
@@ -1477,44 +1528,112 @@ export default function PropertyDetail() {
                             { name: "Instalações", v: Math.max(0, property.progress - 40) },
                             { name: "Acabamento", v: Math.max(0, property.progress - 60) }
                         ]).map((item: any, idx: number) => (
-                            <div className="progress-item-line" key={idx}>
-                                <div className="progress-item-header">
-                                    <span>{item.name}</span>
-                                    <span>{item.v}%</span>
+                            <motion.div
+                                className="evo-stage"
+                                key={idx}
+                                initial={{ opacity: 0, y: 12 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.5 }}
+                                transition={{ duration: 0.6, delay: 0.2 + idx * 0.08 }}
+                            >
+                                <div className="evo-stage-row">
+                                    <span className="evo-stage-name">
+                                        <span className="evo-stage-index">{String(idx + 1).padStart(2, '0')}</span>
+                                        {item.name}
+                                    </span>
+                                    <span className="evo-stage-pct">
+                                        <AnimatedCounter to={item.v} />
+                                        <span className="evo-stage-pct-symbol">%</span>
+                                    </span>
                                 </div>
-                                <div className="progress-bar-thin">
+                                <div className="evo-bar">
                                     <motion.div
-                                        className="progress-bar-thin-fill"
+                                        className="evo-bar-fill"
                                         initial={{ width: 0 }}
                                         whileInView={{ width: `${item.v}%` }}
                                         viewport={{ once: true }}
+                                        transition={{
+                                            duration: 1.4,
+                                            delay: 0.4 + idx * 0.08,
+                                            ease: [0.19, 1, 0.22, 1],
+                                        }}
                                     />
                                 </div>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
 
-                    {/* SVG Circle indicator */}
-                    <div className="progress-circle-container">
-                        <svg className="progress-circle-svg" viewBox="0 0 100 100">
-                            <circle className="progress-circle-bg" cx="50" cy="50" r="45" />
-                            <motion.circle
-                                className="progress-circle-fill"
-                                cx="50" cy="50" r="45"
-                                initial={{ strokeDasharray: 283, strokeDashoffset: 283 }}
-                                whileInView={{ strokeDashoffset: 283 - (283 * property.progress) / 100 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 1.5, ease: "easeOut" }}
+                    {/* Premium SVG Circle */}
+                    <motion.div
+                        className="evo-circle"
+                        initial={{ opacity: 0, scale: 0.92 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 1, delay: 0.3, ease: [0.19, 1, 0.22, 1] }}
+                    >
+                        <span className="evo-circle-halo" aria-hidden="true" />
+                        <svg className="evo-circle-svg" viewBox="0 0 200 200">
+                            <defs>
+                                <linearGradient id="evoStrokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stopColor="#9fdc7a" />
+                                    <stop offset="55%" stopColor="#5fa442" />
+                                    <stop offset="100%" stopColor="#2d5719" />
+                                </linearGradient>
+                                <filter id="evoGlow" x="-50%" y="-50%" width="200%" height="200%">
+                                    <feGaussianBlur stdDeviation="3.5" result="b" />
+                                    <feMerge>
+                                        <feMergeNode in="b" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            {/* Outer thin tick ring */}
+                            <circle cx="100" cy="100" r="94" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
+
+                            {/* Background track */}
+                            <circle
+                                className="evo-circle-track"
+                                cx="100"
+                                cy="100"
+                                r="84"
+                                fill="none"
+                                stroke="rgba(255,255,255,0.06)"
+                                strokeWidth="2"
                             />
+
+                            {/* Progress arc */}
+                            <motion.circle
+                                className="evo-circle-arc"
+                                cx="100"
+                                cy="100"
+                                r="84"
+                                fill="none"
+                                stroke="url(#evoStrokeGrad)"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                pathLength={1}
+                                style={{ transformOrigin: '100px 100px', transform: 'rotate(-90deg)' }}
+                                filter="url(#evoGlow)"
+                                initial={{ strokeDasharray: '0 1', strokeDashoffset: 0 }}
+                                whileInView={{ strokeDasharray: `${property.progress / 100} 1` }}
+                                viewport={{ once: true, amount: 0.3 }}
+                                transition={{ duration: 1.6, delay: 0.5, ease: [0.19, 1, 0.22, 1] }}
+                            />
+
+                            {/* Inner detail ring */}
+                            <circle cx="100" cy="100" r="70" fill="none" stroke="rgba(255,255,255,0.04)" strokeWidth="0.5" />
                         </svg>
-                        <div className="progress-circle-content">
-                            <small>Status Atual</small>
-                            <span className="progress-percentage">
-                                <AnimatedCounter to={property.progress} />%
+
+                        <div className="evo-circle-content">
+                            <span className="evo-circle-label">Status Atual</span>
+                            <span className="evo-circle-value">
+                                <AnimatedCounter to={property.progress} />
+                                <span className="evo-circle-symbol">%</span>
                             </span>
-                            <p>{property.status}</p>
+                            <span className="evo-circle-status">{property.status}</span>
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
 
