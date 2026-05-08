@@ -1277,6 +1277,65 @@ function AnimatedCounter({ to }: { to: number }) {
     );
 }
 
+// ===== Plants manifest (auto-generated count of files in public/plants/<slug>/) =====
+type PlantInfo = { count: number; ext: 'jpg' | 'png' };
+const PLANT_MANIFEST: Record<string, PlantInfo> = {
+    'adelson-pazzini': { count: 5, ext: 'jpg' },
+    'aimores': { count: 9, ext: 'png' },
+    'amaro-linari': { count: 5, ext: 'jpg' },
+    'arnaldo-xavier': { count: 2, ext: 'jpg' },
+    'barao-de-cocais': { count: 8, ext: 'jpg' },
+    'caldeira-brant': { count: 4, ext: 'jpg' },
+    'chicago': { count: 7, ext: 'jpg' },
+    'costa-monteiro': { count: 6, ext: 'png' },
+    'dom-vital': { count: 6, ext: 'jpg' },
+    'dona-anisia': { count: 6, ext: 'jpg' },
+    'dona-cleonice': { count: 4, ext: 'jpg' },
+    'efigenia-de-freitas': { count: 3, ext: 'jpg' },
+    'enio-soares': { count: 10, ext: 'jpg' },
+    'francisco-bressane': { count: 7, ext: 'jpg' },
+    'geraldo-rezende': { count: 10, ext: 'jpg' },
+    'getulio-vargas': { count: 7, ext: 'jpg' },
+    'gisa-araujo': { count: 6, ext: 'jpg' },
+    'iracema-drummond': { count: 2, ext: 'jpg' },
+    'isabela-lima': { count: 6, ext: 'jpg' },
+    'itabira': { count: 5, ext: 'jpg' },
+    'itajuba': { count: 3, ext: 'jpg' },
+    'j-silva': { count: 8, ext: 'jpg' },
+    'jardins-do-prado': { count: 8, ext: 'jpg' },
+    'joao-ayres': { count: 11, ext: 'jpg' },
+    'm-faria': { count: 9, ext: 'jpg' },
+    'macedo': { count: 8, ext: 'jpg' },
+    'machado-lima': { count: 4, ext: 'jpg' },
+    'major-lopes': { count: 9, ext: 'png' },
+    'mar-de-espanha': { count: 7, ext: 'png' },
+    'maranhao': { count: 13, ext: 'jpg' },
+    'marechal-hermes': { count: 4, ext: 'jpg' },
+    'maria-das-dores-brandao': { count: 1, ext: 'jpg' },
+    'mem-de-sa': { count: 5, ext: 'jpg' },
+    'nelson-souza': { count: 3, ext: 'jpg' },
+    'odilon-braga': { count: 7, ext: 'jpg' },
+    'sao-domingos': { count: 10, ext: 'jpg' },
+    'sao-manoel': { count: 5, ext: 'png' },
+    'sao-pedro': { count: 6, ext: 'jpg' },
+    'sao-roque': { count: 6, ext: 'jpg' },
+    'silva-jardim': { count: 6, ext: 'jpg' },
+    'silvestre-ferraz': { count: 11, ext: 'jpg' },
+    'sion-prime': { count: 8, ext: 'jpg' },
+    'stela-de-souza': { count: 5, ext: 'png' },
+    'stela-de-souza2': { count: 8, ext: 'jpg' },
+    'waldir-chaves': { count: 9, ext: 'jpg' },
+};
+
+function getDefaultPlans(slug: string): { name: string; image: string }[] {
+    const info = PLANT_MANIFEST[slug];
+    if (!info || info.count === 0) return [];
+    return Array.from({ length: info.count }, (_, i) => ({
+        name: `Planta ${String(i + 1).padStart(2, '0')}`,
+        image: `/plants/${slug}/${i + 1}.${info.ext}`,
+    }));
+}
+
 export default function PropertyDetail() {
 
     const { id } = useParams<{ id: string }>();
@@ -1290,9 +1349,18 @@ export default function PropertyDetail() {
     }, [id]);
 
     // Use specific data if ID matches, else fallback to a generic mock
-    const property = id && id in db
+    const baseProperty = id && id in db
         ? db[id as keyof typeof db]
         : { ...db["maranhao"], title: `Empreendimento ${id}`, progress: 50, status: "Em Obras" };
+
+    // Auto-fill plans from public/plants/<slug>/ when the entry has none
+    const property = (() => {
+        const hasPlans = Array.isArray(baseProperty.plans) && baseProperty.plans.length > 0;
+        if (hasPlans || !id) return baseProperty;
+        const auto = getDefaultPlans(id);
+        if (auto.length === 0) return baseProperty;
+        return { ...baseProperty, plans: auto };
+    })();
 
     // Keyboard navigation for gallery
     useEffect(() => {
