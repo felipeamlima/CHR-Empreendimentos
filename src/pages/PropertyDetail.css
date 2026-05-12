@@ -1839,7 +1839,7 @@
     inset: 0;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.4;
+    opacity: 0.25;
     background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
@@ -1849,28 +1849,74 @@
     pointer-events: none;
     z-index: 0;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse at center, #000 0%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 80%);
-    opacity: 0.7;
+        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at center, #000 0%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 0%, transparent 85%);
 }
 
-.evo-aurora {
+/* Blueprint side details — almost invisible architectural marks */
+.evo-blueprint {
     position: absolute;
-    width: 720px;
-    height: 720px;
-    right: -180px;
+    top: 12%;
+    bottom: 12%;
+    width: 1px;
+    pointer-events: none;
+    z-index: 0;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.04) 25%,
+        rgba(212, 175, 55, 0.06) 50%,
+        rgba(255, 255, 255, 0.04) 75%,
+        transparent 100%
+    );
+}
+
+.evo-blueprint::before,
+.evo-blueprint::after {
+    content: '';
+    position: absolute;
+    left: -3px;
+    width: 7px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.evo-blueprint::before { top: 33%; }
+.evo-blueprint::after { top: 66%; }
+
+.evo-blueprint-left { left: 5%; }
+.evo-blueprint-right { right: 5%; }
+
+.evo-aurora-circle {
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    right: -120px;
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(80, 149, 57, 0.08) 0%, transparent 65%);
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.06) 0%, transparent 65%);
     pointer-events: none;
     z-index: 0;
 }
 
-.evo-section > *:not(.evo-noise):not(.evo-grid-pattern):not(.evo-aurora) {
+.evo-aurora-gold {
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    left: 50%;
+    top: -180px;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.evo-section > *:not(.evo-noise):not(.evo-grid-pattern):not(.evo-blueprint):not(.evo-aurora-circle):not(.evo-aurora-gold) {
     position: relative;
     z-index: 1;
 }
@@ -2010,26 +2056,59 @@
 
 .evo-stage {
     position: relative;
-    padding: 0.4rem 0;
-    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    padding: 0.65rem 1rem 0.65rem 1.1rem;
+    border-radius: 8px;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1),
+                background 0.4s ease;
+}
+
+.evo-stage::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 32px;
+    background: transparent;
+    border-radius: 2px;
+    transition: background 0.4s ease, height 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.evo-stage-active::before {
+    background: linear-gradient(180deg, #9fdc7a 0%, #5fa442 100%);
+    box-shadow: 0 0 10px rgba(80, 149, 57, 0.5);
+}
+
+.evo-stage-done::before {
+    background: rgba(80, 149, 57, 0.4);
 }
 
 .evo-stage:hover {
-    transform: translateX(2px);
+    transform: translateX(3px);
+    background: rgba(255, 255, 255, 0.015);
+}
+
+.evo-stage-active {
+    background: rgba(80, 149, 57, 0.025);
+}
+
+.evo-stage-active:hover {
+    background: rgba(80, 149, 57, 0.05);
 }
 
 .evo-stage-row {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 0.65rem;
+    margin-bottom: 0.75rem;
 }
 
 .evo-stage-name {
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.85rem;
+    align-items: center;
+    gap: 0.9rem;
     font-family: var(--font-heading);
     font-size: 0.78rem;
     font-weight: 700;
@@ -2039,21 +2118,63 @@
     transition: color 0.3s ease;
 }
 
+.evo-stage-pending .evo-stage-name {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.evo-stage-active .evo-stage-name,
 .evo-stage:hover .evo-stage-name {
     color: #ffffff;
 }
 
-.evo-stage-index {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: rgba(212, 175, 55, 0.55);
-    transition: color 0.3s ease;
+.evo-stage-active .evo-stage-label {
+    text-shadow: 0 0 14px rgba(80, 149, 57, 0.35);
 }
 
-.evo-stage:hover .evo-stage-index {
+.evo-stage-index {
+    font-family: var(--font-heading);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    color: rgba(212, 175, 55, 0.55);
+    transition: color 0.3s ease;
+    min-width: 18px;
+}
+
+.evo-stage-pending .evo-stage-index {
+    color: rgba(212, 175, 55, 0.3);
+}
+
+.evo-stage:hover .evo-stage-index,
+.evo-stage-active .evo-stage-index {
     color: rgba(212, 175, 55, 0.95);
+}
+
+.evo-stage-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 0.5rem;
+    padding: 0.18rem 0.55rem;
+    font-family: var(--font-heading);
+    font-size: 0.55rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: rgba(80, 149, 57, 0.1);
+    color: rgba(159, 220, 122, 0.85);
+    border: 1px solid rgba(80, 149, 57, 0.25);
+    border-radius: 999px;
+}
+
+.evo-stage-badge svg {
+    color: rgba(159, 220, 122, 0.95);
+}
+
+.evo-stage-badge-active {
+    background: rgba(212, 175, 55, 0.08);
+    color: rgba(212, 175, 55, 0.85);
+    border-color: rgba(212, 175, 55, 0.22);
 }
 
 .evo-stage-pct {
@@ -2063,33 +2184,52 @@
     letter-spacing: 0.5px;
     color: #ffffff;
     font-variant-numeric: tabular-nums;
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.evo-stage-pending .evo-stage-pct {
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .evo-stage-pct-symbol {
     margin-left: 1px;
     font-size: 0.7em;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(212, 175, 55, 0.7);
     font-weight: 700;
+}
+
+.evo-stage-pending .evo-stage-pct-symbol {
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .evo-bar {
     position: relative;
-    height: 2px;
-    background: rgba(255, 255, 255, 0.06);
+    height: 1.5px;
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 999px;
     overflow: hidden;
-    transition: background 0.4s ease;
+    transition: background 0.4s ease, height 0.4s ease;
+}
+
+.evo-stage-active .evo-bar {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .evo-bar-fill {
     position: absolute;
     inset: 0 auto 0 0;
     height: 100%;
-    background: linear-gradient(90deg, #2d5719 0%, #5fa442 45%, #9fdc7a 100%);
+    background: linear-gradient(90deg, #2d5719 0%, #5fa442 50%, #9fdc7a 100%);
     border-radius: 999px;
-    box-shadow: 0 0 8px rgba(80, 149, 57, 0.45);
+    box-shadow: 0 0 6px rgba(80, 149, 57, 0.35);
     will-change: width;
     transition: box-shadow 0.4s ease;
+}
+
+.evo-stage-active .evo-bar-fill {
+    box-shadow: 0 0 12px rgba(80, 149, 57, 0.6);
 }
 
 .evo-stage:hover .evo-bar-fill {
@@ -2111,15 +2251,38 @@
     max-width: 360px;
     margin: 0 auto;
     isolation: isolate;
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
+.evo-circle:hover {
+    transform: scale(1.015);
+}
+
+/* Dark halo behind for depth */
+.evo-circle-shadow {
+    position: absolute;
+    width: 95%;
+    height: 95%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, transparent 65%);
+    border-radius: 50%;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Subtle green ambient halo */
 .evo-circle-halo {
     position: absolute;
-    width: 120%;
-    height: 120%;
-    background: radial-gradient(circle, rgba(80, 149, 57, 0.18) 0%, transparent 65%);
+    width: 130%;
+    height: 130%;
+    background: radial-gradient(circle, rgba(80, 149, 57, 0.1) 0%, transparent 60%);
     z-index: -1;
     pointer-events: none;
+    transition: opacity 0.6s ease;
+    opacity: 1;
+}
+
+.evo-circle:hover .evo-circle-halo {
+    opacity: 1.4;
 }
 
 .evo-circle-svg {
