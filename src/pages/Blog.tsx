@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Search, ChevronDown, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { fetchBlogPosts, type BlogPost } from '../services/blogService';
 import './Blog.css';
 
 const categories = [
@@ -13,86 +14,7 @@ const categories = [
     'Engenharia CHR',
 ];
 
-type BlogPost = {
-    id: string;
-    title: string;
-    excerpt: string;
-    image: string;
-    category: string;
-    date: string;
-    readTime: string;
-    featured?: boolean;
-};
 
-const mockPosts: BlogPost[] = [
-    {
-        id: 'tendencias-luxo-2024',
-        title: 'Tendências da arquitetura premium para os próximos anos',
-        excerpt:
-            'Materiais nobres, biofilia e design integrado: o que define o alto padrão na próxima década e por que isso impacta diretamente o valor do seu imóvel.',
-        image:
-            'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1100&q=70',
-        category: 'Tendências',
-        date: '15 Mar · 2026',
-        readTime: '8 min',
-        featured: true,
-    },
-    {
-        id: 'valorizacao-bairros-bh',
-        title: 'Os bairros que mais valorizam em Belo Horizonte em 2026',
-        excerpt:
-            'Análise completa das regiões com maior potencial de valorização — Vila da Serra, Sion, Funcionários e Belvedere — e o que sustenta sua liquidez.',
-        image:
-            'https://images.unsplash.com/photo-1448630360428-65456885c650?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        category: 'Investimento',
-        date: '02 Mar · 2026',
-        readTime: '10 min',
-    },
-    {
-        id: 'identificar-imovel-valorizacao',
-        title: 'Como identificar um imóvel com alto potencial de valorização',
-        excerpt:
-            'Os indicadores que profissionais do setor avaliam antes de adquirir um ativo imobiliário — localização, projeto, construtora e contexto urbano.',
-        image:
-            'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        category: 'Mercado',
-        date: '24 Fev · 2026',
-        readTime: '7 min',
-    },
-    {
-        id: 'tecnologia-obras-sustentaveis',
-        title: 'Como a CHR pensa engenharia e valor de longo prazo',
-        excerpt:
-            'Os processos construtivos e decisões técnicas por trás de empreendimentos que mantêm valorização décadas após a entrega.',
-        image:
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        category: 'Engenharia CHR',
-        date: '12 Fev · 2026',
-        readTime: '6 min',
-    },
-    {
-        id: 'localizacao-ativo-imobiliario',
-        title: 'Por que localização continua sendo o maior ativo imobiliário',
-        excerpt:
-            'Mesmo com tendências mudando, dados do mercado mineiro mostram que a escolha do endereço ainda é o fator mais determinante de retorno.',
-        image:
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        category: 'Investimento',
-        date: '03 Fev · 2026',
-        readTime: '9 min',
-    },
-    {
-        id: 'integracao-areas-sociais',
-        title: 'Como integrar áreas sociais em apartamentos de alto padrão',
-        excerpt:
-            'Plantas livres, transição visual e mobiliário arquitetônico: o vocabulário do morar contemporâneo de luxo segundo nossos parceiros de design.',
-        image:
-            'https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        category: 'Arquitetura',
-        date: '20 Jan · 2026',
-        readTime: '5 min',
-    },
-];
 
 function BlogCard({ post, index }: { post: BlogPost; index: number }) {
     const ref = useRef<HTMLElement>(null);
@@ -155,9 +77,19 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
 export default function Blog() {
     const [activeCategory, setActiveCategory] = useState('Todos');
     const [search, setSearch] = useState('');
+    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [loading, setLoading] = useState(true);
 
-    const featuredPost = mockPosts.find((p) => p.featured);
-    const regularPosts = mockPosts
+    // Fetch posts from Google Sheets via Apps Script
+    useEffect(() => {
+        fetchBlogPosts()
+            .then(setPosts)
+            .catch(() => setPosts([]))
+            .finally(() => setLoading(false));
+    }, []);
+
+    const featuredPost = posts.find((p) => p.featured);
+    const regularPosts = posts
         .filter((p) => !p.featured)
         .filter((p) => activeCategory === 'Todos' || p.category === activeCategory)
         .filter(

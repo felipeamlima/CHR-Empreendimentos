@@ -46,8 +46,12 @@ export default function Contact() {
         setStatus('sending');
 
         try {
-            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyoR0s8CRngON_wkHvlS-GVGdXCajsRtZkjSQCxLACl7FQs59HePmUk6wzxy383oKYiEQ/exec';
+            // CHR Contato endpoint (Google Apps Script → planilha "CHR Contato")
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwOdWC_8HYRv503lneHJ4ZXZ4AgL3X4EFKXj2iM0YQXMYTXHULyRjqkmGx5iFTtXTgVig/exec';
             const reasonLabel = CONTACT_REASONS.find(r => r.id === activeReason)?.label || '';
+            const assuntoCompleto = subject
+                ? `[${reasonLabel}] ${subject}`
+                : `[${reasonLabel}]`;
 
             await fetch(GOOGLE_SCRIPT_URL, {
                 method: 'POST',
@@ -59,10 +63,10 @@ export default function Contact() {
                     nome: name,
                     email: email,
                     telefone: phone,
-                    interesse: `[${reasonLabel}] ${subject} — ${message}`,
-                    imovel: `Página de Contato (${reasonLabel})`,
-                    data: new Date().toISOString(),
+                    assunto: assuntoCompleto,
+                    mensagem: message,
                     pagina: window.location.href,
+                    data: new Date().toISOString(),
                 }),
             });
 
