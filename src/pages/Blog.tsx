@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Search, ChevronDown, Clock } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { fetchBlogPosts, type BlogPost } from '../services/blogService';
+import { fetchBlogPosts, getLocalPosts, type BlogPost } from '../services/blogService';
 import './Blog.css';
 
 const categories = [
@@ -77,13 +77,13 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
 export default function Blog() {
     const [activeCategory, setActiveCategory] = useState('Todos');
     const [search, setSearch] = useState('');
-    const [posts, setPosts] = useState<BlogPost[]>([]);
+    const [posts, setPosts] = useState<BlogPost[]>(() => getLocalPosts());
 
-    // Fetch posts from Google Sheets via Apps Script
+    // Try API upgrade in background (for Sheets-based control)
     useEffect(() => {
-        fetchBlogPosts()
-            .then(setPosts)
-            .catch(() => setPosts([]));
+        fetchBlogPosts().then(apiPosts => {
+            if (apiPosts.length > 0) setPosts(apiPosts);
+        });
     }, []);
 
     const featuredPost = posts.find((p) => p.featured);

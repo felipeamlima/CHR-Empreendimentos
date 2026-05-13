@@ -93,50 +93,53 @@ function articleToPost(article: BlogArticle, index: number): BlogPost {
 let cachedPosts: BlogPost[] | null = null;
 let cacheTime = 0;
 const CACHE_TTL = 5 * 60 * 1000; // 5 minutos
+const API_TIMEOUT = 3000; // 3s — evita loading longo quando API tem CORS
+
+// Acesso síncrono aos posts locais (carregamento instantâneo, zero loading)
+export function getLocalPosts(): BlogPost[] {
+  return getFallbackPosts();
+}
+
+export function getLocalPost(slug: string): BlogPost | null {
+  return getFallbackPosts().find(p => p.id === slug) || null;
+}
+
+function fetchWithTimeout(url: string, ms: number): Promise<Response> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ms);
+  return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
+}
 
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
-  // Retorna cache se ainda válido
   if (cachedPosts && Date.now() - cacheTime < CACHE_TTL) {
     return cachedPosts;
   }
 
   try {
-    const response = await fetch(BLOG_API_URL);
+    const response = await fetchWithTimeout(BLOG_API_URL, API_TIMEOUT);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    
     const data = await response.json();
     const articles: BlogArticle[] = data.artigos || [];
-    
     if (articles.length === 0) return getFallbackPosts();
-    
     cachedPosts = articles.map((a, i) => articleToPost(a, i));
     cacheTime = Date.now();
     return cachedPosts;
-    
-  } catch (error) {
-    console.warn('Blog API indisponível, usando fallback:', error);
+  } catch {
     return getFallbackPosts();
   }
 }
 
 export async function fetchBlogPost(slug: string): Promise<BlogPost | null> {
+  // Tenta local primeiro (instantâneo)
+  const local = getLocalPost(slug);
   try {
-    const response = await fetch(`${BLOG_API_URL}?action=get&slug=${encodeURIComponent(slug)}`);
+    const response = await fetchWithTimeout(`${BLOG_API_URL}?action=get&slug=${encodeURIComponent(slug)}`, API_TIMEOUT);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    
     const data = await response.json();
-    if (data.artigo) {
-      return articleToPost(data.artigo, 0);
-    }
-    
-    // Fallback: buscar na lista
-    const posts = await fetchBlogPosts();
-    return posts.find(p => p.id === slug) || null;
-    
+    if (data.artigo) return articleToPost(data.artigo, 0);
+    return local;
   } catch {
-    // Fallback: buscar na lista completa
-    const posts = await fetchBlogPosts();
-    return posts.find(p => p.id === slug) || null;
+    return local;
   }
 }
 
@@ -339,6 +342,235 @@ A CHR Engenharia adota o modelo de obra por administração por convicção, nã
 ---
 
 *Para quem valoriza transparência, controle e qualidade sem compromissos, a CHR Engenharia oferece empreendimentos sob o regime de obra por administração — onde cada decisão é compartilhada e cada centavo é contabilizado.*`,
+    },
+    {
+      id: 'tendencias-alto-padrao-2026',
+      title: 'Biofilia, automação e materiais de baixo carbono: as tendências que redefinem o alto padrão em 2026',
+      subtitle: 'Como o mercado imobiliário premium está absorvendo inovações de design, tecnologia e sustentabilidade — e o que isso significa para quem compra',
+      excerpt: 'Biofilia, automação residencial e materiais sustentáveis estão redefinindo o que significa morar bem. Um panorama das tendências que já moldam os empreendimentos premium em BH.',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70',
+      category: 'Tendências',
+      date: '08 Mai · 2026',
+      readTime: '10 min',
+      tags: ['biofilia', 'automação residencial', 'sustentabilidade', 'design', 'alto padrão'],
+      content: `# Biofilia, automação e materiais de baixo carbono: as tendências que redefinem o alto padrão em 2026
+
+*Como o mercado imobiliário premium está absorvendo inovações de design, tecnologia e sustentabilidade — e o que isso significa para quem compra*
+
+---
+
+O conceito de alto padrão no mercado imobiliário está passando por uma transformação silenciosa, mas profunda. Se até poucos anos atrás o luxo residencial se definia por metragem generosa, acabamentos importados e endereço nobre, hoje os compradores mais exigentes buscam algo mais: espaços que promovam bem-estar, tecnologia que simplifique o cotidiano e construções que respeitem o meio ambiente sem abrir mão da sofisticação.
+
+Em Belo Horizonte, essa mudança já se reflete nos lançamentos mais recentes da zona sul. Empreendimentos em bairros como Funcionários, Sion e Lourdes começam a incorporar elementos que, há cinco anos, eram exclusividade de projetos experimentais europeus.
+
+## Biofilia: quando a natureza entra no projeto
+
+O design biofílico — a integração intencional de elementos naturais ao ambiente construído — deixou de ser tendência para se tornar expectativa. Estudos publicados no *Journal of Environmental Psychology* demonstram que ambientes com presença de vegetação, luz natural abundante e materiais orgânicos reduzem o cortisol (hormônio do estresse) em até 15% e aumentam a produtividade percebida.
+
+Na prática, isso se traduz em:
+
+- **Jardins verticais** integrados às áreas comuns e, em alguns casos, às varandas privativas
+- **Iluminação circadiana**: sistemas que ajustam a temperatura de cor da luz ao longo do dia, simulando o ciclo natural do sol
+- **Materiais táteis**: madeiras de reflorestamento, pedras naturais e revestimentos cerâmicos com texturas orgânicas
+
+> A biofilia não é decoração — é neurociência aplicada à arquitetura. Espaços que reconectam o morador à natureza geram benefícios mensuráveis em saúde e qualidade de vida.
+
+**[INSIGHT]** Segundo levantamentos do setor, imóveis com projetos biofílicos certificados apresentam prêmio de valorização entre 8% e 12% em relação a empreendimentos convencionais de mesmo padrão construtivo.
+
+## Automação: o luxo do invisível
+
+A automação residencial evoluiu rapidamente de gadget tecnológico para infraestrutura essencial. Em empreendimentos de alto padrão, a questão não é mais se o apartamento terá automação, mas qual o nível de integração oferecido.
+
+Os sistemas mais avançados disponíveis no mercado brasileiro permitem:
+
+- **Controle centralizado** de iluminação, climatização, cortinas e áudio por voz ou aplicativo
+- **Cenários automatizados**: um único comando ajusta luzes, temperatura e persianas para o contexto desejado (cinema, jantar, despertar)
+- **Segurança integrada**: câmeras, sensores de presença e fechaduras biométricas conectados a uma central inteligente
+- **Gestão energética**: monitoramento em tempo real do consumo, com otimização automática
+
+### A infraestrutura importa mais que os dispositivos
+
+Um erro comum em empreendimentos que se dizem "inteligentes" é oferecer dispositivos de automação sem a infraestrutura adequada. Cabeamento estruturado Cat6A, eletrodutos com folga, pontos de rede em todos os ambientes e central de automação dedicada são investimentos que custam menos de 3% do valor da obra, mas viabilizam qualquer evolução tecnológica futura.
+
+## Materiais de baixo carbono: sustentabilidade como sofisticação
+
+A construção civil é responsável por cerca de 37% das emissões globais de CO₂, segundo a ONU. Construtoras de referência estão respondendo com a adoção de materiais que reduzem significativamente a pegada de carbono sem comprometer a qualidade ou a estética.
+
+Entre as inovações já disponíveis no mercado brasileiro:
+
+- **Concreto de alto desempenho com adições pozolânicas**: reduz em até 30% o consumo de cimento Portland
+- **Esquadrias de alumínio reciclado** com ruptura térmica: melhor isolamento com menor impacto ambiental
+- **Revestimentos cerâmicos nacionais** com certificação ambiental: qualidade comparável a importados, com rastreabilidade completa
+
+> Sustentabilidade no alto padrão não é marketing — é responsabilidade técnica e diferencial competitivo de longo prazo.
+
+## Visão CHR: inovar com propósito
+
+A CHR Engenharia acompanha essas tendências com uma premissa clara: incorporar inovações que agreguem valor real ao morador, não modismos passageiros. Cada tecnologia ou material é avaliado sob critérios rigorosos de durabilidade, manutenibilidade e retorno ao longo da vida útil do empreendimento.
+
+---
+
+*Para quem busca empreendimentos que unem inovação, conforto e responsabilidade construtiva, a CHR desenvolve projetos pensados para o presente e preparados para o futuro.*`,
+    },
+    {
+      id: 'arquitetura-autoral-valor-patrimonial',
+      title: 'Quando a fachada conta uma história: o valor da arquitetura autoral no mercado imobiliário',
+      subtitle: 'Por que edifícios com identidade arquitetônica própria se valorizam mais e envelhecem melhor do que construções genéricas',
+      excerpt: 'Edifícios com identidade própria se valorizam mais e envelhecem melhor. Uma análise do impacto da arquitetura autoral no mercado premium de Belo Horizonte.',
+      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70',
+      category: 'Arquitetura',
+      date: '22 Abr · 2026',
+      readTime: '11 min',
+      tags: ['arquitetura autoral', 'fachada', 'valorização', 'design', 'patrimônio'],
+      content: `# Quando a fachada conta uma história: o valor da arquitetura autoral no mercado imobiliário
+
+*Por que edifícios com identidade arquitetônica própria se valorizam mais e envelhecem melhor do que construções genéricas*
+
+---
+
+Caminhe por qualquer bairro nobre de Belo Horizonte e você notará dois tipos de edifícios: aqueles que se confundem com o entorno — fachadas genéricas, volumes repetitivos, materiais padronizados — e aqueles que, mesmo décadas após a construção, continuam chamando a atenção pela singularidade do projeto.
+
+Essa diferença não é apenas estética. Ela tem impacto direto e mensurável no valor patrimonial do imóvel.
+
+## O que define uma arquitetura autoral
+
+Arquitetura autoral não é sinônimo de extravagância ou experimentalismo visual. É, antes de tudo, a presença de uma intenção clara de projeto — uma ideia que organiza volumetria, materiais, aberturas e relação com o entorno de forma coerente e original.
+
+Um edifício autoral se reconhece por:
+
+- **Identidade visual própria**: não é uma cópia de tendências genéricas
+- **Diálogo com o contexto**: respeita o entorno sem se submeter a ele
+- **Materialidade pensada**: cada revestimento, cada recuo, cada proporção tem justificativa projetual
+- **Intemporalidade**: envelhece com dignidade, sem parecer datado
+
+> A arquitetura autoral é aquela que, daqui a 30 anos, continuará sendo admirada — não como relíquia, mas como referência.
+
+## O impacto no valor: dados e evidências
+
+Segundo análises do setor imobiliário de Belo Horizonte, edifícios com projetos arquitetônicos assinados por escritórios de referência apresentam valorização consistentemente superior à média da região.
+
+O fenômeno se explica por uma combinação de fatores:
+
+1. **Escassez**: projetos autorais são, por definição, únicos — o que limita a oferta
+2. **Desejabilidade**: compradores de alto padrão pagam prêmio por exclusividade
+3. **Resiliência estética**: edifícios bem projetados não sofrem o envelhecimento visual que deprecia construções genéricas
+4. **Liquidez**: imóveis em edifícios icônicos tendem a ter giro de revenda mais rápido
+
+**[INSIGHT]** Em Funcionários e Lourdes, edifícios com projetos arquitetônicos premiados ou publicados em revistas especializadas registram tempo médio de revenda significativamente inferior à média do bairro — um indicador direto de liquidez premium.
+
+## A fachada como cartão de visitas permanente
+
+A fachada é o elemento mais visível e duradouro de um edifício. Enquanto interiores podem ser reformados e atualizados, a fachada permanece essencialmente a mesma ao longo de toda a vida útil da construção.
+
+Isso significa que decisões de fachada — materiais, cores, proporções, texturas — são decisões de patrimônio de longo prazo.
+
+### Materiais que envelhecem bem
+
+Alguns materiais de fachada ganham caráter com o tempo: o concreto aparente desenvolve uma pátina natural, a pedra natural mantém sua textura, o aço corten adquire sua coloração característica. Outros — como certas pinturas texturizadas ou revestimentos plásticos — perdem o apelo visual em poucos anos.
+
+A escolha entre um e outro é, frequentemente, a diferença entre um edifício que se valoriza e um que se deprecia visualmente.
+
+## O papel do arquiteto no empreendimento premium
+
+Em mercados maduros, o nome do arquiteto agrega valor tangível ao imóvel — assim como a assinatura de um designer agrega valor a um móvel. No Brasil, esse fenômeno está em crescimento, especialmente no segmento de alto padrão.
+
+Para que a arquitetura autoral funcione como diferencial real, porém, é necessário que a construtora dê ao arquiteto a liberdade e o suporte necessários para executar o projeto conforme concebido.
+
+> Não basta contratar um bom arquiteto — é preciso ter a coragem e a competência técnica para construir o que ele projetou.
+
+## Visão CHR: construir identidade
+
+A CHR Engenharia entende que cada empreendimento é uma peça urbana que contribui para a paisagem da cidade. Por isso, investe em projetos que combinam personalidade arquitetônica com excelência construtiva — edifícios que não apenas cumprem função, mas contam uma história.
+
+---
+
+*Para quem busca imóveis com identidade própria e valor patrimonial de longo prazo, a CHR desenvolve empreendimentos onde a arquitetura é protagonista — não cenário.*`,
+    },
+    {
+      id: 'imovel-planta-ou-pronto',
+      title: 'Imóvel na planta ou pronto? A análise que todo investidor deveria fazer antes de decidir',
+      subtitle: 'Uma comparação técnica entre comprar na planta e comprar pronto — com dados, riscos e estratégias para cada perfil de comprador',
+      excerpt: 'Comprar na planta ou pronto? Uma análise com dados reais sobre valorização, riscos e estratégias para cada perfil de investidor imobiliário em BH.',
+      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=70',
+      category: 'Investimento',
+      date: '15 Abr · 2026',
+      readTime: '13 min',
+      tags: ['investimento imobiliário', 'imóvel na planta', 'imóvel pronto', 'valorização', 'BH'],
+      content: `# Imóvel na planta ou pronto? A análise que todo investidor deveria fazer antes de decidir
+
+*Uma comparação técnica entre comprar na planta e comprar pronto — com dados, riscos e estratégias para cada perfil de comprador*
+
+---
+
+É uma das perguntas mais recorrentes no mercado imobiliário: vale mais a pena comprar um imóvel na planta ou um já pronto para morar? A resposta, como em qualquer decisão financeira relevante, é: depende. Mas "depende" não significa que a análise seja impossível — significa que ela precisa considerar variáveis que muitos compradores ignoram.
+
+## A matemática da compra na planta
+
+O principal atrativo da compra na planta é financeiro: o imóvel é adquirido em um estágio anterior do ciclo de valorização, teoricamente a preço inferior ao valor de mercado na entrega.
+
+Na prática, a equação funciona assim:
+
+- **Preço de lançamento**: geralmente 15% a 30% abaixo do valor estimado para entrega
+- **Condições de pagamento**: entrada parcelada durante a obra (24 a 36 meses) + financiamento na entrega
+- **Correção pelo INCC**: o saldo devedor é corrigido mensalmente pelo Índice Nacional de Custo da Construção
+
+**[INSIGHT]** O INCC é frequentemente subestimado por compradores de primeira viagem. Nos últimos 5 anos, o índice acumulou variação significativa — o que pode reduzir substancialmente o "desconto" percebido na compra em planta se o comprador não dimensionar corretamente o impacto da correção sobre o saldo.
+
+> Comprar na planta não é automaticamente mais barato — é mais barato quando a valorização do imóvel supera a correção do saldo devedor e o custo de oportunidade do capital.
+
+## As vantagens reais da compra na planta
+
+Dito isso, para compradores que fazem a análise corretamente, a planta oferece vantagens genuínas:
+
+1. **Personalização**: em muitos empreendimentos, é possível escolher acabamentos, alterar pontos elétricos e até modificar a planta dentro de parâmetros estruturais
+2. **Parcelamento da entrada**: ao invés de desembolsar 20-30% de uma só vez, o valor é diluído ao longo da construção
+3. **Potencial de valorização**: se o empreendimento está em uma boa localização e é executado por uma construtora confiável, a valorização entre lançamento e entrega pode ser expressiva
+4. **Imóvel novo**: sem desgaste, sem reformas necessárias, com garantia construtiva de 5 anos
+
+## As vantagens do imóvel pronto
+
+O imóvel pronto, por sua vez, oferece certezas que a planta não pode garantir:
+
+- **Ver antes de comprar**: não há surpresas — o comprador visita o imóvel exato que vai adquirir
+- **Ocupação imediata**: sem espera de 2-3 anos pela construção
+- **Sem risco de atraso**: um dos maiores riscos da compra na planta é eliminado
+- **Negociação direta**: proprietários motivados podem oferecer descontos significativos
+
+### O fator psicológico
+
+Existe um componente emocional que a análise puramente financeira não captura: a ansiedade da espera. Três anos entre a compra e a entrega é um período longo, durante o qual o comprador acompanha notícias do mercado, variações de índices e eventuais percalços da obra.
+
+## Análise de risco: o que pode dar errado
+
+### Na planta
+- Atraso na entrega (gera custos com aluguel e correção adicional do saldo)
+- Diferenças entre o material de divulgação e a entrega real
+- Risco construtivo: em casos extremos, problemas financeiros da construtora
+- Valorização abaixo do esperado em mercados retraídos
+
+### No pronto
+- Vícios ocultos em imóveis usados (infiltrações, problemas elétricos)
+- Custo de reforma/atualização em imóveis mais antigos
+- Menor potencial de valorização a curto prazo (já precificado pelo mercado)
+
+## Como avaliar a construtora
+
+Para quem opta pela compra na planta, a escolha da construtora é possivelmente a decisão mais importante do processo. Indicadores a observar:
+
+1. **Histórico de entregas**: pontualidade, qualidade relatada pelos compradores anteriores
+2. **Saúde financeira**: incorporadoras listadas em bolsa divulgam balanços; para as demais, patrimônio de afetação oferece proteção
+3. **Transparência**: construtoras que operam por administração oferecem visibilidade total dos custos
+4. **Pós-entrega**: como a empresa lida com assistência técnica e garantias
+
+> A melhor forma de prever como será o seu empreendimento é observar como a construtora entregou os anteriores.
+
+## Visão CHR: transparência em qualquer formato
+
+A CHR Engenharia oferece empreendimentos sob o regime de obra por administração, o que significa que o comprador da planta tem uma vantagem adicional: acompanhamento completo dos custos e decisões ao longo de toda a obra. Esse modelo elimina o principal risco da compra na planta — a opacidade — e transforma a espera em participação ativa.
+
+---
+
+*Para quem busca segurança, transparência e participação real no processo construtivo, a CHR Engenharia oferece uma forma diferente de comprar na planta — onde cada centavo é contabilizado e cada decisão é compartilhada.*`,
     },
   ];
 }

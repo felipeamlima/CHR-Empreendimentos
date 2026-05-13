@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Calendar, User, ArrowLeft, Share2, Facebook, Twitter, Linkedin, Clock, Tag } from 'lucide-react';
 import { marked } from 'marked';
-import { fetchBlogPost, fetchBlogPosts, type BlogPost } from '../services/blogService';
+import { fetchBlogPost, getLocalPost, getLocalPosts, type BlogPost } from '../services/blogService';
 import './BlogPost.css';
 
 // Configure marked for clean output
@@ -14,41 +14,39 @@ marked.setOptions({
 
 export default function BlogPostPage() {
     const { id } = useParams<{ id: string }>();
-    const [post, setPost] = useState<BlogPost | null>(null);
-    const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
+
+    // Initialize synchronously from local data — ZERO loading delay
+    const [post, setPost] = useState<BlogPost | null>(() => id ? getLocalPost(id) : null);
+    const [relatedPosts, setRelatedPosts] = useState<BlogPost[]>(() => {
+        const all = getLocalPosts();
+        const current = id ? all.find(p => p.id === id) : null;
+        const related = all
+            .filter(p => p.id !== id)
+            .filter(p => current ? p.category === current.category : true)
+            .slice(0, 3);
+        return related.length > 0 ? related : all.filter(p => p.id !== id).slice(0, 3);
+    });
 
     useEffect(() => {
         window.scrollTo(0, 0);
         if (!id) return;
 
-        setLoading(true);
-        
-        // Fetch the specific post and related posts in parallel
-        Promise.all([
-            fetchBlogPost(id),
-            fetchBlogPosts(),
-        ]).then(([foundPost, allPosts]) => {
-            setPost(foundPost);
-            // Get up to 3 related posts (same category, different id)
-            const related = allPosts
-                .filter(p => p.id !== id)
-                .filter(p => foundPost ? p.category === foundPost.category : true)
-                .slice(0, 3);
-            setRelatedPosts(related.length > 0 ? related : allPosts.filter(p => p.id !== id).slice(0, 3));
-        }).finally(() => setLoading(false));
-    }, [id]);
+        // Update local data for new slug (when navigating between posts)
+        const localPost = getLocalPost(id);
+        if (localPost) setPost(localPost);
 
-    if (loading) {
-        return (
-            <div className="blog-post-page">
-                <div className="post-loading">
-                    <div className="loading-shimmer" />
-                    <div className="loading-shimmer short" />
-                </div>
-            </div>
-        );
-    }
+        const allPosts = getLocalPosts();
+        const related = allPosts
+            .filter(p => p.id !== id)
+            .filter(p => localPost ? p.category === localPost.category : true)
+            .slice(0, 3);
+        setRelatedPosts(related.length > 0 ? related : allPosts.filter(p => p.id !== id).slice(0, 3));
+
+        // Try API upgrade silently in background
+        fetchBlogPost(id).then(apiPost => {
+            if (apiPost) setPost(apiPost);
+        });
+    }, [id]);
 
     if (!post) {
         return (
