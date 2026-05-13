@@ -5,7 +5,9 @@
  * fall through to the hardcoded value.
  */
 
-const ENDPOINT = ''; // <— Paste deployed Apps Script URL here after setup
+// CHR Empreendimentos Apps Script (reads the spreadsheet, returns JSON map).
+const ENDPOINT =
+    'https://script.google.com/macros/s/AKfycbxoCz1fk9DOkJL2yMLnOjykgVV_anVynY8ej248otRx9Smc_kj2wfRptxHc-cKcpaDXnw/exec';
 
 const CACHE_KEY = 'chr_properties_overrides_v1';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
