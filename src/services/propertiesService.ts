@@ -7,7 +7,7 @@
 
 // CHR Empreendimentos Apps Script (reads the spreadsheet, returns JSON map).
 const ENDPOINT =
-    'https://script.google.com/macros/s/AKfycbxoCz1fk9DOkJL2yMLnOjykgVV_anVynY8ej248otRx9Smc_kj2wfRptxHc-cKcpaDXnw/exec';
+    'https://script.google.com/macros/s/AKfycbzQjh_wCfd0nlUIFDzWxYHV2qof-ZVkv5SjdcoKi38qr_MXwAl2zmEAaB3Pp_FAJNNIDA/exec';
 
 const CACHE_KEY = 'chr_properties_overrides_v1';
 const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
