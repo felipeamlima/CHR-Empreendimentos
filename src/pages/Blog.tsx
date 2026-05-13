@@ -225,7 +225,7 @@ export default function Blog() {
 
                     <div className="blog-insight-foot">
                         <span className="blog-insight-source">CHR Editorial</span>
-                        <Link to="/blog/valorizacao-bairros-bh" className="blog-insight-link">
+                        <Link to="/blog/valorizacao-bairros-bh-2026" className="blog-insight-link">
                             <span>Ler análise completa</span>
                             <ArrowUpRight size={14} />
                         </Link>

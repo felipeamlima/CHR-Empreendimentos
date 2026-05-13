@@ -16,40 +16,40 @@ type BlogPost = {
 
 const blogPosts: BlogPost[] = [
     {
-        id: 'tendencias-luxo-2024',
-        title: 'Tendências da arquitetura premium para os próximos anos',
+        id: 'valorizacao-bairros-bh-2026',
+        title: 'Funcionários, Sion, Lourdes: o que os dados revelam sobre a nova geografia de valor em BH',
         excerpt:
-            'Materiais nobres, biofilia e design integrado: o que define o alto padrão na próxima década.',
+            'Os dados por trás dos bairros mais disputados de BH: por que Funcionários, Sion e Lourdes continuam no topo da valorização.',
         image:
-            'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        date: '15 Mar · 2026',
-        readTime: '6 min',
-        category: 'Tendências',
-        accent: 'arquitetura',
-    },
-    {
-        id: 'valorizacao-bairros-bh',
-        title: 'Os bairros que mais valorizam em Belo Horizonte em 2026',
-        excerpt:
-            'Vila da Serra, Sion e Funcionários sustentam liquidez e valorização acima da média do mercado.',
-        image:
-            'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        date: '10 Mar · 2026',
-        readTime: '8 min',
+            'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1100&q=70',
+        date: '05 Mai · 2026',
+        readTime: '14 min',
         category: 'Investimento',
         accent: 'investimento',
     },
     {
-        id: 'tecnologia-obras-sustentaveis',
-        title: 'Como a CHR pensa engenharia e valor de longo prazo',
+        id: 'engenharia-invisivel-detalhes',
+        title: 'A engenharia invisível: os detalhes construtivos que o cliente não vê, mas sente ao longo dos anos',
         excerpt:
-            'Os processos construtivos por trás de empreendimentos que se mantêm valorizados décadas após a entrega.',
+            'As decisões técnicas tomadas no canteiro de obras definem o valor patrimonial de um imóvel décadas após a entrega.',
         image:
-            'https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=70',
-        date: '05 Mar · 2026',
-        readTime: '5 min',
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1100&q=70',
+        date: '12 Mai · 2026',
+        readTime: '12 min',
         category: 'Engenharia CHR',
         accent: 'engenharia',
+    },
+    {
+        id: 'obra-por-administracao-modelo',
+        title: 'Obra por administração: o modelo que alinha transparência, qualidade e inteligência financeira',
+        excerpt:
+            'O modelo de obra por administração oferece transparência total e controle de custos ao comprador.',
+        image:
+            'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1100&q=70',
+        date: '28 Abr · 2026',
+        readTime: '11 min',
+        category: 'Mercado',
+        accent: 'mercado',
     },
 ];
 
@@ -148,7 +148,7 @@ export default function BlogTeaser() {
 
                     <div className="bt-insight-foot">
                         <span className="bt-insight-source">CHR Editorial</span>
-                        <Link to="/blog/valorizacao-bairros-bh" className="bt-insight-link">
+                        <Link to="/blog/valorizacao-bairros-bh-2026" className="bt-insight-link">
                             <span>Ler análise completa</span>
                             <ArrowUpRight size={14} />
                         </Link>
