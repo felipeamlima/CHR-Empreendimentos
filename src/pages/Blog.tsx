@@ -78,14 +78,12 @@ export default function Blog() {
     const [activeCategory, setActiveCategory] = useState('Todos');
     const [search, setSearch] = useState('');
     const [posts, setPosts] = useState<BlogPost[]>([]);
-    const [loading, setLoading] = useState(true);
 
     // Fetch posts from Google Sheets via Apps Script
     useEffect(() => {
         fetchBlogPosts()
             .then(setPosts)
-            .catch(() => setPosts([]))
-            .finally(() => setLoading(false));
+            .catch(() => setPosts([]));
     }, []);
 
     const featuredPost = posts.find((p) => p.featured);
