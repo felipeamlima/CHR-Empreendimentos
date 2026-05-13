@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
+import { prefetchPropertyOverrides } from './services/propertiesService';
 import './App.css';
 
 function ScrollToTop() {
@@ -25,6 +26,11 @@ function ScrollToTop() {
 }
 
 function App() {
+  // Warm up the property overrides cache as early as possible
+  useEffect(() => {
+    prefetchPropertyOverrides();
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />

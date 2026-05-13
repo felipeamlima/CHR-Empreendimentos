@@ -10,7 +10,8 @@ const ENDPOINT =
     'https://script.google.com/macros/s/AKfycbzQjh_wCfd0nlUIFDzWxYHV2qof-ZVkv5SjdcoKi38qr_MXwAl2zmEAaB3Pp_FAJNNIDA/exec';
 
 const CACHE_KEY = 'chr_properties_overrides_v1';
-const CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const CACHE_FRESH_MS = 5 * 60 * 1000;   // 5 minutes — fresh, no refresh needed
+const CACHE_MAX_MS = 24 * 60 * 60 * 1000; // 24 hours — stale, still serve but refresh in background
 
 export type PropertyOverride = {
     title?: string;
@@ -135,51 +136,105 @@ const parseRow = (row: RawRow): PropertyOverride | null => {
     return override;
 };
 
-const loadFromCache = (): PropertyOverrideMap | null => {
-    if (typeof sessionStorage === 'undefined') return null;
+type CacheEnvelope = { ts: number; data: PropertyOverrideMap };
+
+const readCache = (): CacheEnvelope | null => {
+    if (typeof localStorage === 'undefined') return null;
     try {
-        const raw = sessionStorage.getItem(CACHE_KEY);
+        const raw = localStorage.getItem(CACHE_KEY);
         if (!raw) return null;
-        const parsed = JSON.parse(raw) as { ts: number; data: PropertyOverrideMap };
-        if (Date.now() - parsed.ts > CACHE_TTL_MS) return null;
-        return parsed.data;
+        const parsed = JSON.parse(raw) as CacheEnvelope;
+        if (!parsed || typeof parsed.ts !== 'number') return null;
+        return parsed;
     } catch {
         return null;
     }
 };
 
-const saveToCache = (data: PropertyOverrideMap) => {
-    if (typeof sessionStorage === 'undefined') return;
+const writeCache = (data: PropertyOverrideMap) => {
+    if (typeof localStorage === 'undefined') return;
     try {
-        sessionStorage.setItem(
-            CACHE_KEY,
-            JSON.stringify({ ts: Date.now(), data }),
-        );
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
     } catch {
         /* ignore quota errors */
     }
 };
 
+// In-memory dedup so multiple components mounting simultaneously share one
+// network request.
+let inflight: Promise<PropertyOverrideMap> | null = null;
+
+async function networkFetch(): Promise<PropertyOverrideMap> {
+    if (!ENDPOINT) return {};
+    const res = await fetch(ENDPOINT, { method: 'GET' });
+    const json = (await res.json()) as { properties?: Record<string, RawRow> };
+    const rows = json.properties ?? {};
+    const result: PropertyOverrideMap = {};
+    for (const [slug, row] of Object.entries(rows)) {
+        const parsed = parseRow({ ...row, slug });
+        if (parsed) result[slug] = parsed;
+    }
+    writeCache(result);
+    return result;
+}
+
+function refreshInBackground() {
+    if (inflight) return;
+    inflight = networkFetch().finally(() => {
+        inflight = null;
+    });
+    // Silence unhandled rejections — caller doesn't await this
+    inflight.catch(() => {});
+}
+
+/**
+ * Stale-while-revalidate:
+ *   - If cached AND fresh (<5min): return cached, do nothing
+ *   - If cached AND stale (5min-24h): return cached IMMEDIATELY, refresh in background
+ *   - If cached AND too old (>24h) or missing: await fresh fetch
+ *   - If network fails: return stale cache or empty
+ */
 export async function fetchPropertyOverrides(): Promise<PropertyOverrideMap> {
     if (!ENDPOINT) return {};
 
-    const cached = loadFromCache();
-    if (cached) return cached;
+    const cached = readCache();
+    const now = Date.now();
 
-    try {
-        const res = await fetch(ENDPOINT, { method: 'GET' });
-        const json = (await res.json()) as { properties?: Record<string, RawRow> };
-        const rows = json.properties ?? {};
-        const result: PropertyOverrideMap = {};
-        for (const [slug, row] of Object.entries(rows)) {
-            const parsed = parseRow({ ...row, slug });
-            if (parsed) result[slug] = parsed;
+    if (cached) {
+        const age = now - cached.ts;
+        if (age < CACHE_FRESH_MS) {
+            // Fresh, no work needed
+            return cached.data;
         }
-        saveToCache(result);
-        return result;
-    } catch {
-        return {};
+        if (age < CACHE_MAX_MS) {
+            // Stale but usable — return immediately, refresh in background
+            refreshInBackground();
+            return cached.data;
+        }
+        // Too old, fall through to await
     }
+
+    if (inflight) return inflight;
+    try {
+        inflight = networkFetch();
+        const data = await inflight;
+        return data;
+    } catch {
+        return cached?.data ?? {};
+    } finally {
+        inflight = null;
+    }
+}
+
+/**
+ * Fire-and-forget prefetch. Call from App root so the data is ready
+ * by the time the user navigates to a property detail page.
+ */
+export function prefetchPropertyOverrides() {
+    if (!ENDPOINT) return;
+    const cached = readCache();
+    const age = cached ? Date.now() - cached.ts : Infinity;
+    if (age >= CACHE_FRESH_MS) refreshInBackground();
 }
 
 /** Merge override fields on top of a base property object. Missing override
