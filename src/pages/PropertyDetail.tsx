@@ -1,5 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
+import {
+    fetchPropertyOverrides,
+    mergeOverride,
+    type PropertyOverrideMap,
+} from '../services/propertiesService';
 import { motion, AnimatePresence, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, Droplet, PiggyBank, Gem, MapPin, Dumbbell, Gamepad2, Coffee, Baby, TreePine, ShieldCheck, Layers, BedDouble, Square, ZoomIn, X, ChevronLeft, ChevronRight, Phone, MessageCircle, ArrowRight } from 'lucide-react';
 import './PropertyDetail.css';
@@ -1605,18 +1610,37 @@ export default function PropertyDetail() {
         window.scrollTo({ top: 0, behavior: 'instant' });
     }, [id]);
 
+    // Fetch overrides from the CHR Empreendimentos Google Sheet (cached 5min)
+    const [overrides, setOverrides] = useState<PropertyOverrideMap>({});
+    useEffect(() => {
+        let cancelled = false;
+        fetchPropertyOverrides().then((map) => {
+            if (!cancelled) setOverrides(map);
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
+
     // Use specific data if ID matches, else fallback to a generic mock
     const baseProperty = id && id in db
         ? db[id as keyof typeof db]
         : { ...db["maranhao"], title: `Empreendimento ${id}`, progress: 50, status: "Em Obras" };
 
-    // Auto-fill plans from public/plants/<slug>/ when the entry has none
+    // Auto-fill plans from public/plants/<slug>/ when the entry has none,
+    // and merge any field overrides coming from the Google Sheet.
     const property = (() => {
         const hasPlans = Array.isArray(baseProperty.plans) && baseProperty.plans.length > 0;
-        if (hasPlans || !id) return baseProperty;
-        const auto = getDefaultPlans(id);
-        if (auto.length === 0) return baseProperty;
-        return { ...baseProperty, plans: auto };
+        const withPlans = hasPlans || !id
+            ? baseProperty
+            : (() => {
+                const auto = getDefaultPlans(id);
+                if (auto.length === 0) return baseProperty;
+                return { ...baseProperty, plans: auto };
+            })();
+
+        const override = id ? overrides[id] : undefined;
+        return mergeOverride(withPlans as Record<string, unknown>, override) as typeof baseProperty;
     })();
 
     // Keyboard navigation for gallery
