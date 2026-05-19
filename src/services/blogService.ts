@@ -78,6 +78,25 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
   ],
 };
 
+// Override explícito por slug — garante imagem única e curada para os
+// artigos publicados conhecidos (evita colisão de hash entre dois slugs
+// que caíam no mesmo índice da pool).
+// Para adicionar novos: basta colocar uma linha aqui com a URL desejada.
+const SLUG_IMAGES: Record<string, string> = {
+  'valorizacao-bairros-bh-2026':
+    'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1100&q=70', // aerial city
+  'engenharia-invisivel-detalhes':
+    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=70', // construção
+  'obra-por-administracao-modelo':
+    'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1100&q=70', // maquete
+  'tendencias-alto-padrao-2026':
+    'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1100&q=70', // biofilia
+  'arquitetura-autoral-valor-patrimonial':
+    'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1100&q=70', // fachada
+  'imovel-planta-ou-pronto':
+    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=70', // chave
+};
+
 function hashSlug(slug: string): number {
   let hash = 0;
   for (let i = 0; i < slug.length; i++) {
@@ -87,6 +106,10 @@ function hashSlug(slug: string): number {
 }
 
 function getImageForArticle(category: string, slug: string): string {
+  // 1. Override explícito por slug (artigos conhecidos)
+  if (slug && SLUG_IMAGES[slug]) return SLUG_IMAGES[slug];
+
+  // 2. Hash do slug no pool da categoria
   const pool = CATEGORY_IMAGES[category] || CATEGORY_IMAGES['Mercado'];
   if (!pool || pool.length === 0) return CATEGORY_IMAGES['Mercado'][0];
   return pool[hashSlug(slug || category) % pool.length];
