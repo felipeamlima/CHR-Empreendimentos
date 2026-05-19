@@ -64,12 +64,17 @@
 }
 
 .post-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 900;
-    line-height: 1.1;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-size: clamp(2.4rem, 6.5vw, 5rem);
+    font-weight: 500;
+    line-height: 1.04;
     margin-bottom: 2rem;
-    letter-spacing: -1px;
+    letter-spacing: -2px;
+    color: #ffffff;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
 }
+
 
 .post-meta-hero {
     display: flex;
@@ -295,12 +300,15 @@
 
 /* ── Subtitle ── */
 .post-subtitle {
-    font-size: 1.2rem;
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 1.8vw, 1.35rem);
     font-style: italic;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 1rem;
-    line-height: 1.6;
-    max-width: 700px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.65);
+    margin: -0.5rem 0 2rem;
+    line-height: 1.5;
+    max-width: 740px;
+    letter-spacing: 0;
 }
 
 /* ── Premium article content (markdown rendered, dark theme) ── */

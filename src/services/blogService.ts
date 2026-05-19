@@ -42,17 +42,54 @@ export type BlogPost = {
   tags?: string[];
 };
 
-// Imagens de capa por categoria (Unsplash, alta qualidade)
-const CATEGORY_IMAGES: Record<string, string> = {
-  'Tendências': 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=70',
-  'Investimento': 'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1100&q=70',
-  'Mercado': 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1100&q=70',
-  'Arquitetura': 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70',
-  'Engenharia CHR': 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1100&q=70',
+// Pool de capas por categoria — cada categoria tem várias opções, e o
+// slug do artigo determina qual delas é usada (hash estável). Assim
+// dois artigos da mesma categoria recebem imagens diferentes.
+const CATEGORY_IMAGES: Record<string, string[]> = {
+  'Tendências': [
+    'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1100&q=70', // biofilia interior
+    'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=70', // moderno
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1100&q=70', // futuro/luz
+    'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1100&q=70', // tendências
+  ],
+  'Investimento': [
+    'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1100&q=70', // aerial city
+    'https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1100&q=70', // skyline
+    'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1100&q=70', // chave casa
+    'https://images.unsplash.com/photo-1565402170291-8491f14678db?auto=format&fit=crop&w=1100&q=70', // gráfico mercado
+  ],
+  'Mercado': [
+    'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1100&q=70', // modelo casa
+    'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1100&q=70', // edifício moderno
+    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=70', // skyscrapers
+    'https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=1100&q=70', // negociação
+  ],
+  'Arquitetura': [
+    'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1100&q=70', // fachada concreto
+    'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70', // interior arquitetura
+    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1100&q=70', // arquitetura aérea
+    'https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?auto=format&fit=crop&w=1100&q=70', // detalhe arquitetônico
+  ],
+  'Engenharia CHR': [
+    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=70', // construção
+    'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1100&q=70', // industrial
+    'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1100&q=70', // obra
+    'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1100&q=70', // estrutura
+  ],
 };
 
-function getImageForCategory(category: string): string {
-  return CATEGORY_IMAGES[category] || CATEGORY_IMAGES['Mercado'];
+function hashSlug(slug: string): number {
+  let hash = 0;
+  for (let i = 0; i < slug.length; i++) {
+    hash = (hash * 31 + slug.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function getImageForArticle(category: string, slug: string): string {
+  const pool = CATEGORY_IMAGES[category] || CATEGORY_IMAGES['Mercado'];
+  if (!pool || pool.length === 0) return CATEGORY_IMAGES['Mercado'][0];
+  return pool[hashSlug(slug || category) % pool.length];
 }
 
 function formatDate(dateStr: string): string {
@@ -72,12 +109,21 @@ function formatDate(dateStr: string): string {
 }
 
 function articleToPost(article: BlogArticle, index: number): BlogPost {
+  const slug = article.slug || `artigo-${index}`;
+  const categoria = article.categoria || 'Mercado';
+  // Se a planilha tiver uma coluna "Imagem" no futuro (article.imagem), usa
+  // ela. Senão escolhe deterministicamente do pool da categoria pelo slug.
+  const imagem = (article as unknown as { imagem?: string }).imagem;
+  const image = imagem && imagem.startsWith('http')
+    ? imagem
+    : getImageForArticle(categoria, slug);
+
   return {
-    id: article.slug || `artigo-${index}`,
+    id: slug,
     title: article.titulo,
     excerpt: article.resumoCard || article.subtitulo || '',
-    image: getImageForCategory(article.categoria),
-    category: article.categoria || 'Mercado',
+    image,
+    category: categoria,
     date: formatDate(article.data),
     readTime: article.tempoLeitura || '8 min',
     featured: index === 0,
@@ -191,7 +237,7 @@ function getFallbackPosts(): BlogPost[] {
       title: 'A nova geografia de valor de BH',
       subtitle: 'Funcionários, Sion e Lourdes: o que os dados revelam sobre os bairros mais disputados da zona sul',
       excerpt: 'Os dados por trás dos bairros mais disputados de BH — e o que isso significa para quem investe.',
-      image: CATEGORY_IMAGES['Investimento'],
+      image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1100&q=70',
       category: 'Investimento',
       date: '05 Mai · 2026',
       readTime: '14 min',
@@ -267,7 +313,7 @@ Para a CHR, escolher o terreno é o primeiro ato de engenharia. Não se trata ap
       title: 'A engenharia invisível',
       subtitle: 'Os detalhes construtivos que o cliente não vê, mas sente ao longo dos anos',
       excerpt: 'As decisões técnicas tomadas no canteiro de obras definem o valor patrimonial décadas após a entrega.',
-      image: CATEGORY_IMAGES['Engenharia CHR'],
+      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=70',
       category: 'Engenharia CHR',
       date: '12 Mai · 2026',
       readTime: '12 min',
@@ -331,7 +377,7 @@ Para a CHR, a excelência construtiva não é um diferencial de marketing — é
       title: 'Obra por administração',
       subtitle: 'O modelo que alinha transparência, qualidade e inteligência financeira',
       excerpt: 'Transparência total e controle de custos ao comprador. Por que construtoras de referência adotam esse modelo.',
-      image: CATEGORY_IMAGES['Mercado'],
+      image: 'https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1100&q=70',
       category: 'Mercado',
       date: '28 Abr · 2026',
       readTime: '11 min',
@@ -388,7 +434,7 @@ A CHR Engenharia adota o modelo de obra por administração por convicção, nã
       title: 'As tendências do alto padrão em 2026',
       subtitle: 'Biofilia, automação e materiais de baixo carbono redefinindo o luxo residencial',
       excerpt: 'Como o mercado premium está absorvendo inovações de design, tecnologia e sustentabilidade — e o que isso significa para quem compra.',
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70',
+      image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1100&q=70',
       category: 'Tendências',
       date: '08 Mai · 2026',
       readTime: '10 min',
@@ -457,7 +503,7 @@ A CHR Engenharia acompanha essas tendências com uma premissa clara: incorporar 
       title: 'Quando a fachada conta uma história',
       subtitle: 'O valor da arquitetura autoral no mercado imobiliário de alto padrão',
       excerpt: 'Edifícios com identidade própria se valorizam mais e envelhecem melhor. Uma análise do impacto da arquitetura autoral em BH.',
-      image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=70',
+      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1100&q=70',
       category: 'Arquitetura',
       date: '22 Abr · 2026',
       readTime: '11 min',
