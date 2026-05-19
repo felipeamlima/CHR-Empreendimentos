@@ -853,7 +853,6 @@
     -webkit-box-orient: vertical;
     line-clamp: 2;
     overflow: hidden;
-    min-height: calc(1.7rem * 1.15 * 2);
 }
 
 .luxury-card-title a {
