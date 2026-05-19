@@ -841,11 +841,17 @@
 
 .luxury-card-title {
     font-family: var(--font-heading);
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 800;
-    line-height: 1.32;
+    line-height: 1.28;
     margin: 0 0 1rem;
-    letter-spacing: -0.4px;
+    letter-spacing: -0.5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+    min-height: calc(1.25rem * 1.28 * 2);
 }
 
 .luxury-card-title a {
