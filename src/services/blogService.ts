@@ -110,22 +110,62 @@ function fetchWithTimeout(url: string, ms: number): Promise<Response> {
   return fetch(url, { signal: controller.signal }).finally(() => clearTimeout(timer));
 }
 
+// Sanity check — drop API articles that look broken (empty title/content,
+// stub-length body, missing slug, etc.) so corrupted sheet rows don't
+// overwrite the good local fallback content.
+function isValidPost(p: BlogPost): boolean {
+  return !!(
+    p.id &&
+    p.id.length > 2 &&
+    p.title &&
+    p.title.length > 5 &&
+    p.content &&
+    p.content.length > 400
+  );
+}
+
 export async function fetchBlogPosts(): Promise<BlogPost[]> {
   if (cachedPosts && Date.now() - cacheTime < CACHE_TTL) {
     return cachedPosts;
   }
+
+  const local = getFallbackPosts();
 
   try {
     const response = await fetchWithTimeout(BLOG_API_URL, API_TIMEOUT);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
     const articles: BlogArticle[] = data.artigos || [];
-    if (articles.length === 0) return getFallbackPosts();
-    cachedPosts = articles.map((a, i) => articleToPost(a, i));
+
+    // Convert + filter only the valid API articles
+    const apiPosts = articles
+      .map((a, i) => articleToPost(a, i))
+      .filter(isValidPost);
+
+    if (apiPosts.length === 0) {
+      cachedPosts = local;
+      cacheTime = Date.now();
+      return cachedPosts;
+    }
+
+    // Merge: API posts come first (newest), local fills in for any slug
+    // the API doesn't have. API overrides local when slugs match.
+    const apiSlugs = new Set(apiPosts.map((p) => p.id));
+    const merged = [
+      ...apiPosts,
+      ...local.filter((p) => !apiSlugs.has(p.id)),
+    ];
+
+    // Re-mark featured (first one only)
+    merged.forEach((p, i) => {
+      p.featured = i === 0;
+    });
+
+    cachedPosts = merged;
     cacheTime = Date.now();
     return cachedPosts;
   } catch {
-    return getFallbackPosts();
+    return local;
   }
 }
 

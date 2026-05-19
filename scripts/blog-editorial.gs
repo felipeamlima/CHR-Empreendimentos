@@ -57,44 +57,46 @@ function setupWeeklyTrigger() {
 
 function gerarArtigoSemanal() {
   try {
-    Logger.log('🚀 Iniciando geração editorial semanal (3 artigos)...');
-    
+    Logger.log('🚀 Iniciando geração editorial semanal (1 artigo)...');
+
     // 1. Buscar notícias recentes (gratuito — RSS)
     const noticias = buscarNoticias();
     Logger.log(`📰 ${noticias.length} notícias encontradas (custo: $0)`);
-    
-    // 2. Sugerir 3 pautas com IA (~$0.01)
-    const pautas = sugerirPautas(noticias);
-    Logger.log(`📋 ${pautas.length} pautas sugeridas`);
-    
-    const todasPautas = pautas.map((p, i) => `${i+1}. ${p.titulo} (${p.categoria})`).join('\n');
-    const artigosGerados = [];
-    
-    // 3. Gerar artigo + SEO para cada pauta (~$0.10 por artigo)
-    for (let i = 0; i < pautas.length; i++) {
-      const pauta = pautas[i];
-      Logger.log(`✍️ Gerando artigo ${i+1}/3: ${pauta.titulo}`);
-      
-      try {
-        const artigo = gerarArtigo(pauta);
-        const seo = gerarSEO(artigo);
-        salvarRascunho(pauta, artigo, seo, todasPautas);
-        artigosGerados.push({ pauta, seo });
-        Logger.log(`✅ Artigo ${i+1} salvo: ${pauta.titulo}`);
-      } catch (errArtigo) {
-        Logger.log(`⚠️ Erro no artigo ${i+1}: ${errArtigo.message}`);
-        // Continua para o próximo artigo
-      }
+
+    // 2. Sugerir 3 pautas com IA — usamos só a primeira; as outras 2 ficam
+    //    listadas como "pautas alternativas" no email para você escolher
+    //    semana que vem se quiser
+    const pautasSugeridas = sugerirPautas(noticias);
+    Logger.log(`📋 ${pautasSugeridas.length} pautas sugeridas — usando a 1ª`);
+
+    if (!pautasSugeridas.length) {
+      Logger.log('⚠️ Nenhuma pauta sugerida — abortando');
+      return;
     }
-    
-    // 4. Notificar por e-mail (resumo dos 3 artigos)
-    if (artigosGerados.length > 0) {
-      notificarEquipe3Artigos(artigosGerados, todasPautas);
-      Logger.log('📧 Notificação enviada');
+
+    const todasPautas = pautasSugeridas
+      .map((p, i) => `${i + 1}. ${p.titulo} (${p.categoria})`)
+      .join('\n');
+
+    const pauta = pautasSugeridas[0];
+    Logger.log(`✍️ Gerando artigo: ${pauta.titulo}`);
+
+    const artigo = gerarArtigo(pauta);
+    const seo = gerarSEO(artigo);
+
+    // Validação básica antes de salvar — não polui a planilha com lixo
+    if (!artigo || artigo.length < 500 || !seo || !seo.slug) {
+      throw new Error('Artigo gerado parece incompleto — abortando antes de salvar');
     }
-    
-    Logger.log(`✅ Geração concluída: ${artigosGerados.length} artigos salvos (~US$${(artigosGerados.length * 0.10).toFixed(2)})`);
-    
+
+    salvarRascunho(pauta, artigo, seo, todasPautas);
+    Logger.log(`✅ Artigo salvo: ${pauta.titulo}`);
+
+    notificarEquipe(pauta, seo, todasPautas);
+    Logger.log('📧 Notificação enviada');
+
+    Logger.log(`✅ Geração concluída (~US$0.10)`);
+
   } catch (error) {
     Logger.log('❌ Erro: ' + error.message);
     MailApp.sendEmail({
@@ -460,17 +462,28 @@ function doGet(e) {
     for (let i = 1; i < data.length; i++) {
       const row = data[i];
       const status = String(row[1] || '').trim();
-      
+
       // Só retorna artigos com status "Publicado"
       if (status !== 'Publicado') continue;
-      
-      const artigo = {
+
+      const titulo = String(row[2] || '').trim();
+      const slug = String(row[5] || '').trim();
+      const artigoCompleto = String(row[13] || '').trim();
+
+      // Validação: linha tem que ter título, slug E conteúdo mínimo.
+      // Isso evita servir rascunhos vazios ou linhas corrompidas que
+      // poderiam sobrescrever o conteúdo bom no site.
+      if (!titulo || titulo.length < 6) continue;
+      if (!slug || slug.length < 3) continue;
+      if (!artigoCompleto || artigoCompleto.length < 400) continue;
+
+      artigos.push({
         data: row[0],
         status: row[1],
-        titulo: row[2],
+        titulo: titulo,
         subtitulo: row[3],
         categoria: row[4],
-        slug: row[5],
+        slug: slug,
         metaTitle: row[6],
         metaDescription: row[7],
         tags: row[8] ? String(row[8]).split(',').map(t => t.trim()) : [],
@@ -478,12 +491,10 @@ function doGet(e) {
         tempoLeitura: row[10],
         resumoCard: row[11],
         chamadaSocial: row[12],
-        artigoCompleto: row[13],
+        artigoCompleto: artigoCompleto,
         sugestaoImagens: row[14],
         pautasAlternativas: row[15],
-      };
-      
-      artigos.push(artigo);
+      });
     }
     
     // Se pediu um artigo específico por slug
