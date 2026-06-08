@@ -125,6 +125,15 @@ function formatDate(dateStr: string): string {
       const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
       return `${day} ${months[parseInt(month) - 1]} · ${year}`;
     }
+    // Handle ISO date format "2026-04-22T12:00:00.000Z"
+    if (dateStr.includes('T') && dateStr.includes('-')) {
+      const date = new Date(dateStr);
+      const day = date.getUTCDate().toString().padStart(2, '0');
+      const months = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+      const month = months[date.getUTCMonth()];
+      const year = date.getUTCFullYear();
+      return `${day} ${month} · ${year}`;
+    }
     return dateStr;
   } catch {
     return dateStr;
