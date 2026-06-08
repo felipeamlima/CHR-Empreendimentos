@@ -38,6 +38,58 @@
 
     <!-- Robots -->
     <meta name="robots" content="index, follow" />
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CHR Empreendimentos e Construções",
+      "url": "https://chrconstrutora.com.br",
+      "logo": "https://chrconstrutora.com.br/logo.png",
+      "description": "Construtora especializada em empreendimentos residenciais e comerciais de alto padrão.",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Structured Data: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "CHR Empreendimentos e Construções",
+      "url": "https://chrconstrutora.com.br"
+    }
+    </script>
+
+    <!-- Structured Data: SiteNavigationElement (orienta os sitelinks do Google) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Empreendimentos",
+          "url": "https://chrconstrutora.com.br/empreendimentos"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Sobre",
+          "url": "https://chrconstrutora.com.br/sobre"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Blog",
+          "url": "https://chrconstrutora.com.br/blog"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "name": "Contato",
+          "url": "https://chrconstrutora.com.br/contato"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
