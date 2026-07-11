@@ -835,6 +835,40 @@ const db = {
         gallery: ["/gallery/arnaldo-xavier/1.jpg", "/gallery/arnaldo-xavier/2.jpg"],
         plans: []
     },
+    "vincentina-de-souza": {
+        title: "Edifício\nVincentina de Souza", location: "Rua Vincentina de Souza, 138 - Sagrada Família",
+        status: "Lançamento", progress: 0,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 0 },
+            { name: "Fundações", v: 0 },
+            { name: "Superestrutura", v: 0 },
+            { name: "Alvenaria", v: 0 },
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
+        ],
+        images: ["/gallery/vincentina-de-souza/1.jpeg"],
+        specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas", floors: "A Definir", units: "17 Unidades", leisure: "Sem Área de Lazer" },
+        desc: "O Edifício Vincentina de Souza é o novo lançamento da CHR no coração do bairro Sagrada Família, um dos bairros mais tradicionais e valorizados da Região Leste de Belo Horizonte. Com 17 unidades distribuídas entre apartamentos de 1, 2 e 3 quartos — incluindo cobertura exclusiva de 3 quartos —, o projeto une plantas inteligentes e acabamento de alto padrão em uma localização privilegiada. A poucos minutos do Centro, com acesso facilitado pelas avenidas Silviano Brandão e Cristiano Machado, o empreendimento está cercado por uma infraestrutura completa de comércio, escolas, hospitais e serviços. Ideal para moradia ou investimento, com alta liquidez para locação graças à proximidade com faculdades e centros empresariais.",
+        differentials: [
+            "17 Unidades Exclusivas",
+            "1, 2 e 3 Quartos",
+            "Cobertura de 3 Quartos",
+            "8 Unidades de 1 Quarto",
+            "Sagrada Família — Bairro Valorizado",
+            "Condomínio Econômico",
+            "Água e Gás Individualizados",
+            "Acabamento de Alto Padrão"
+        ],
+        gallery: ["/gallery/vincentina-de-souza/1.jpeg", "/gallery/vincentina-de-souza/2.jpeg", "/gallery/vincentina-de-souza/3.jpeg", "/gallery/vincentina-de-souza/4.jpeg"],
+        plans: [
+            { name: "Planta 1", image: "/plants/vincentina-de-souza/1.jpeg" },
+            { name: "Planta 2", image: "/plants/vincentina-de-souza/2.jpeg" },
+            { name: "Planta 3", image: "/plants/vincentina-de-souza/3.jpeg" },
+            { name: "Planta 4", image: "/plants/vincentina-de-souza/4.jpeg" },
+            { name: "Planta 5", image: "/plants/vincentina-de-souza/5.jpeg" },
+            { name: "Planta 6", image: "/plants/vincentina-de-souza/6.jpeg" }
+        ]
+    },
     "sao-roque": {
         title: "Edifício\nSão Roque", location: "Rua São Roque, 620 - Sagrada Família",
         status: "Concluído", progress: 100,

@@ -1,0 +1,165 @@
+{
+  "name": "CHR Atendimento",
+  "nodes": [
+    {
+      "id": "1",
+      "name": "Webhook Atendimento",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chr-atendimento",
+        "responseMode": "responseNode",
+        "options": {}
+      }
+    },
+    {
+      "id": "2",
+      "name": "Preparar Dados",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [500, 300],
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f1",
+              "name": "nome",
+              "value": "={{ $json.body.nome }}",
+              "type": "string"
+            },
+            {
+              "id": "f2",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "f3",
+              "name": "telefone",
+              "value": "={{ $json.body.telefone }}",
+              "type": "string"
+            },
+            {
+              "id": "f4",
+              "name": "interesse",
+              "value": "={{ $json.body.interesse }}",
+              "type": "string"
+            },
+            {
+              "id": "f5",
+              "name": "imovel",
+              "value": "={{ $json.body.imovel }}",
+              "type": "string"
+            },
+            {
+              "id": "f6",
+              "name": "pagina",
+              "value": "={{ $json.body.pagina }}",
+              "type": "string"
+            },
+            {
+              "id": "f7",
+              "name": "data",
+              "value": "={{ $now.format('dd/MM/yyyy HH:mm') }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "3",
+      "name": "Salvar no Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [760, 300],
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "SEU_SPREADSHEET_ID_AQUI",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "CHR Atendimento",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data": "={{ $json.data }}",
+            "Nome": "={{ $json.nome }}",
+            "Email": "={{ $json.email }}",
+            "Telefone": "={{ $json.telefone }}",
+            "Imóvel de Interesse": "={{ $json.imovel }}",
+            "Mensagem": "={{ $json.interesse }}",
+            "Página": "={{ $json.pagina }}"
+          },
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "4",
+      "name": "Enviar E-mail Notificação",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1020, 300],
+      "parameters": {
+        "operation": "send",
+        "sendTo": "SEU_EMAIL_DESTINO@gmail.com",
+        "subject": "=🏠 Novo Lead CHR — {{ $('Preparar Dados').item.json.imovel }}",
+        "emailType": "html",
+        "message": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 0;\">\n  <div style=\"background: #1a1a1a; padding: 24px 32px; border-radius: 8px 8px 0 0;\">\n    <h2 style=\"color: #c8b87a; margin: 0; font-size: 18px; letter-spacing: 2px; text-transform: uppercase;\">CHR Construtora</h2>\n    <p style=\"color: #888; margin: 4px 0 0; font-size: 12px; letter-spacing: 1px;\">NOVO LEAD — SOLICITAÇÃO DE ATENDIMENTO</p>\n  </div>\n  <div style=\"background: #ffffff; padding: 32px; border-radius: 0 0 8px 8px;\">\n    <h3 style=\"color: #1a1a1a; margin: 0 0 24px; font-size: 22px;\">{{ $('Preparar Dados').item.json.nome }}</h3>\n    <table style=\"width: 100%; border-collapse: collapse;\">\n      <tr style=\"border-bottom: 1px solid #f0f0f0;\">\n        <td style=\"padding: 12px 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; width: 140px;\">Empreendimento</td>\n        <td style=\"padding: 12px 0; color: #1a1a1a; font-weight: 600;\">{{ $('Preparar Dados').item.json.imovel }}</td>\n      </tr>\n      <tr style=\"border-bottom: 1px solid #f0f0f0;\">\n        <td style=\"padding: 12px 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;\">E-mail</td>\n        <td style=\"padding: 12px 0; color: #1a1a1a;\"><a href=\"mailto:{{ $('Preparar Dados').item.json.email }}\" style=\"color: #c8b87a;\">{{ $('Preparar Dados').item.json.email }}</a></td>\n      </tr>\n      <tr style=\"border-bottom: 1px solid #f0f0f0;\">\n        <td style=\"padding: 12px 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;\">Telefone</td>\n        <td style=\"padding: 12px 0; color: #1a1a1a;\"><a href=\"tel:{{ $('Preparar Dados').item.json.telefone }}\" style=\"color: #c8b87a;\">{{ $('Preparar Dados').item.json.telefone }}</a></td>\n      </tr>\n      <tr style=\"border-bottom: 1px solid #f0f0f0;\">\n        <td style=\"padding: 12px 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;\">Data</td>\n        <td style=\"padding: 12px 0; color: #1a1a1a;\">{{ $('Preparar Dados').item.json.data }}</td>\n      </tr>\n      <tr>\n        <td style=\"padding: 12px 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;\">Mensagem</td>\n        <td style=\"padding: 12px 0; color: #1a1a1a;\">{{ $('Preparar Dados').item.json.interesse || '(sem mensagem)' }}</td>\n      </tr>\n    </table>\n    <div style=\"margin-top: 28px; padding: 16px; background: #f5f5f5; border-radius: 6px;\">\n      <p style=\"margin: 0; font-size: 11px; color: #999;\">Página de origem: {{ $('Preparar Dados').item.json.pagina }}</p>\n    </div>\n    <div style=\"margin-top: 24px; text-align: center;\">\n      <a href=\"https://wa.me/55{{ $('Preparar Dados').item.json.telefone | replace(/\\D/g, '') }}?text=Olá {{ $('Preparar Dados').item.json.nome }}, tudo bem? Vi sua solicitação sobre {{ $('Preparar Dados').item.json.imovel }} e gostaria de te atender!\" style=\"display: inline-block; background: #25D366; color: white; text-decoration: none; padding: 12px 28px; border-radius: 6px; font-weight: 600; font-size: 14px;\">💬 Responder via WhatsApp</a>\n    </div>\n  </div>\n</div>",
+        "options": {}
+      }
+    },
+    {
+      "id": "5",
+      "name": "Responder OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1280, 300],
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"success\": true, \"message\": \"Lead registrado com sucesso!\" }",
+        "options": {
+          "responseCode": 200
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Webhook Atendimento": {
+      "main": [
+        [{ "node": "Preparar Dados", "type": "main", "index": 0 }]
+      ]
+    },
+    "Preparar Dados": {
+      "main": [
+        [{ "node": "Salvar no Google Sheets", "type": "main", "index": 0 }]
+      ]
+    },
+    "Salvar no Google Sheets": {
+      "main": [
+        [{ "node": "Enviar E-mail Notificação", "type": "main", "index": 0 }]
+      ]
+    },
+    "Enviar E-mail Notificação": {
+      "main": [
+        [{ "node": "Responder OK", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  }
+}

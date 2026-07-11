@@ -126,6 +126,11 @@ const allProperties: PropertyProps[] = [
         status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
+        id: "vincentina-de-souza", title: "Edifício Vincentina de Souza", location: "Rua Vincentina de Souza, 138 - Sagrada Família",
+        image: "/gallery/vincentina-de-souza/1.jpeg",
+        status: "Lançamento", specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "1 e 2 Vagas" }
+    },
+    {
         id: "arnaldo-xavier", title: "Edifício Arnaldo Xavier", location: "Rua Francisco Bressane, 152 - Floresta",
         image: "/gallery/arnaldo-xavier/1.jpg",
         status: "Em Obras", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
