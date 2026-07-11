@@ -65,7 +65,9 @@ const num = (v: unknown): number | undefined => {
 
 const str = (v: unknown): string | undefined => {
     if (v === '' || v === null || v === undefined) return undefined;
-    return String(v);
+    const s = String(v).trim();
+    if (s === '') return undefined;
+    return s;
 };
 
 const parseRow = (row: RawRow): PropertyOverride | null => {
