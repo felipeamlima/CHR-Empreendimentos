@@ -81,7 +81,7 @@ const db = {
     },
     "sion-prime": {
         title: "Sion Prime", location: "Rua Laranjal 129 e 139, Bairro Sion, Belo Horizonte",
-        status: "Lançamento", progress: 8,
+        status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 50 },
             { name: "Fundações", v: 0 },
@@ -136,7 +136,7 @@ const db = {
     },
     "sao-domingos": {
         title: "Edifício\nE. Pinheiro", location: "Rua São Domingos do Prata, 119 - São Pedro",
-        status: "Em Obras", progress: 41,
+        status: "Em Obras", progress: 42,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
@@ -297,7 +297,7 @@ const db = {
     },
     "studio-aimores": {
         title: "Studio\nAimorés", location: "Rua Aimorés - Funcionários",
-        status: "Em Obras", progress: 0,
+        status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -324,7 +324,7 @@ const db = {
     },
     "major-lopes": {
         title: "Edifício\nF. Duarte Vidigal", location: "Rua Major Lopes, 142 - São Pedro",
-        status: "Em Obras", progress: 46,
+        status: "Em Obras", progress: 60,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },
@@ -567,7 +567,7 @@ const db = {
     },
     "enio-soares": {
         title: "Edifício\nEnio Soares", location: "Rua Conselheiro Lafaiete, 497 - Sagrada Família",
-        status: "Em Obras", progress: 0,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -594,7 +594,7 @@ const db = {
     },
     "isabela-lima": {
         title: "Edifício\nIsabela Lima", location: "Rua Jaime Gomes, 76 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -621,7 +621,7 @@ const db = {
     },
     "sao-pedro": {
         title: "Edifício\nSão Pedro", location: "Rua Mestre Luiz, 76 - São Pedro",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -648,7 +648,7 @@ const db = {
     },
     "chicago": {
         title: "Edifício\nChicago", location: "Rua Chicago, 295 - Sion",
-        status: "Em Obras", progress: 0,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -675,7 +675,7 @@ const db = {
     },
     "dom-vital": {
         title: "Edifício\nDom Vital", location: "Rua Dom Vital, 47 - Anchieta",
-        status: "Em Obras", progress: 0,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -702,7 +702,7 @@ const db = {
     },
     "amaro-linari": {
         title: "Edifício Eng.\nAmaro Linari", location: "Rua Engenheiro Amaro Linari, 366 - Sion",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -729,7 +729,7 @@ const db = {
     },
     "francisco-bressane": {
         title: "Edifício CHR\nFrancisco Bressane", location: "Rua Francisco Bressane, 119 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -756,7 +756,7 @@ const db = {
     },
     "machado-lima": {
         title: "Edifício\nMachado Lima", location: "Rua Francisco Bressane, 142 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -783,7 +783,7 @@ const db = {
     },
     "jardins-do-prado": {
         title: "Edifício\nJardins do Prado", location: "Rua Contria, 444 - Prado",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -810,7 +810,7 @@ const db = {
     },
     "arnaldo-xavier": {
         title: "Edifício\nArnaldo Xavier", location: "Rua Francisco Bressane, 152 - Floresta",
-        status: "Em Obras", progress: 0,
+        status: "Concluído", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
             { name: "Fundações", v: 0 },
@@ -1202,7 +1202,7 @@ const db = {
     },
     "getulio-vargas": {
         title: "Edifício CHR\nGetúlio Vargas", location: "Avenida Getúlio Vargas, 58 - Funcionários",
-        status: "Concluído", progress: 100,
+        status: "Últimas Unidades", progress: 100,
         progressStages: [
             { name: "Preparo do Terreno", v: 100 },
             { name: "Fundações", v: 100 },

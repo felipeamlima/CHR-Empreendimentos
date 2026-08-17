@@ -48,7 +48,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "studio-aimores", title: "Studio Aimorés", location: "Rua Aimorés - Funcionários",
         image: "/gallery/aimores/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "Studio", parking: "A Definir" }
+        status: "Lançamento", specs: { area: "A Definir", beds: "Studio", parking: "A Definir" }
     },
     {
         id: "stela-de-souza", title: "Studio Stela de Souza", location: "Rua Stela de Souza, 107 - Sagrada Família",
@@ -83,47 +83,47 @@ const allProperties: PropertyProps[] = [
     {
         id: "enio-soares", title: "Edifício Enio Soares", location: "Rua Conselheiro Lafaiete, 497 - Sagrada Família",
         image: "/gallery/enio-soares/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Últimas Unidades", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "isabela-lima", title: "Edifício Isabela Lima", location: "Rua Jaime Gomes, 76 - Floresta",
         image: "/gallery/isabela-lima/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "A Definir", parking: "A Definir" }
+        status: "Concluído", specs: { area: "A Definir", beds: "A Definir", parking: "A Definir" }
     },
     {
         id: "sao-pedro", title: "Edifício São Pedro", location: "Rua Mestre Luiz, 76 - São Pedro",
         image: "/gallery/sao-pedro/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Concluído", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "chicago", title: "Edifício Chicago", location: "Rua Chicago, 295 - Sion",
         image: "/gallery/chicago/1.JPG",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Últimas Unidades", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "dom-vital", title: "Edifício Dom Vital", location: "Rua Dom Vital, 47 - Anchieta",
         image: "/gallery/dom-vital/1.jpg",
-        status: "Em Obras", specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 a 2 Vagas" }
+        status: "Últimas Unidades", specs: { area: "37 a 75m²", beds: "1 Quarto", parking: "1 a 2 Vagas" }
     },
     {
         id: "amaro-linari", title: "Edifício Eng. Amaro Linari", location: "Rua Engenheiro Amaro Linari, 366 - Sion",
         image: "/gallery/amaro-linari/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Concluído", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "francisco-bressane", title: "Edifício CHR Francisco Bressane", location: "Rua Francisco Bressane, 119 - Floresta",
         image: "/gallery/francisco-bressane/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Últimas Unidades", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "machado-lima", title: "Edifício Machado Lima", location: "Rua Francisco Bressane, 142 - Floresta",
         image: "/gallery/machado-lima/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Últimas Unidades", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "jardins-do-prado", title: "Edifício Jardins do Prado", location: "Rua Contria, 444 - Prado",
         image: "/gallery/jardins-do-prado/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
+        status: "Concluído", specs: { area: "A Definir", beds: "2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "vincentina-de-souza", title: "Edifício Vincentina de Souza", location: "Rua Vincentina de Souza, 138 - Sagrada Família",
@@ -133,7 +133,7 @@ const allProperties: PropertyProps[] = [
     {
         id: "arnaldo-xavier", title: "Edifício Arnaldo Xavier", location: "Rua Francisco Bressane, 152 - Floresta",
         image: "/gallery/arnaldo-xavier/1.jpg",
-        status: "Em Obras", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
+        status: "Concluído", specs: { area: "A Definir", beds: "1 e 2 Quartos", parking: "1 e 2 Vagas" }
     },
 ];
 
@@ -216,7 +216,7 @@ const completedProperties: PropertyProps[] = [
     {
         id: "getulio-vargas", title: "Edifício CHR Getúlio Vargas", location: "Avenida Getulio Vargas, 58 - Funcionários",
         image: "/gallery/getulio-vargas/1.jpg",
-        status: "Concluído", specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir" }
+        status: "Últimas Unidades", specs: { area: "A Definir", beds: "1, 2 e 3 Quartos", parking: "A Definir" }
     },
     {
         id: "waldir-chaves", title: "Edifício Waldir Chaves", location: "Rua Caldeira Brant, 371 - Sagrada Família",

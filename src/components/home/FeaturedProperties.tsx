@@ -11,7 +11,7 @@ const mockProperties: PropertyProps[] = [
         title: 'Edifício Maranhão',
         location: 'Funcionários · Belo Horizonte',
         image: '/gallery/maranhao/maranhao1.jpg',
-        status: 'Em Obras',
+        status: 'Lançamento',
         specs: { area: '68m² a 182m²', beds: '2 e 3 Quartos', parking: '1 e 2 Vagas' },
     },
     {
