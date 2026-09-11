@@ -15,6 +15,11 @@ const allProperties: PropertyProps[] = [
         status: "Lançamento", specs: { area: "68m² a 182m²", beds: "2 e 3 Quartos", parking: "1 e 2 Vagas" }
     },
     {
+        id: "helena-borges", title: "Edifício Helena Borges", location: "Belo Horizonte",
+        image: "/gallery/helena-borges/1.png",
+        status: "Lançamento", specs: { area: "-", beds: "-", parking: "-" }
+    },
+    {
         id: "sion-prime", title: "Sion Prime", location: "Sion, Belo Horizonte",
         image: "/gallery/sion-prime/1.jpg",
         status: "Lançamento", specs: { area: "57 a 140m²", beds: "2 e 3 Quartos", parking: "2 Vagas" }

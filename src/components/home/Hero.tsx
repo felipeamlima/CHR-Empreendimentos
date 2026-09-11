@@ -27,11 +27,11 @@ const slides = [
         subtitle: "Excelente localização no São Pedro."
     },
     {
-        id: "studio-aimores",
-        image: "/gallery/aimores/1.jpg",
+        id: "helena-borges",
+        image: "/gallery/helena-borges/1.png",
         badge: "Lançamento",
-        title: "Studio\nAimorés",
-        subtitle: "Design contemporâneo e praticidade no Funcionários."
+        title: "Edifício\nHelena Borges",
+        subtitle: "Lançamento no melhor da cidade."
     },
     {
         id: "mar-de-espanha",
