@@ -2068,8 +2068,16 @@ export default function PropertyDetail() {
 
                         {/* Address block */}
                         <div className="loc-premium-card-address">
-                            <strong>{property.location.split(',')[0]?.split('-')[0]?.trim()}</strong>
-                            <span>{property.location.split('-')[1]?.trim() || property.location.split(',')[1]?.trim()}</span>
+                            <strong>
+                                {property.location.includes('-')
+                                    ? property.location.split('-')[0].trim()
+                                    : property.location.split(',')[0]?.trim()}
+                            </strong>
+                            <span>
+                                {property.location.includes('-')
+                                    ? property.location.split('-').slice(1).join('-').trim()
+                                    : property.location.split(',').slice(1).join(',').trim()}
+                            </span>
                             <span className="loc-premium-card-city">Belo Horizonte — Minas Gerais</span>
                         </div>
 
