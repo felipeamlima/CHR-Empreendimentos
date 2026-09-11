@@ -254,6 +254,7 @@ export function mergeOverride<T extends Record<string, unknown>>(
     if (override.desc !== undefined) result.desc = override.desc;
     if (override.differentials !== undefined) result.differentials = override.differentials;
     if (override.progressStages !== undefined) result.progressStages = override.progressStages;
+    if (override.visible !== undefined) result.visible = override.visible;
     if (override.specs !== undefined) {
         result.specs = { ...(base.specs as object | undefined), ...override.specs };
     }

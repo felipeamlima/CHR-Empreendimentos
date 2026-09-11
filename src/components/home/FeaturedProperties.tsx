@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PropertyCard, { type PropertyProps } from '../ui/PropertyCard';
+import {
+    fetchPropertyOverrides,
+    type PropertyOverrideMap,
+} from '../../services/propertiesService';
 import './FeaturedProperties.css';
 
 const mockProperties: PropertyProps[] = [
@@ -37,10 +41,31 @@ const filters = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portf
 export default function FeaturedProperties() {
     const [activeFilter, setActiveFilter] = useState('Todos');
 
-    const filtered =
-        activeFilter === 'Todos'
-            ? mockProperties
-            : mockProperties.filter((p) => p.status === activeFilter);
+    const [overrides, setOverrides] = useState<PropertyOverrideMap>({});
+    useEffect(() => {
+        let cancelled = false;
+        fetchPropertyOverrides().then((map) => {
+            if (!cancelled) setOverrides(map);
+        });
+        return () => { cancelled = true; };
+    }, []);
+
+    const filtered = useMemo(() => {
+        return mockProperties
+            .filter((p) => {
+                const ov = overrides[p.id];
+                if (ov?.visible === false) return false;
+                const effectiveStatus = ov?.status ?? p.status;
+                return activeFilter === 'Todos' || effectiveStatus === activeFilter;
+            })
+            .map((p) => {
+                const ov = overrides[p.id];
+                if (ov?.status && ov.status !== p.status) {
+                    return { ...p, status: ov.status };
+                }
+                return p;
+            });
+    }, [activeFilter, overrides]);
 
     return (
         <section className="featured-experience-dark">

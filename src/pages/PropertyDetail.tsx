@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import {
     fetchPropertyOverrides,
@@ -1677,6 +1677,12 @@ export default function PropertyDetail() {
         return mergeOverride(withPlans as Record<string, unknown>, override) as typeof baseProperty;
     })();
 
+    // If the spreadsheet marks this property as hidden, redirect to listings
+    const isHidden = id ? overrides[id]?.visible === false : false;
+    if (isHidden) {
+        return <Navigate to="/empreendimentos" replace />;
+    }
+
     // Keyboard navigation for gallery
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -2117,7 +2123,7 @@ export default function PropertyDetail() {
                                 </div>
                             </a>
                             <a
-                                href={`https://wa.me/5531333344444?text=Olá! Tenho interesse no ${property.title}.`}
+                                href={`https://wa.me/5531998411840?text=Olá! Tenho interesse no ${property.title}.`}
                                 target="_blank"
                                 rel="noreferrer"
                                 className="contact-option-btn"

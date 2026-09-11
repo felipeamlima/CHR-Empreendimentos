@@ -8,7 +8,7 @@ const slides = [
     {
         id: "maranhao",
         image: "/gallery/maranhao/maranhao1.jpg",
-        badge: "Em Obras",
+        badge: "Lançamento",
         title: "Edifício Maranhão",
         subtitle: "Lançamento de alto luxo no coração do bairro Funcionários."
     },
@@ -36,7 +36,7 @@ const slides = [
     {
         id: "mar-de-espanha",
         image: "/gallery/mar-de-espanha/2.jpg",
-        badge: "Pronto para Morar",
+        badge: "Em Obras",
         title: "Mar de\nEspanha",
         subtitle: "Seu lugar ideal no bairro Santo Antônio."
     }

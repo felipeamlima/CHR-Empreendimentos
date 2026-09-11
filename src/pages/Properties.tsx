@@ -1,7 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import PropertyCard, { type PropertyProps } from '../components/ui/PropertyCard';
+import {
+    fetchPropertyOverrides,
+    type PropertyOverrideMap,
+} from '../services/propertiesService';
 import './Properties.css';
 
 const allProperties: PropertyProps[] = [
@@ -246,22 +250,37 @@ export default function Properties() {
 
     const statusOptions = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portfólio'];
 
+    const [overrides, setOverrides] = useState<PropertyOverrideMap>({});
+    useEffect(() => {
+        let cancelled = false;
+        fetchPropertyOverrides().then((map) => {
+            if (!cancelled) setOverrides(map);
+        });
+        return () => { cancelled = true; };
+    }, []);
+
     const filteredProperties = useMemo(() => {
-        if (activeStatus === 'Portfólio') {
-            return completedProperties.filter(property => {
-                const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                    property.location.toLowerCase().includes(searchQuery.toLowerCase());
-                return matchesSearch;
-            });
-        }
-        return allProperties.filter(property => {
+        const source = activeStatus === 'Portfólio' ? completedProperties : allProperties;
+        return source.filter(property => {
+            // Hide properties marked visible=false in the spreadsheet
+            const ov = overrides[property.id];
+            if (ov?.visible === false) return false;
+
+            const effectiveStatus = ov?.status ?? property.status;
             const filterStatus = activeStatus === 'Pronto para Morar' ? 'Últimas Unidades' : activeStatus;
-            const matchesStatus = activeStatus === 'Todos' || property.status === filterStatus;
+            const matchesStatus = activeStatus === 'Todos' || activeStatus === 'Portfólio' || effectiveStatus === filterStatus;
             const matchesSearch = property.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 property.location.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesStatus && matchesSearch;
+        }).map(property => {
+            // Apply status override for the badge
+            const ov = overrides[property.id];
+            if (ov?.status && ov.status !== property.status) {
+                return { ...property, status: ov.status };
+            }
+            return property;
         });
-    }, [activeStatus, searchQuery]);
+    }, [activeStatus, searchQuery, overrides]);
 
     return (
         <div className="properties-page">
