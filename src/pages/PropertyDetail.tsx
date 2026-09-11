@@ -225,7 +225,7 @@ const db = {
         ]
     },
     "helena-borges": {
-        title: "Edifício Helena Borges", location: "Serra, Belo Horizonte",
+        title: "Edifício Helena Borges", location: "Rua Itaparica, 98 - Serra, Belo Horizonte",
         status: "Lançamento", progress: 0,
         progressStages: [
             { name: "Preparo do Terreno", v: 0 },
