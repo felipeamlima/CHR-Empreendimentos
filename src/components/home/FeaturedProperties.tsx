@@ -60,10 +60,17 @@ export default function FeaturedProperties() {
             })
             .map((p) => {
                 const ov = overrides[p.id];
-                if (ov?.status && ov.status !== p.status) {
-                    return { ...p, status: ov.status as PropertyProps['status'] };
-                }
-                return p;
+                if (!ov) return p;
+                return {
+                    ...p,
+                    title: ov.title ?? p.title,
+                    location: ov.location ?? p.location,
+                    status: (ov.status ?? p.status) as PropertyProps['status'],
+                    specs: {
+                        ...p.specs,
+                        ...(ov.specs || {})
+                    }
+                };
             });
     }, [activeFilter, overrides]);
 

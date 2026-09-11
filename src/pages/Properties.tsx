@@ -278,12 +278,19 @@ export default function Properties() {
                 property.location.toLowerCase().includes(searchQuery.toLowerCase());
             return matchesStatus && matchesSearch;
         }).map(property => {
-            // Apply status override for the badge
+            // Apply all overrides
             const ov = overrides[property.id];
-            if (ov?.status && ov.status !== property.status) {
-                return { ...property, status: ov.status as PropertyProps['status'] };
-            }
-            return property;
+            if (!ov) return property;
+            return {
+                ...property,
+                title: ov.title ?? property.title,
+                location: ov.location ?? property.location,
+                status: (ov.status ?? property.status) as PropertyProps['status'],
+                specs: {
+                    ...property.specs,
+                    ...(ov.specs || {})
+                }
+            };
         });
     }, [activeStatus, searchQuery, overrides]);
 

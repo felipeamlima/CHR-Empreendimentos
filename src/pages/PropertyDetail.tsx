@@ -224,6 +224,56 @@ const db = {
             { name: "Cobertura Pav 2", image: "/plants/j-silva/COBERTURA PAV 2.jpg" }
         ]
     },
+    "helena-borges": {
+        title: "Edifício Helena Borges", location: "Serra, Belo Horizonte",
+        status: "Lançamento", progress: 0,
+        progressStages: [
+            { name: "Preparo do Terreno", v: 0 },
+            { name: "Fundações", v: 0 },
+            { name: "Superestrutura", v: 0 },
+            { name: "Alvenaria", v: 0 },
+            { name: "Instalações", v: 0 },
+            { name: "Acabamento", v: 0 }
+        ],
+        images: [
+            "/gallery/helena-borges/1.png",
+            "/gallery/helena-borges/2.png",
+            "/gallery/helena-borges/3.png"
+        ],
+        specs: {
+            area: "33m² a 78m²",
+            beds: "1 e 2 Quartos",
+            parking: "1 e 2 Vagas",
+            floors: "-",
+            units: "-",
+            leisure: "Sem Área de Lazer"
+        },
+        desc: "O Edifício Helena Borges...",
+        differentials: [
+            "Excelente Localização",
+            "Acabamento de Alto Padrão"
+        ],
+        gallery: [
+            "/gallery/helena-borges/1.png",
+            "/gallery/helena-borges/2.png",
+            "/gallery/helena-borges/3.png",
+            "/gallery/helena-borges/4.png",
+            "/gallery/helena-borges/5.png",
+            "/gallery/helena-borges/6.png"
+        ],
+        plans: [
+            { name: "Planta 1", image: "/plants/helena-borges/1.png" },
+            { name: "Planta 2", image: "/plants/helena-borges/2.png" },
+            { name: "Planta 3", image: "/plants/helena-borges/3.png" },
+            { name: "Planta 4", image: "/plants/helena-borges/4.png" },
+            { name: "Planta 5", image: "/plants/helena-borges/5.png" },
+            { name: "Planta 6", image: "/plants/helena-borges/6.png" },
+            { name: "Planta 7", image: "/plants/helena-borges/7.png" },
+            { name: "Planta 8", image: "/plants/helena-borges/8.png" },
+            { name: "Planta 9", image: "/plants/helena-borges/9.png" },
+            { name: "Planta 10", image: "/plants/helena-borges/10.png" }
+        ]
+    },
     "m-faria": {
         title: "Edifício\nM. Faria", location: "Rua Itajubá, 108 - Floresta",
         status: "Lançamento", progress: 0,
