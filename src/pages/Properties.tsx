@@ -276,7 +276,7 @@ export default function Properties() {
             // Apply status override for the badge
             const ov = overrides[property.id];
             if (ov?.status && ov.status !== property.status) {
-                return { ...property, status: ov.status };
+                return { ...property, status: ov.status as PropertyProps['status'] };
             }
             return property;
         });

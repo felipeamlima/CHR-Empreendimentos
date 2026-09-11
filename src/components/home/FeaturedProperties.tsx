@@ -61,7 +61,7 @@ export default function FeaturedProperties() {
             .map((p) => {
                 const ov = overrides[p.id];
                 if (ov?.status && ov.status !== p.status) {
-                    return { ...p, status: ov.status };
+                    return { ...p, status: ov.status as PropertyProps['status'] };
                 }
                 return p;
             });
