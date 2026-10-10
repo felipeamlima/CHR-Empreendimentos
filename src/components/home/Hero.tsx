@@ -34,11 +34,11 @@ const slides = [
         subtitle: "Lançamento no melhor da cidade."
     },
     {
-        id: "mar-de-espanha",
-        image: "/gallery/mar-de-espanha/2.jpg",
-        badge: "Em Obras",
-        title: "Mar de\nEspanha",
-        subtitle: "Seu lugar ideal no bairro Santo Antônio."
+        id: "silva-jardim",
+        image: "/gallery/silva-jardim/1.jpg",
+        badge: "Lançamento",
+        title: "Edifício\nSilva Jardim",
+        subtitle: "Localização privilegiada no coração do bairro Floresta."
     }
 ];
 

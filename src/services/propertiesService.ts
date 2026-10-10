@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Fetches property overrides from the "CHR Empreendimentos" Google Sheet
  * via Apps Script. Each row, indexed by slug, OVERRIDES the hardcoded
  * fields in PropertyDetail.tsx's `db`. Fields left blank in the sheet
@@ -9,7 +9,7 @@
 const ENDPOINT =
     'https://script.google.com/macros/s/AKfycbzQjh_wCfd0nlUIFDzWxYHV2qof-ZVkv5SjdcoKi38qr_MXwAl2zmEAaB3Pp_FAJNNIDA/exec';
 
-const CACHE_KEY = 'chr_properties_overrides_v1';
+const CACHE_KEY = 'chr_properties_overrides_v2';
 const CACHE_FRESH_MS = 5 * 60 * 1000;   // 5 minutes — fresh, no refresh needed
 const CACHE_MAX_MS = 24 * 60 * 60 * 1000; // 24 hours — stale, still serve but refresh in background
 
@@ -125,7 +125,7 @@ const parseRow = (row: RawRow): PropertyOverride | null => {
     }
 
     const override: PropertyOverride = {};
-    if (str(row.title)) override.title = str(row.title);
+    if (str(row.title)) override.title = str(row.title)!.replace(/\\n/g, '\n');
     if (str(row.location)) override.location = str(row.location);
     if (str(row.status)) override.status = str(row.status);
     if (num(row.progress) !== undefined) override.progress = num(row.progress);

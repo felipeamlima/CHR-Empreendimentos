@@ -194,6 +194,29 @@
     z-index: 1;
 }
 
+.luxury-f-count {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.45rem;
+    height: 1.45rem;
+    margin-left: 0.55rem;
+    padding: 0 0.4rem;
+    border-radius: 999px;
+    font-size: 0.6rem;
+    letter-spacing: 0;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.luxury-f-btn.active .luxury-f-count {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
 /* ---------- Grid ---------- */
 .luxury-experience-grid {
     display: grid;

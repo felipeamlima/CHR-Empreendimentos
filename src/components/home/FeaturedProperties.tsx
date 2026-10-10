@@ -2,44 +2,21 @@ import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import PropertyCard, { type PropertyProps } from '../ui/PropertyCard';
+import PropertyCard from '../ui/PropertyCard';
 import {
     fetchPropertyOverrides,
     type PropertyOverrideMap,
 } from '../../services/propertiesService';
+import { buildCatalog, CATALOG_TABS, type CatalogTab } from '../../data/properties';
 import './FeaturedProperties.css';
 
-const mockProperties: PropertyProps[] = [
-    {
-        id: 'maranhao',
-        title: 'Edifício Maranhão',
-        location: 'Funcionários · Belo Horizonte',
-        image: '/gallery/maranhao/maranhao1.jpg',
-        status: 'Lançamento',
-        specs: { area: '68m² a 182m²', beds: '2 e 3 Quartos', parking: '1 e 2 Vagas' },
-    },
-    {
-        id: 'sion-prime',
-        title: 'Sion Prime',
-        location: 'Sion · Belo Horizonte',
-        image: '/gallery/sion-prime/1.jpg',
-        status: 'Lançamento',
-        specs: { area: '57 a 140m²', beds: '2 e 3 Quartos', parking: '2 Vagas' },
-    },
-    {
-        id: 'sao-domingos',
-        title: 'Edifício E. Pinheiro',
-        location: 'São Pedro · Belo Horizonte',
-        image: '/gallery/sao-domingos/1.jpg',
-        status: 'Em Obras',
-        specs: { area: '36 a 160m²', beds: '1, 2 e 3 Quartos', parking: '1 e 2 Vagas' },
-    },
-];
+/** How many cards the home showcase displays per tab. */
+const MAX_CARDS = 6;
 
-const filters = ['Todos', 'Lançamento', 'Em Obras', 'Pronto para Morar', 'Portfólio'];
+const filters = CATALOG_TABS;
 
 export default function FeaturedProperties() {
-    const [activeFilter, setActiveFilter] = useState('Todos');
+    const [activeFilter, setActiveFilter] = useState<CatalogTab>('Todos');
 
     const [overrides, setOverrides] = useState<PropertyOverrideMap>({});
     useEffect(() => {
@@ -50,29 +27,29 @@ export default function FeaturedProperties() {
         return () => { cancelled = true; };
     }, []);
 
+    // Full list per tab, already synced with the sheet and sorted
+    // (Lançamentos → Últimas Unidades → Em Obras → Concluídos).
+    const catalog = useMemo(() => {
+        const map = {} as Record<CatalogTab, ReturnType<typeof buildCatalog>>;
+        for (const f of filters) map[f] = buildCatalog(overrides, f);
+        return map;
+    }, [overrides]);
+
+    // "Todos" on the home is a curated mix: lançamentos first, but always
+    // guarantees at least one card from each other active category.
     const filtered = useMemo(() => {
-        return mockProperties
-            .filter((p) => {
-                const ov = overrides[p.id];
-                if (ov?.visible === false) return false;
-                const effectiveStatus = ov?.status ?? p.status;
-                return activeFilter === 'Todos' || effectiveStatus === activeFilter;
-            })
-            .map((p) => {
-                const ov = overrides[p.id];
-                if (!ov) return p;
-                return {
-                    ...p,
-                    title: ov.title ?? p.title,
-                    location: ov.location ?? p.location,
-                    status: (ov.status ?? p.status) as PropertyProps['status'],
-                    specs: {
-                        ...p.specs,
-                        ...(ov.specs || {})
-                    }
-                };
-            });
-    }, [activeFilter, overrides]);
+        const list = catalog[activeFilter];
+        if (activeFilter !== 'Todos') return list.slice(0, MAX_CARDS);
+        const picks = [
+            catalog['Pronto para Morar'][0],
+            catalog['Em Obras'][0],
+        ].filter(Boolean);
+        const launches = catalog['Lançamento'].slice(0, MAX_CARDS - picks.length);
+        const chosen = new Set([...launches, ...picks].map((p) => p.id));
+        return list.filter((p) => chosen.has(p.id)).slice(0, MAX_CARDS);
+    }, [catalog, activeFilter]);
+
+    const totalInTab = catalog[activeFilter].length;
 
     return (
         <section className="featured-experience-dark">
@@ -182,6 +159,7 @@ export default function FeaturedProperties() {
                                         />
                                     )}
                                     <span className="luxury-f-label">{f}</span>
+                                    <span className="luxury-f-count">{catalog[f].length}</span>
                                 </button>
                             );
                         })}
@@ -217,7 +195,11 @@ export default function FeaturedProperties() {
                     transition={{ duration: 0.7, delay: 0.2 }}
                 >
                     <Link to="/empreendimentos" className="btn-v-all-luxury">
-                        <span>Conheça nosso portfólio</span>
+                        <span>
+                            {totalInTab > filtered.length
+                                ? `Ver todos os ${totalInTab} empreendimentos`
+                                : 'Conheça nosso portfólio'}
+                        </span>
                         <ArrowUpRight size={18} className="btn-v-all-arrow" />
                     </Link>
                 </motion.div>

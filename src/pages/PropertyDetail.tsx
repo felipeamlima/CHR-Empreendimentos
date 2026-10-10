@@ -322,7 +322,7 @@ const db = {
             { name: "Instalações", v: 0 },
             { name: "Acabamento", v: 0 }
         ],
-        images: ["/gallery/silva-jardim/1.jpg"],
+        images: ["/gallery/silva-jardim/1.jpg", "/gallery/silva-jardim/2.jpg", "/gallery/silva-jardim/3.png"],
         specs: { area: "60m² a 191m²", beds: "2 a 4 Quartos", parking: "2 Vagas", floors: "5 Andares", units: "8 Unidades", leisure: "Sem Área de Lazer" },
         desc: "Viver no Edifício Silva Jardim é desfrutar de uma localização privilegiada e estratégica, a poucos passos de todo o comércio e conveniências do bairro Floresta, com acesso rápido a qualquer ponto da cidade. É sinônimo de qualidade de vida urbana em meio a calçadas arborizadas e áreas verdes. Uma oportunidade de manter o contato com a natureza e garantir mais bem-estar no coração da metrópole, sem abrir mão do conforto e da praticidade.",
         differentials: [
@@ -335,7 +335,7 @@ const db = {
             "Água e Gás Individualizados",
             "Acabamento de Alto Padrão"
         ],
-        gallery: ["/gallery/silva-jardim/1.jpg", "/gallery/silva-jardim/2.jpg"],
+        gallery: ["/gallery/silva-jardim/1.jpg", "/gallery/silva-jardim/2.jpg", "/gallery/silva-jardim/3.png", "/gallery/silva-jardim/4.png"],
         plans: [
             { name: "Planta 1", image: "/plants/silva-jardim/1.jpg" },
             { name: "Planta 2", image: "/plants/silva-jardim/2.jpg" },
@@ -369,7 +369,7 @@ const db = {
             "Design Contemporâneo",
             "No Coração do Funcionários"
         ],
-        gallery: ["/gallery/aimores/1.jpg", "/gallery/aimores/2.jpg", "/gallery/aimores/3.jpg"],
+        gallery: ["/gallery/aimores/1.jpg", "/gallery/aimores/2.jpg"],
         plans: []
     },
     "major-lopes": {
@@ -477,7 +477,7 @@ const db = {
             "Água e Gás Individualizados",
             "Segurança de Última Geração"
         ],
-        gallery: ["/gallery/odilon-braga/1.jpg"],
+        gallery: ["/gallery/odilon-braga/1.jpg", "/gallery/odilon-braga/2.jpg"],
         plans: []
     },
     "barao-de-cocais": {
@@ -1623,63 +1623,80 @@ function EvolucaoObras({ property }: { property: any }) {
     );
 }
 
-// ===== Plants manifest (auto-generated count of files in public/plants/<slug>/) =====
-type PlantInfo = { count: number; ext: 'jpg' | 'png' };
-const PLANT_MANIFEST: Record<string, PlantInfo> = {
-    'adelson-pazzini': { count: 5, ext: 'jpg' },
-    'aimores': { count: 9, ext: 'png' },
-    'amaro-linari': { count: 5, ext: 'jpg' },
-    'arnaldo-xavier': { count: 2, ext: 'jpg' },
-    'barao-de-cocais': { count: 8, ext: 'jpg' },
-    'caldeira-brant': { count: 4, ext: 'jpg' },
-    'chicago': { count: 7, ext: 'jpg' },
-    'costa-monteiro': { count: 6, ext: 'png' },
-    'dom-vital': { count: 6, ext: 'jpg' },
-    'dona-anisia': { count: 6, ext: 'jpg' },
-    'dona-cleonice': { count: 4, ext: 'jpg' },
-    'efigenia-de-freitas': { count: 3, ext: 'jpg' },
-    'enio-soares': { count: 10, ext: 'jpg' },
-    'francisco-bressane': { count: 7, ext: 'jpg' },
-    'geraldo-rezende': { count: 10, ext: 'jpg' },
-    'getulio-vargas': { count: 7, ext: 'jpg' },
-    'gisa-araujo': { count: 6, ext: 'jpg' },
-    'iracema-drummond': { count: 2, ext: 'jpg' },
-    'isabela-lima': { count: 6, ext: 'jpg' },
-    'itabira': { count: 5, ext: 'jpg' },
-    'itajuba': { count: 3, ext: 'jpg' },
-    'j-silva': { count: 8, ext: 'jpg' },
-    'jardins-do-prado': { count: 8, ext: 'jpg' },
-    'joao-ayres': { count: 11, ext: 'jpg' },
-    'm-faria': { count: 9, ext: 'jpg' },
-    'macedo': { count: 8, ext: 'jpg' },
-    'machado-lima': { count: 4, ext: 'jpg' },
-    'major-lopes': { count: 9, ext: 'png' },
-    'mar-de-espanha': { count: 7, ext: 'png' },
-    'maranhao': { count: 13, ext: 'jpg' },
-    'marechal-hermes': { count: 4, ext: 'jpg' },
-    'maria-das-dores-brandao': { count: 1, ext: 'jpg' },
-    'mem-de-sa': { count: 5, ext: 'jpg' },
-    'nelson-souza': { count: 3, ext: 'jpg' },
-    'odilon-braga': { count: 7, ext: 'jpg' },
-    'sao-domingos': { count: 10, ext: 'jpg' },
-    'sao-manoel': { count: 5, ext: 'png' },
-    'sao-pedro': { count: 6, ext: 'jpg' },
-    'sao-roque': { count: 6, ext: 'jpg' },
-    'silva-jardim': { count: 6, ext: 'jpg' },
-    'silvestre-ferraz': { count: 11, ext: 'jpg' },
-    'sion-prime': { count: 8, ext: 'jpg' },
-    'stela-de-souza': { count: 5, ext: 'png' },
-    'stela-de-souza2': { count: 8, ext: 'jpg' },
-    'waldir-chaves': { count: 9, ext: 'jpg' },
+// ===== Plants manifest (generated from the real files in public/plants/<slug>/) =====
+// Source of truth for which plant images exist. Regenerate when adding files.
+const PLANT_MANIFEST: Record<string, string[]> = {
+    'adelson-pazzini': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'],
+    'aimores': ['Screenshot_1.png', 'Screenshot_10.png', 'Screenshot_2.png', 'Screenshot_3.png', 'Screenshot_4.png', 'Screenshot_5.png', 'Screenshot_6.png', 'Screenshot_7.png', 'Screenshot_8.png', 'Screenshot_9.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png'],
+    'amaro-linari': ['1.jpg', '2.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'arnaldo-xavier': ['1.jpg', '2.jpg'],
+    'barao-de-cocais': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'caldeira-brant': ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
+    'chicago': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'],
+    'costa-monteiro': ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png'],
+    'dom-vital': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'dona-anisia': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'dona-cleonice': ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
+    'efigenia-de-freitas': ['1.jpg', '2.jpg', '3.jpg'],
+    'enio-soares': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'],
+    'francisco-bressane': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'],
+    'geraldo-rezende': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'],
+    'getulio-vargas': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'],
+    'gisa-araujo': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'helena-borges': ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png'],
+    'iracema-drummond': ['1.jpg', '2.jpg'],
+    'isabela-lima': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'itabira': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'],
+    'itajuba': ['1.jpg', '2.jpg', '3.jpg'],
+    'j-silva': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'jardins-do-prado': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'joao-ayres': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg'],
+    'm-faria': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg'],
+    'macedo': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'machado-lima': ['2.jpg', '3.jpg', '4.jpg', '5.jpg'],
+    'major-lopes': ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png'],
+    'mar-de-espanha': ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png'],
+    'maranhao': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg'],
+    'marechal-hermes': ['1.jpg', '2.jpg', '3.jpg', '4.jpg'],
+    'maria-das-dores-brandao': ['1.jpg'],
+    'mem-de-sa': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'],
+    'nelson-souza': ['1.jpg', '2.jpg', '3.jpg'],
+    'odilon-braga': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg'],
+    'sao-domingos': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg'],
+    'sao-manoel': ['1.png', '2.png', '3.png', '4.png', '5.png'],
+    'sao-pedro': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'sao-roque': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg'],
+    'silva-jardim': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.png', '9.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg'],
+    'silvestre-ferraz': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg'],
+    'sion-prime': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'stela-de-souza': ['1.png', '2.png', '3.png', '4.png', '5.png'],
+    'stela-de-souza2': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg'],
+    'vincentina-de-souza': ['1.jpeg', '2.jpeg', '3.jpeg', '4.jpeg', '5.jpeg', '6.jpeg'],
+    'waldir-chaves': ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg'],
 };
 
 function getDefaultPlans(slug: string): { name: string; image: string }[] {
-    const info = PLANT_MANIFEST[slug];
-    if (!info || info.count === 0) return [];
-    return Array.from({ length: info.count }, (_, i) => ({
+    const files = PLANT_MANIFEST[slug] ?? [];
+    return files.map((f, i) => ({
         name: `Planta ${String(i + 1).padStart(2, '0')}`,
-        image: `/plants/${slug}/${i + 1}.${info.ext}`,
+        image: `/plants/${slug}/${f}`,
     }));
+}
+
+/** Keeps only explicit plans whose file really exists, then appends any
+ *  extra files found on disk so nothing is broken or missing. */
+function resolvePlans(slug: string, explicit: { name: string; image: string }[] | undefined) {
+    const auto = getDefaultPlans(slug);
+    if (!PLANT_MANIFEST[slug]) return explicit ?? [];
+    const existing = new Set(auto.map((p) => p.image));
+    const valid = (explicit ?? []).filter((p) => existing.has(p.image));
+    const used = new Set(valid.map((p) => p.image));
+    const extra = auto.filter((p) => !used.has(p.image));
+    return [...valid, ...extra].map((p, i) =>
+        p.name.startsWith('Planta ') && /^Planta \d+$/.test(p.name)
+            ? { ...p, name: `Planta ${String(i + 1).padStart(2, '0')}` }
+            : p,
+    );
 }
 
 export default function PropertyDetail() {
@@ -1714,14 +1731,9 @@ export default function PropertyDetail() {
     // Auto-fill plans from public/plants/<slug>/ when the entry has none,
     // and merge any field overrides coming from the Google Sheet.
     const property = (() => {
-        const hasPlans = Array.isArray(baseProperty.plans) && baseProperty.plans.length > 0;
-        const withPlans = hasPlans || !id
+        const withPlans = !id
             ? baseProperty
-            : (() => {
-                const auto = getDefaultPlans(id);
-                if (auto.length === 0) return baseProperty;
-                return { ...baseProperty, plans: auto };
-            })();
+            : { ...baseProperty, plans: resolvePlans(id, baseProperty.plans as { name: string; image: string }[] | undefined) };
 
         const override = id ? overrides[id] : undefined;
         return mergeOverride(withPlans as Record<string, unknown>, override) as typeof baseProperty;
